@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.pb.leadmanagement.health.HealthActivity"
+    tools:showIn="@layout/activity_health">
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        card_view:cardCornerRadius="2dp"
+        card_view:cardElevation="3dp"
+        card_view:contentPadding="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_weight="90"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/etName"
+                                style="@style/Style.edittext"
+                                android:hint="Insured Person Name"
+                                android:inputType="text" />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/etMobileNo"
+                                style="@style/Style.edittext"
+                                android:hint="Mobile No."
+                                android:inputType="number"
+                                android:maxLength="10" />
+                        </android.support.design.widget.TextInputLayout>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/etDOB"
+                                style="@style/Style.edittext"
+                                android:focusable="false"
+                                android:hint="Date of Birth" />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/etEmail"
+                                style="@style/Style.edittext"
+                                android:hint="EmailID"
+                                android:inputType="textEmailAddress"
+                                android:lines="1" />
+                        </android.support.design.widget.TextInputLayout>
+                    </TableRow>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/etCity"
+                            style="@style/Style.edittext"
+                            android:hint="City"
+                            android:lines="1" />
+                    </android.support.design.widget.TextInputLayout>
+
+
+                    <TextView
+                        style="@style/CustomTitle.Medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="12dp"
+                        android:text="Policy is"
+                        android:textSize="14sp" />
+
+                    <Spinner
+                        android:id="@+id/spPolicyIs"
+                        style="@style/Spinner.Underline"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/array_health_policyis" />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/etPolicyExpiry"
+                            style="@style/Style.edittext"
+                            android:focusable="false"
+                            android:hint="Policy Expiry Date" />
+                    </android.support.design.widget.TextInputLayout>
+
+
+                    <TextView
+                        style="@style/CustomTitle.Medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="12dp"
+                        android:text="Policy Type"
+                        android:textSize="14sp" />
+
+                    <Spinner
+                        android:id="@+id/spPolicyType"
+                        style="@style/Spinner.Underline"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/array_health_policytype" />
+
+
+                    <TextView
+                        style="@style/CustomTitle.Medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="12dp"
+                        android:text="Existing Disease"
+                        android:textSize="14sp" />
+
+                    <Spinner
+                        android:id="@+id/spExistingDisease"
+                        style="@style/Spinner.Underline"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/array_health_disease" />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/etOtherDisease"
+                            style="@style/Style.edittext"
+                            android:hint="Other Disease" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/txtInsurer"
+                        style="@style/CustomTitle.Medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="0dp"
+                        android:text="Insurer company"
+                        android:textSize="14sp" />
+
+                    <Spinner
+                        android:id="@+id/spInsurer"
+                        style="@style/Spinner.Underline"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+            </ScrollView>
+
+            <Button
+                android:id="@+id/btnAddHealth"
+                style="@style/ButtonStyle"
+                android:layout_height="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_weight="10"
+                android:text="ADD" />
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+</LinearLayout>

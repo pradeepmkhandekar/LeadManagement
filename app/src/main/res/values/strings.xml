@@ -1,0 +1,84 @@
+<resources>
+    <string name="app_name">LeadManagement</string>
+    <string name="title_activity_login">Login</string>
+    <string name="sign_up_s">New to Lead Management? <b>Signup</b> now</string>
+
+    <string name="sign_up">New to Lead Management?<![CDATA[<b><font color=#00BFA5> Signup</font></b>]]> now</string>
+    <string name="title_activity_register">Sign up</string>
+    <string name="title_activity_forgot">Forgot password</string>
+
+    <string-array name="array_health_policyis">
+        <item>Fresh</item>
+        <item>Portable</item>
+    </string-array>
+
+    <string-array name="array_health_policytype">
+        <item>Individual</item>
+        <item>Floater</item>
+    </string-array>
+
+    <string-array name="array_health_disease">
+        <item>Heart</item>
+        <item>BP</item>
+        <item>Diabetes</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="array_fieldmanager">
+        <item>Self</item>
+    </string-array>
+
+    <string-array name="array_motor_relation">
+        <item>Self</item>
+        <item>Spouse</item>
+        <item>Relative</item>
+        <item>Driver</item>
+
+    </string-array>
+
+    <string-array name="array_vehicleType">
+        <item>Four Wheeler</item>
+        <item>Two Wheeler</item>
+    </string-array>
+
+    <string-array name="loan_product">
+        <item>Loan</item>
+        <item>Credit Card</item>
+    </string-array>
+
+    <string-array name="life_investment">
+        <item>Term plan</item>
+        <item>Life insurance</item>
+    </string-array>
+
+    <string-array name="other_insurance">
+        <item>Travel Insurance</item>
+        <item>Fire Insurance</item>
+        <item>Marine Insurance</item>
+        <item>Workman Compensation</item>
+    </string-array>
+
+    <string-array name="travel_category">
+        <item>Individual</item>
+        <item>Family</item>
+
+    </string-array>
+
+
+    <string name="title_activity_home">Dashboard</string>
+    <string name="title_activity_navigation">Dashboard</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_add_motor_lead">Add Motor Lead</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="title_activity_life">Add Life Lead</string>
+    <string name="title_activity_add_other">Add Other Lead</string>
+    <string name="title_activity_health">Add Health Lead</string>
+    <string name="title_activity_loan">Add Loan Lead</string>
+</resources>
