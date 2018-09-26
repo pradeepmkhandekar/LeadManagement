@@ -35,6 +35,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener, IResponseSub
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setListener()
+        initDialog()
     }
 
     private fun setListener() {

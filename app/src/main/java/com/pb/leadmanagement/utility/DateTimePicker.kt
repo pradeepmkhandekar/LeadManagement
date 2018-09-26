@@ -46,7 +46,7 @@ open class DateTimePicker {
 
             dialog.datePicker.minDate = calendar.timeInMillis
 
-            calendar.add(Calendar.MONTH, 2)
+            calendar.add(Calendar.MONTH, 12)
             dialog.datePicker.maxDate = calendar.timeInMillis
 
             dialog.show()

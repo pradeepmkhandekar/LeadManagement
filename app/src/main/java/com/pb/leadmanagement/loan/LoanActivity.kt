@@ -87,15 +87,16 @@ class LoanActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcrib
                     return
                 }
 
+                if (!isValidEMail(etEmail.text.toString())) {
+                    showMessage(etName, "Invalid Email-ID", "", null)
+                    return
+                }
+
                 if (etDOB.text.toString().length < 4) {
                     showMessage(etName, "Invalid Date of Birth", "", null)
                     return
                 }
 
-                if (!isValidEMail(etEmail.text.toString())) {
-                    showMessage(etName, "Invalid Email-ID", "", null)
-                    return
-                }
 
                 val listProduct = mutableListOf<String>()
 

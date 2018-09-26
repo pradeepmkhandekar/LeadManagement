@@ -47,7 +47,7 @@
                             android:id="@+id/etName"
                             style="@style/Style.edittext"
                             android:hint="Full Name"
-                            android:inputType="text" />
+                             />
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -129,7 +129,7 @@
                                 android:id="@+id/etInsuranceDate"
                                 style="@style/Style.edittext"
                                 android:focusable="false"
-                                android:hint="Insurance Date" />
+                                android:hint="Policy Expiry Date" />
                         </android.support.design.widget.TextInputLayout>
 
                         <android.support.design.widget.TextInputLayout
@@ -139,7 +139,7 @@
                             <android.support.design.widget.TextInputEditText
                                 android:id="@+id/etCompanyName"
                                 style="@style/Style.edittext"
-                                android:hint="Company Name" />
+                                android:hint="Company/Individual Name" />
                         </android.support.design.widget.TextInputLayout>
                     </LinearLayout>
                 </LinearLayout>

@@ -218,6 +218,9 @@ open class UserFacade : IUserfacade, IMotorFacade, IInsurance {
         if (insurer.length > 0) {
             val convertType = object : TypeToken<List<InsuranceCompanyMasterEntity>>() {}.type
             val insurerList = Gson().fromJson<List<InsuranceCompanyMasterEntity>>(insurer, convertType)
+            insurerList[0].InsCompanyID = 0
+            insurerList[0].InsCompanyName = "Choose Insurance"
+
             return insurerList
         } else {
             return null

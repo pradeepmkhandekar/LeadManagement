@@ -176,8 +176,12 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
 
         spInsurer?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                var insurer = spInsurer.adapter.getItem(position) as InsuranceCompanyMasterEntity
-                insurerID = insurer.InsCompanyID
+                if (position == 0) {
+                    showMessage(spInsurer, "Invalid Insurance company", "", null)
+                } else {
+                    var insurer = spInsurer.adapter.getItem(position) as InsuranceCompanyMasterEntity
+                    insurerID = insurer.InsCompanyID
+                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -187,7 +191,7 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
 
         spExistingDisease?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if (position == 3) {
+                if (position == 4) {
                     etOtherDisease.visibility = View.VISIBLE
                 } else {
                     etOtherDisease.visibility = View.GONE
@@ -270,7 +274,7 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
                     insurerID = 0
                 }
 
-                if (spExistingDisease.selectedItemPosition == 3) {
+                if (spExistingDisease.selectedItemPosition == 4) {
                     if (etOtherDisease.text.toString().length < 1) {
                         showMessage(etName, "Required existing disease name", "", null)
                         return

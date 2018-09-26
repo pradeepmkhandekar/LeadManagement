@@ -103,7 +103,10 @@ open class AuthenticationController : IAuthentication {
 
             override fun onResponse(call: Call<RegisterResponse>?, response: Response<RegisterResponse>?) {
                 if (response!!.isSuccessful) {
-                    iResponseSubcriber.OnSuccess(response.body(), response.message())
+                    if (response.body()?.StatusNo == 0)
+                        iResponseSubcriber.OnSuccess(response.body(), response.message())
+                    else
+                        iResponseSubcriber.OnFailure(response.body()?.Message)
                 } else {
                     iResponseSubcriber.OnFailure(errorStatus(response.code()))
                 }

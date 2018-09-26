@@ -8,8 +8,8 @@
     <string name="title_activity_forgot">Forgot password</string>
 
     <string-array name="array_health_policyis">
-        <item>Fresh</item>
-        <item>Portable</item>
+        <item>No</item>
+        <item>Yes</item>
     </string-array>
 
     <string-array name="array_health_policytype">
@@ -18,10 +18,11 @@
     </string-array>
 
     <string-array name="array_health_disease">
+        <item>Not Applicable</item>
         <item>Heart</item>
         <item>BP</item>
         <item>Diabetes</item>
-        <item>Other</item>
+        <item>Other (Please specify name)</item>
     </string-array>
 
     <string-array name="array_fieldmanager">
@@ -47,8 +48,8 @@
     </string-array>
 
     <string-array name="life_investment">
-        <item>Term plan</item>
-        <item>Life insurance</item>
+        <item>Term Plan</item>
+        <item>Investment Plan</item>
     </string-array>
 
     <string-array name="other_insurance">
@@ -60,7 +61,7 @@
 
     <string-array name="travel_category">
         <item>Individual</item>
-        <item>Family</item>
+        <item>Group (Family or Friends)</item>
 
     </string-array>
 
