@@ -212,6 +212,29 @@
 
                     <TableRow
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Switch
+                            android:id="@+id/swNCB"
+                            android:checked="true"
+                            android:fontFamily="@font/oxygenregular"
+                            android:padding="8dp"
+                            android:text="Do you have any claim on last year policy?"
+                            android:textSize="14sp" />
+
+                        <Spinner
+                            android:id="@+id/spNCB"
+                            style="@style/Spinner.Underline"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:entries="@array/array_ncb"
+                            android:visibility="gone" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <android.support.design.widget.TextInputLayout

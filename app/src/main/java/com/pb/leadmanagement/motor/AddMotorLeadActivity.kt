@@ -54,6 +54,8 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
 
     var currentDate = Date()
 
+    var NCB: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_motor_lead)
@@ -237,6 +239,7 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
                         subModelID,
                         etMfgDate.text.toString(),
                         etPolicyExpiry.text.toString(),
+                        NCB,
                         UserFacade(this@AddMotorLeadActivity).getChainID(),
                         UserFacade(this@AddMotorLeadActivity).getUserID()
 
@@ -382,6 +385,46 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
                 spVariant?.visibility = View.GONE
             }
         }
+
+        swNCB?.setOnCheckedChangeListener({ buttonView, isChecked ->
+            if (isChecked) {
+                NCB = 0
+                spNCB.visibility = View.GONE
+            } else {
+                spNCB.visibility = View.VISIBLE
+            }
+        })
+
+        spNCB?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (spNCB?.adapter != null) {
+
+                    when (position) {
+                        0 -> {
+                            NCB = 20
+                        }
+                        1 -> {
+                            NCB = 25
+                        }
+                        2 -> {
+                            NCB = 35
+                        }
+                        3 -> {
+                            NCB = 45
+                        }
+                        4 -> {
+                            NCB = 50
+                        }
+                    }
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
+
+
     }
 
     private fun changeModelAdapter() {

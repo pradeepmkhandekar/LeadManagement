@@ -46,8 +46,7 @@
                         <android.support.design.widget.TextInputEditText
                             android:id="@+id/etName"
                             style="@style/Style.edittext"
-                            android:hint="Full Name"
-                             />
+                            android:hint="Full Name" />
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -107,7 +106,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
-                            <android.support.design.widget.TextInputEditText
+                            <AutoCompleteTextView
                                 android:id="@+id/etTravelCountry"
                                 style="@style/Style.edittext"
                                 android:hint="Travel Country" />
@@ -120,6 +119,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
+
+                        <Spinner
+                            android:id="@+id/spInsuranceType"
+                            style="@style/Spinner.Underline"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:entries="@array/other_insurance_type" />
+
 
                         <android.support.design.widget.TextInputLayout
                             android:layout_width="match_parent"

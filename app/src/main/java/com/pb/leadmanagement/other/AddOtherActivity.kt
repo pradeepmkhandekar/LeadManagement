@@ -11,6 +11,7 @@ import android.util.Patterns
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
+import android.widget.AutoCompleteTextView
 import android.widget.TextView
 import com.android.chemistlead.core.APIResponse
 import com.pb.leadmanagement.R
@@ -19,6 +20,7 @@ import com.pb.leadmanagement.core.controller.other.OtherLeadController
 import com.pb.leadmanagement.core.facade.UserFacade
 import com.pb.leadmanagement.core.requestentity.OtherRequestEntity
 import com.pb.leadmanagement.core.response.MotorLeadResponse
+import com.pb.leadmanagement.utility.CountryAdapter
 import com.pb.leadmanagement.utility.DateTimePicker
 import kotlinx.android.synthetic.main.content_add_other.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
@@ -40,6 +42,9 @@ class AddOtherActivity : AppCompatActivity(), View.OnClickListener, IResponseSub
 
     lateinit var dialog: AlertDialog
     lateinit var dialogView: View
+
+    var etTravelCountry: AutoCompleteTextView? = null
+    var adapterCountry: CountryAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,7 +84,40 @@ class AddOtherActivity : AppCompatActivity(), View.OnClickListener, IResponseSub
 
     //endregion
 
+    internal var acMakeFocusListner: View.OnFocusChangeListener = View.OnFocusChangeListener { view, b ->
+        if (!b) {
+
+            val str = etTravelCountry?.getText().toString()
+
+            val listAdapter = etTravelCountry?.getAdapter()
+            for (i in 0 until listAdapter!!.getCount()) {
+                val temp = listAdapter?.getItem(i) as String
+
+                if (str.compareTo(temp) == 0) {
+                    return@OnFocusChangeListener
+                }
+            }
+            etTravelCountry?.setText("")
+            showMessage(etTravelCountry!!, "Invalid Make", "", null)
+
+        } else {
+            etTravelCountry?.setError(null)
+        }
+    }
+
     private fun setListener() {
+
+        var country = resources.getStringArray(R.array.array_country);
+
+        etTravelCountry = findViewById<AutoCompleteTextView>(R.id.etTravelCountry)
+        etTravelCountry?.threshold = 2
+        adapterCountry = CountryAdapter(this@AddOtherActivity, R.layout.activity_add_other,
+                R.id.lbl_name, country.toMutableList())
+        etTravelCountry?.setAdapter(adapterCountry)
+
+
+        etTravelCountry?.setOnFocusChangeListener(acMakeFocusListner)
+
         btnAddOther.setOnClickListener(this)
         etTravelDate.setOnClickListener(datePickerDialog)
         etInsuranceDate.setOnClickListener(datePickerDialog)
@@ -93,6 +131,23 @@ class AddOtherActivity : AppCompatActivity(), View.OnClickListener, IResponseSub
                 } else {
                     llTravel.visibility = View.GONE
                     llOther.visibility = View.VISIBLE
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
+
+        spInsuranceType?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (position == 0) {
+
+                    etInsuranceDate.visibility = View.GONE
+                    etCompanyName.visibility = View.GONE
+                } else {
+                    etInsuranceDate.visibility = View.VISIBLE
+                    etCompanyName.visibility = View.VISIBLE
                 }
             }
 
@@ -182,20 +237,23 @@ class AddOtherActivity : AppCompatActivity(), View.OnClickListener, IResponseSub
                         return
                     }
 
-                    if (etTravelCountry.text.toString().length < 1) {
+                    if (etTravelCountry?.text.toString().length < 1) {
                         showMessage(etName, "Invalid country name", "", null)
                         return
                     }
                 } else {
-                    if (etInsuranceDate.text.toString().length < 1) {
-                        showMessage(etName, "Invalid Insurance date", "", null)
-                        return
+                    if (spInsuranceType.selectedItemPosition != 0) {
+                        if (etInsuranceDate.text.toString().length < 1) {
+                            showMessage(etName, "Invalid Insurance date", "", null)
+                            return
+                        }
+
+                        if (etCompanyName.text.toString().length < 1) {
+                            showMessage(etName, "Invalid company name", "", null)
+                            return
+                        }
                     }
 
-                    if (etCompanyName.text.toString().length < 1) {
-                        showMessage(etName, "Invalid company name", "", null)
-                        return
-                    }
                 }
 
                 var productID = 0
@@ -224,14 +282,23 @@ class AddOtherActivity : AppCompatActivity(), View.OnClickListener, IResponseSub
                     catID = catNONMOTOR_WORKMEN_ID
                 }
 
+
+                var isNew: Boolean = false
+                if (spInsuranceType.selectedItemPosition == 0) {
+                    isNew = true
+                } else {
+                    isNew = false
+                }
+
+
                 var otherRequestEntity = OtherRequestEntity(
                         etName.text.toString(),
                         etMobileNo.text.toString(),
                         productID,
                         catID,
                         etTravelDate.text.toString(),
-                        etTravelCountry.text.toString(),
-                        true,
+                        etTravelCountry?.text.toString(),
+                        isNew,
                         etInsuranceDate.text.toString(),
                         etCompanyName.text.toString(),
                         etCompanyName.text.toString(),

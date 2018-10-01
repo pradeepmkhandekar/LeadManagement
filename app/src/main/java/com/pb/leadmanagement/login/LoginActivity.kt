@@ -1,5 +1,6 @@
 package com.pb.leadmanagement.login
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -8,6 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.text.Html
 import android.view.View
 import android.view.View.OnClickListener
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import android.widget.Toast
 import com.android.chemistlead.core.APIResponse
@@ -37,6 +39,11 @@ class LoginActivity : AppCompatActivity(), OnClickListener, IResponseSubcriber {
         listeners()
         initDialog()
 
+    }
+
+    private fun hideKeyBoard() {
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(etMobileNo.windowToken, 0)
     }
 
     override fun OnSuccess(response: APIResponse?, message: String?) {
@@ -121,6 +128,7 @@ class LoginActivity : AppCompatActivity(), OnClickListener, IResponseSubcriber {
                     return
                 }
 
+                hideKeyBoard()
 
                 var loginRequestEntity = LoginRequestEntity(etMobileNo.text.toString(),
                         etPassword.text.toString())

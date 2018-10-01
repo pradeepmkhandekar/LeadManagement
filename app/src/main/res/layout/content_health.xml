@@ -50,8 +50,7 @@
                             <android.support.design.widget.TextInputEditText
                                 android:id="@+id/etName"
                                 style="@style/Style.edittext"
-                                android:hint="Insured Person Name"
-                                />
+                                android:hint="Insured Person Name" />
                         </android.support.design.widget.TextInputLayout>
 
                         <android.support.design.widget.TextInputLayout
@@ -189,8 +188,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="4dp"
                         android:layout_marginTop="0dp"
-                        android:text="Insurer company"
-                         />
+                        android:text="Insurer company" />
 
                     <Spinner
                         android:id="@+id/spInsurer"

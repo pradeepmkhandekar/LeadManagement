@@ -132,6 +132,7 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
 
     override fun OnSuccess(response: APIResponse?, message: String?) {
 
+
         dismissDialog()
         if (response is MotorLeadResponse) {
             if (response.StatusNo == 0) {

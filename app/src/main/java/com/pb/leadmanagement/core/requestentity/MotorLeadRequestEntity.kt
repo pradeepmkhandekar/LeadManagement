@@ -14,6 +14,7 @@ data class MotorLeadRequestEntity(
         var SubModelID: Int,
         var ManufacturingDate: String,
         var PolicyExpiryDate: String,
+        var NCB:Int,
         var ChainID: String,
         var UserID: Int
 )
