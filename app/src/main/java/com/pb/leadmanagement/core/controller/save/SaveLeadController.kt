@@ -59,17 +59,106 @@ open class SaveLeadController : ISaveLead {
 
 
     override fun SaveMotorLead(motorLeadRequestEntity: MotorLeadRequestEntity) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        var url = "http://49.50.95.141:2001/LeadCollection.svc/SaveMotorLeads"
+
+        mSaveNetwork.saveMotorLead(url, motorLeadRequestEntity).enqueue(object : Callback<MotorLeadResponse> {
+
+            override fun onResponse(call: Call<MotorLeadResponse>?, response: Response<MotorLeadResponse>?) {
+                /* if (response!!.isSuccessful) {
+                     if (response!!.body()?.StatusNo == 0)
+                         iResponseSubcriber.OnSuccess(response.body(), response.message())
+                     else
+                         iResponseSubcriber.OnFailure(response!!.body()?.Message)
+
+                 } else {
+                     iResponseSubcriber.OnFailure(errorStatus(response.code()))
+                 }*/
+            }
+
+            override fun onFailure(call: Call<MotorLeadResponse>?, t: Throwable?) {
+                /* if (t is ConnectException) {
+                     iResponseSubcriber.OnFailure("Check your internet connection")
+                 } else if (t is SocketTimeoutException) {
+                     iResponseSubcriber.OnFailure("Socket time-out")
+                 } else if (t is UnknownHostException) {
+                     iResponseSubcriber.OnFailure("Unknown host exception")
+                 } else if (t is NumberFormatException) {
+                     iResponseSubcriber.OnFailure("Unknown response from server")
+                 } else {
+                     iResponseSubcriber.OnFailure(t?.message)
+                 }*/
+            }
+        })
     }
 
     override fun SaveLoanLead(loanRequestEntity: LoanRequestEntity) {
 
+        var url = "http://49.50.95.141:2001/LeadCollection.svc/SaveLoanLeads"
+
+        mSaveNetwork.saveLoanLead(url, loanRequestEntity).enqueue(object : Callback<MotorLeadResponse> {
+
+            override fun onResponse(call: Call<MotorLeadResponse>?, response: Response<MotorLeadResponse>?) {
+                /* if (response!!.isSuccessful) {
+                     if (response!!.body()?.StatusNo == 0)
+                         iResponseSubcriber.OnSuccess(response.body(), response.message())
+                     else
+                         iResponseSubcriber.OnFailure(response!!.body()?.Message)
+
+                 } else {
+                     iResponseSubcriber.OnFailure(errorStatus(response.code()))
+                 }*/
+            }
+
+            override fun onFailure(call: Call<MotorLeadResponse>?, t: Throwable?) {
+                /* if (t is ConnectException) {
+                     iResponseSubcriber.OnFailure("Check your internet connection")
+                 } else if (t is SocketTimeoutException) {
+                     iResponseSubcriber.OnFailure("Socket time-out")
+                 } else if (t is UnknownHostException) {
+                     iResponseSubcriber.OnFailure("Unknown host exception")
+                 } else if (t is NumberFormatException) {
+                     iResponseSubcriber.OnFailure("Unknown response from server")
+                 } else {
+                     iResponseSubcriber.OnFailure(t?.message)
+                 }*/
+            }
+        })
     }
 
     override fun SaveOtherLead(otherRequestEntity: OtherRequestEntity) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
+        var url = "http://49.50.95.141:2001/LeadCollection.svc/SaveOtherLeads"
+
+        mSaveNetwork.saveOtherLead(url, otherRequestEntity).enqueue(object : Callback<MotorLeadResponse> {
+
+            override fun onResponse(call: Call<MotorLeadResponse>?, response: Response<MotorLeadResponse>?) {
+                /* if (response!!.isSuccessful) {
+                     if (response!!.body()?.StatusNo == 0)
+                         iResponseSubcriber.OnSuccess(response.body(), response.message())
+                     else
+                         iResponseSubcriber.OnFailure(response!!.body()?.Message)
+
+                 } else {
+                     iResponseSubcriber.OnFailure(errorStatus(response.code()))
+                 }*/
+            }
+
+            override fun onFailure(call: Call<MotorLeadResponse>?, t: Throwable?) {
+                /* if (t is ConnectException) {
+                     iResponseSubcriber.OnFailure("Check your internet connection")
+                 } else if (t is SocketTimeoutException) {
+                     iResponseSubcriber.OnFailure("Socket time-out")
+                 } else if (t is UnknownHostException) {
+                     iResponseSubcriber.OnFailure("Unknown host exception")
+                 } else if (t is NumberFormatException) {
+                     iResponseSubcriber.OnFailure("Unknown response from server")
+                 } else {
+                     iResponseSubcriber.OnFailure(t?.message)
+                 }*/
+            }
+        })
+
+    }
 
     override fun SaveLifeLead(lifeLeadRequestEntity: LifeLeadRequestEntity) {
         var url = "http://49.50.95.141:2001/LeadCollection.svc/SaveLifeLeads"

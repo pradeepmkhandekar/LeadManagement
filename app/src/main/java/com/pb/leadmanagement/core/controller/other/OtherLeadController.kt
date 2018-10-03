@@ -2,6 +2,7 @@ package com.pb.leadmanagement.core.controller.other
 
 import android.content.Context
 import com.pb.leadmanagement.core.IResponseSubcriber
+import com.pb.leadmanagement.core.controller.save.SaveLeadController
 import com.pb.leadmanagement.core.requestbuilders.LeadRequestBuilder
 import com.pb.leadmanagement.core.requestentity.MotorLeadRequestEntity
 import com.pb.leadmanagement.core.requestentity.OtherRequestEntity
@@ -59,15 +60,18 @@ open class OtherLeadController : IOther {
 
     override fun addOtherLead(otherRequestEntity: OtherRequestEntity, iResponseSubcriber: IResponseSubcriber) {
 
-
         mLeadNetwork.addOtherLead(otherRequestEntity).enqueue(object : Callback<MotorLeadResponse> {
 
             override fun onResponse(call: Call<MotorLeadResponse>?, response: Response<MotorLeadResponse>?) {
                 if (response!!.isSuccessful) {
-                    if (response!!.body()?.StatusNo == 0)
+                    if (response!!.body()?.StatusNo == 0) {
+
                         iResponseSubcriber.OnSuccess(response.body(), response.message())
-                    else
+                        SaveLeadController(mContext).SaveOtherLead(otherRequestEntity)
+
+                    } else {
                         iResponseSubcriber.OnFailure(response!!.body()?.Message)
+                    }
 
                 } else {
                     iResponseSubcriber.OnFailure(errorStatus(response.code()))
