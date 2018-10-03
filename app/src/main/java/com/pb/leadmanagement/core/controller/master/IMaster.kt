@@ -1,6 +1,7 @@
 package com.pb.leadmanagement.core.controller.master
 
 import com.pb.leadmanagement.core.IResponseSubcriber
+import com.pb.leadmanagement.core.requestentity.UploadDocRequestEntity
 
 /**
  * Created by Nilesh Birhade on 19-09-2018.
@@ -18,6 +19,7 @@ interface IMaster {
     fun fetchCityState(pincode: String, iResponseSubcriber: IResponseSubcriber)
 
     fun getMotorAllMaster(motorType: String)
+
 
     /* fun getMotorMakeMaster(iResponseSubcriber: IResponseSubcriber)
 

@@ -31,23 +31,19 @@
                 android:layout_width="@dimen/photo_width"
                 android:layout_height="@dimen/photo_height"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_camera"
-                android:tint="@color/icon_tint" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_margin="4dp"
-                android:background="@color/colorAccent" />
+                android:src="@drawable/ic_camera" />
 
             <TextView
+                android:id="@+id/txtUploadPolicy"
                 style="@style/CustomTitle.Medium"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/icon_tint"
                 android:gravity="center"
                 android:padding="6dp"
                 android:text="Upload Policy"
                 android:textAllCaps="true"
+                android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -73,23 +69,19 @@
                 android:layout_width="@dimen/photo_width"
                 android:layout_height="@dimen/photo_height"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_camera"
-                android:tint="@color/icon_tint" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_margin="4dp"
-                android:background="@color/colorAccent" />
+                android:src="@drawable/ic_camera" />
 
             <TextView
+                android:id="@+id/txtUploadRC"
                 style="@style/CustomTitle.Medium"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/icon_tint"
                 android:gravity="center"
                 android:padding="6dp"
                 android:text="Upload RC"
                 android:textAllCaps="true"
+                android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 

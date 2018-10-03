@@ -154,7 +154,7 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
         }
     }
 
-    private fun uploadImageDialog() {
+    private fun uploadImageDialog(leadID: Int) {
         // Initialize a new instance of
         val builder = AlertDialog.Builder(this@AddMotorLeadActivity)
 
@@ -168,7 +168,10 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
         builder.setPositiveButton("Upload") { dialog, which ->
 
             if (UserFacade(this@AddMotorLeadActivity).clearUser()) {
+
                 val intent = Intent(this, UploadImageActivity::class.java)
+                intent.putExtra("LEAD_ID", leadID)
+                intent.putExtra("FROM", "MOTOR")
                 startActivity(intent)
             }
         }
@@ -194,7 +197,7 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
             if (response.StatusNo == 0) {
                 //showMessage(etName, response.Message, "", null)
                 //Handler().postDelayed(Runnable { this!!.finish() }, 1000)
-                uploadImageDialog()
+                uploadImageDialog(response.Result.LeadID)
             }
         }
     }

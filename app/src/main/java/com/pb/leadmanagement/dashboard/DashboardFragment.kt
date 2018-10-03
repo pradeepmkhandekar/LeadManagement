@@ -17,6 +17,7 @@ import com.pb.leadmanagement.loan.LoanActivity
 import com.pb.leadmanagement.motor.AddMotorLeadActivity
 import com.pb.leadmanagement.other.AddOtherActivity
 import com.pb.leadmanagement.test.TestActivity
+import com.pb.leadmanagement.upload.UploadImageActivity
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.fragment_dashboard.view.*
 
@@ -88,7 +89,10 @@ class DashboardFragment : Fragment(), OnClickListener {
 
         when (v?.id) {
             R.id.cardMotor -> {
-                val intent = Intent(activity, AddMotorLeadActivity::class.java)
+
+                // val intent = Intent(activity, AddMotorLeadActivity::class.java)
+
+                val intent = Intent(activity, UploadImageActivity::class.java)
                 startActivity(intent)
             }
 
