@@ -2,6 +2,7 @@ package com.pb.leadmanagement.core.controller.health
 
 import android.content.Context
 import com.pb.leadmanagement.core.IResponseSubcriber
+import com.pb.leadmanagement.core.controller.save.SaveLeadController
 import com.pb.leadmanagement.core.requestbuilders.LeadRequestBuilder
 import com.pb.leadmanagement.core.requestentity.HealthLeadRequestEntity
 import com.pb.leadmanagement.core.response.MotorLeadResponse
@@ -61,10 +62,16 @@ open class HealthController : IHealth {
 
             override fun onResponse(call: Call<MotorLeadResponse>?, response: Response<MotorLeadResponse>?) {
                 if (response!!.isSuccessful) {
-                    if (response!!.body()?.StatusNo == 0)
+                    if (response!!.body()?.StatusNo == 0) {
+
                         iResponseSubcriber.OnSuccess(response.body(), response.message())
-                    else
+
+                        SaveLeadController(mContext).SaveHealthLead(healthLeadRequestEntity)
+
+
+                    } else {
                         iResponseSubcriber.OnFailure(response!!.body()?.Message)
+                    }
 
                 } else {
                     iResponseSubcriber.OnFailure(errorStatus(response.code()))

@@ -2,10 +2,9 @@ package com.pb.leadmanagement.core.controller.loan
 
 import android.content.Context
 import com.pb.leadmanagement.core.IResponseSubcriber
+import com.pb.leadmanagement.core.controller.save.SaveLeadController
 import com.pb.leadmanagement.core.requestbuilders.LeadRequestBuilder
 import com.pb.leadmanagement.core.requestentity.LoanRequestEntity
-import com.pb.leadmanagement.core.requestentity.MotorLeadRequestEntity
-import com.pb.leadmanagement.core.requestentity.OtherRequestEntity
 import com.pb.leadmanagement.core.response.MotorLeadResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -58,17 +57,22 @@ open class LoanLeadController : ILoan {
     }
 
 
-    override fun addLoanLead(otherRequestEntity: LoanRequestEntity, iResponseSubcriber: IResponseSubcriber) {
+    override fun addLoanLead(loanRequestEntity: LoanRequestEntity, iResponseSubcriber: IResponseSubcriber) {
 
 
-        mLeadNetwork.addLoanLead(otherRequestEntity).enqueue(object : Callback<MotorLeadResponse> {
+        mLeadNetwork.addLoanLead(loanRequestEntity).enqueue(object : Callback<MotorLeadResponse> {
 
             override fun onResponse(call: Call<MotorLeadResponse>?, response: Response<MotorLeadResponse>?) {
                 if (response!!.isSuccessful) {
-                    if (response!!.body()?.StatusNo == 0)
+                    if (response!!.body()?.StatusNo == 0) {
+
                         iResponseSubcriber.OnSuccess(response.body(), response.message())
-                    else
+
+                        SaveLeadController(mContext).SaveLoanLead(loanRequestEntity)
+
+                    } else {
                         iResponseSubcriber.OnFailure(response!!.body()?.Message)
+                    }
 
                 } else {
                     iResponseSubcriber.OnFailure(errorStatus(response.code()))

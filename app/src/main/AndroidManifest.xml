@@ -3,11 +3,14 @@
     package="com.pb.leadmanagement">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
+        android:name=".LeadApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/lead_management"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/lead_management"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -21,6 +24,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- for camera file provider -->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+
         <activity
             android:name=".login.LoginActivity"
             android:label="@string/title_activity_login"
@@ -32,7 +48,8 @@
             android:label="@string/title_activity_register"
             android:parentActivityName=".login.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.pb.leadmanagement.login.LoginActivity" />
@@ -42,7 +59,8 @@
             android:label="@string/title_activity_forgot"
             android:parentActivityName=".login.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.pb.leadmanagement.login.LoginActivity" />
@@ -50,12 +68,16 @@
         <activity
             android:name=".home.NavigationActivity"
             android:label="@string/title_activity_navigation"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".motor.AddMotorLeadActivity"
             android:label="@string/title_activity_add_motor_lead"
             android:parentActivityName=".home.NavigationActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.pb.leadmanagement.home.NavigationActivity" />
@@ -64,7 +86,9 @@
             android:name=".test.TestActivity"
             android:label="@string/title_activity_test"
             android:parentActivityName=".home.NavigationActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.pb.leadmanagement.home.NavigationActivity" />
@@ -73,7 +97,9 @@
             android:name=".life.LifeActivity"
             android:label="@string/title_activity_life"
             android:parentActivityName=".home.NavigationActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.pb.leadmanagement.home.NavigationActivity" />
@@ -82,7 +108,9 @@
             android:name=".other.AddOtherActivity"
             android:label="@string/title_activity_add_other"
             android:parentActivityName=".home.NavigationActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.pb.leadmanagement.home.NavigationActivity" />
@@ -91,7 +119,9 @@
             android:name=".health.HealthActivity"
             android:label="@string/title_activity_health"
             android:parentActivityName=".home.NavigationActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.pb.leadmanagement.home.NavigationActivity" />
@@ -100,11 +130,19 @@
             android:name=".loan.LoanActivity"
             android:label="@string/title_activity_loan"
             android:parentActivityName=".home.NavigationActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.pb.leadmanagement.home.NavigationActivity" />
         </activity>
+        <activity
+            android:name=".upload.UploadImageActivity"
+            android:label="@string/title_activity_upload_image"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"></activity>
     </application>
 
 </manifest>

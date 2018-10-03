@@ -2,6 +2,7 @@ package com.pb.leadmanagement.motor
 
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.design.widget.Snackbar
@@ -24,6 +25,7 @@ import com.pb.leadmanagement.core.response.MakeX
 import com.pb.leadmanagement.core.response.ModelX
 import com.pb.leadmanagement.core.response.MotorLeadResponse
 import com.pb.leadmanagement.core.response.Variant
+import com.pb.leadmanagement.upload.UploadImageActivity
 import com.pb.leadmanagement.utility.DateTimePicker
 import kotlinx.android.synthetic.main.content_add_motor_lead.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
@@ -152,13 +154,47 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
         }
     }
 
+    private fun uploadImageDialog() {
+        // Initialize a new instance of
+        val builder = AlertDialog.Builder(this@AddMotorLeadActivity)
+
+        // Set the alert dialog title
+        builder.setTitle("Upload Document")
+
+        // Display a message on alert dialog
+        builder.setMessage("Lead genarated successfully.! Do you want to upload documents?")
+
+        // Set a positive button and its click listener on alert dialog
+        builder.setPositiveButton("Upload") { dialog, which ->
+
+            if (UserFacade(this@AddMotorLeadActivity).clearUser()) {
+                val intent = Intent(this, UploadImageActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
+
+        // Display a negative button on alert dialog
+        builder.setNegativeButton("CANCEL") { dialog, which ->
+            dialog.dismiss()
+            Handler().postDelayed(Runnable { this!!.finish() }, 500)
+        }
+
+        // Finally, make the alert dialog using builder
+        val dialog: AlertDialog = builder.create()
+
+        // Display the alert dialog on app interface
+        dialog.show()
+    }
+
     override fun OnSuccess(response: APIResponse?, message: String?) {
 
         dismissDialog()
         if (response is MotorLeadResponse) {
             if (response.StatusNo == 0) {
-                showMessage(etName, response.Message, "", null)
-                Handler().postDelayed(Runnable { this!!.finish() }, 1000)
+                //showMessage(etName, response.Message, "", null)
+                //Handler().postDelayed(Runnable { this!!.finish() }, 1000)
+                uploadImageDialog()
             }
         }
     }
@@ -253,7 +289,7 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
         }
     }
 
-    fun hideKeyBoard() {
+    private fun hideKeyBoard() {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(etName.windowToken, 0)
     }
@@ -401,18 +437,21 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
 
                     when (position) {
                         0 -> {
-                            NCB = 20
+                            NCB = 0
                         }
                         1 -> {
-                            NCB = 25
+                            NCB = 20
                         }
                         2 -> {
-                            NCB = 35
+                            NCB = 25
                         }
                         3 -> {
-                            NCB = 45
+                            NCB = 35
                         }
                         4 -> {
+                            NCB = 45
+                        }
+                        5 -> {
                             NCB = 50
                         }
                     }

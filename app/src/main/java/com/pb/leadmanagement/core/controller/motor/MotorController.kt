@@ -2,6 +2,7 @@ package com.pb.leadmanagement.core.controller.motor
 
 import android.content.Context
 import com.pb.leadmanagement.core.IResponseSubcriber
+import com.pb.leadmanagement.core.controller.save.SaveLeadController
 import com.pb.leadmanagement.core.requestbuilders.LeadRequestBuilder
 import com.pb.leadmanagement.core.requestentity.MotorLeadRequestEntity
 import com.pb.leadmanagement.core.response.MotorLeadResponse
@@ -63,10 +64,12 @@ open class MotorController : IMotor {
 
             override fun onResponse(call: Call<MotorLeadResponse>?, response: Response<MotorLeadResponse>?) {
                 if (response!!.isSuccessful) {
-                    if (response!!.body()?.StatusNo == 0)
+                    if (response!!.body()?.StatusNo == 0) {
                         iResponseSubcriber.OnSuccess(response.body(), response.message())
-                    else
+                        SaveLeadController(mContext).SaveMotorLead(motorLeadRequestEntity)
+                    } else {
                         iResponseSubcriber.OnFailure(response!!.body()?.Message)
+                    }
 
                 } else {
                     iResponseSubcriber.OnFailure(errorStatus(response.code()))

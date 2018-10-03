@@ -81,6 +81,12 @@
         <item name="android:textColor">@color/textTitle</item>
     </style>
 
+
+    <style name="CustomDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
     <!-- text style-->
     <style name="CustomTitle" parent="TextAppearance.AppCompat.Title">
         <item name="android:fontFamily">@font/oxygenbold</item>

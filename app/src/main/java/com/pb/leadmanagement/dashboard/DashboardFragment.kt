@@ -50,19 +50,21 @@ class DashboardFragment : Fragment(), OnClickListener {
     private fun bindLeads() {
 
         var ledInterest = UserFacade(activity!!).getUser()?.LeadInterest
+        if (ledInterest != null) {
 
-        for (item in ledInterest!!) {
+            for (item in ledInterest!!) {
 
-            if (item.equals("motor")) {
-                view?.cardMotor!!.visibility = VISIBLE
-            } else if (item.equals("health")) {
-                view?.cardHealth!!.visibility = VISIBLE
-            } else if (item.equals("loan")) {
-                view?.cardLoan!!.visibility = VISIBLE
-            } else if (item.equals("life")) {
-                view?.cardLife!!.visibility = VISIBLE
-            } else if (item.equals("other")) {
-                view?.cardOther!!.visibility = VISIBLE
+                if (item.equals("motor")) {
+                    view?.cardMotor!!.visibility = VISIBLE
+                } else if (item.equals("health")) {
+                    view?.cardHealth!!.visibility = VISIBLE
+                } else if (item.equals("loan")) {
+                    view?.cardLoan!!.visibility = VISIBLE
+                } else if (item.equals("life")) {
+                    view?.cardLife!!.visibility = VISIBLE
+                } else if (item.equals("other")) {
+                    view?.cardOther!!.visibility = VISIBLE
+                }
             }
         }
     }

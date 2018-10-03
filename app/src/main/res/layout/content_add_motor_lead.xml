@@ -210,28 +210,25 @@
 
                     </TableRow>
 
-                    <TableRow
+
+                    <Switch
+                        android:id="@+id/swNCB"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:checked="true"
+                        android:fontFamily="@font/oxygenregular"
+                        android:padding="8dp"
+                        android:text="Do you have any claim on last year policy?"
+                        android:textSize="14sp" />
 
-                        <Switch
-                            android:id="@+id/swNCB"
-                            android:checked="true"
-                            android:fontFamily="@font/oxygenregular"
-                            android:padding="8dp"
-                            android:text="Do you have any claim on last year policy?"
-                            android:textSize="14sp" />
+                    <Spinner
+                        android:id="@+id/spNCB"
+                        android:visibility="gone"
+                        style="@style/Spinner.Underline"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/array_ncb" />
 
-                        <Spinner
-                            android:id="@+id/spNCB"
-                            style="@style/Spinner.Underline"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:entries="@array/array_ncb"
-                            android:visibility="gone" />
-
-                    </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
@@ -270,7 +267,7 @@
                 android:id="@+id/btnAdd"
                 style="@style/ButtonStyle"
                 android:layout_height="0dp"
-                android:layout_marginTop="0dp"
+                android:layout_marginTop="12dp"
                 android:layout_weight="10"
                 android:text="Add" />
         </LinearLayout>

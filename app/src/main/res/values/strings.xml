@@ -7,6 +7,11 @@
     <string name="title_activity_register">Sign up</string>
     <string name="title_activity_forgot">Forgot password</string>
 
+    <string name="storage_permission_rationale_title">Storage permission required</string>
+    <string name="storage_permition_rationale_message">In order to take a picture, you must grant this permission!</string>
+    <string name="storage_permission_denied_message">Storage permission is required in order to take a photo with the camera</string>
+
+
     <string-array name="array_health_policyis">
         <item>No</item>
         <item>Yes</item>
@@ -38,6 +43,7 @@
     </string-array>
 
     <string-array name="array_ncb">
+        <item>0% (less than 1 year)</item>
         <item>20% (1 year age)</item>
         <item>25% (2 year age)</item>
         <item>35% (3 year age)</item>
@@ -279,4 +285,5 @@
     <string name="title_activity_add_other">Add Other Lead</string>
     <string name="title_activity_health">Add Health Lead</string>
     <string name="title_activity_loan">Add Loan Lead</string>
+    <string name="title_activity_upload_image">Upload Document</string>
 </resources>

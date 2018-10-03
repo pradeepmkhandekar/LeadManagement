@@ -2,6 +2,7 @@ package com.pb.leadmanagement.core.controller.life
 
 import android.content.Context
 import com.pb.leadmanagement.core.IResponseSubcriber
+import com.pb.leadmanagement.core.controller.save.SaveLeadController
 import com.pb.leadmanagement.core.requestbuilders.LeadRequestBuilder
 import com.pb.leadmanagement.core.requestentity.LifeLeadRequestEntity
 import com.pb.leadmanagement.core.requestentity.MotorLeadRequestEntity
@@ -64,10 +65,17 @@ open class LifeController : ILife {
 
             override fun onResponse(call: Call<MotorLeadResponse>?, response: Response<MotorLeadResponse>?) {
                 if (response!!.isSuccessful) {
-                    if (response!!.body()?.StatusNo == 0)
+                    if (response!!.body()?.StatusNo == 0) {
+
+                        //call back
                         iResponseSubcriber.OnSuccess(response.body(), response.message())
-                    else
+
+                        // save lead for report
+                        SaveLeadController(mContext).SaveLifeLead(lifeLeadRequestEntity)
+
+                    } else {
                         iResponseSubcriber.OnFailure(response!!.body()?.Message)
+                    }
 
                 } else {
                     iResponseSubcriber.OnFailure(errorStatus(response.code()))
