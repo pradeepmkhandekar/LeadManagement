@@ -5,6 +5,7 @@ import com.pb.leadmanagement.core.IResponseSubcriber
 import com.pb.leadmanagement.core.controller.save.SaveLeadController
 import com.pb.leadmanagement.core.requestbuilders.LeadRequestBuilder
 import com.pb.leadmanagement.core.requestentity.MotorLeadRequestEntity
+import com.pb.leadmanagement.core.requestentity.UploadDocRequestEntity
 import com.pb.leadmanagement.core.response.MotorLeadResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -54,6 +55,43 @@ open class MotorController : IMotor {
             }
         }
         return ""
+    }
+
+    override fun uploadDocuments(uploadDocRequestEntity: UploadDocRequestEntity, iResponseSubcriber: IResponseSubcriber) {
+
+        mLeadNetwork.uploadDocuments(uploadDocRequestEntity).enqueue(object : Callback<MotorLeadResponse> {
+
+            override fun onResponse(call: Call<MotorLeadResponse>?, response: Response<MotorLeadResponse>?) {
+
+                if (response!!.isSuccessful) {
+                    if (response!!.body()?.StatusNo == 0) {
+                        iResponseSubcriber.OnSuccess(response.body(), response.message())
+
+                    } else {
+                        iResponseSubcriber.OnFailure(response!!.body()?.Message)
+                    }
+
+                } else {
+                    iResponseSubcriber.OnFailure(errorStatus(response.code()))
+                }
+
+            }
+
+            override fun onFailure(call: Call<MotorLeadResponse>?, t: Throwable?) {
+
+                if (t is ConnectException) {
+                    iResponseSubcriber.OnFailure("Check your internet connection")
+                } else if (t is SocketTimeoutException) {
+                    iResponseSubcriber.OnFailure("Socket time-out")
+                } else if (t is UnknownHostException) {
+                    iResponseSubcriber.OnFailure("Unknown host exception")
+                } else if (t is NumberFormatException) {
+                    iResponseSubcriber.OnFailure("Unknown response from server")
+                } else {
+                    iResponseSubcriber.OnFailure(t?.message)
+                }
+            }
+        })
     }
 
 

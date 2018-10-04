@@ -5,6 +5,7 @@ import com.pb.leadmanagement.core.requestentity.*
 import com.pb.leadmanagement.core.response.MotorLeadResponse
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.Headers
 import retrofit2.http.POST
 
 /**
@@ -34,7 +35,9 @@ open class LeadRequestBuilder : RetroRequestBuilder() {
         @POST("LeadGenration.svc/LoanLead")
         fun addLoanLead(@Body body: LoanRequestEntity): Call<MotorLeadResponse>
 
-
+        @Headers("Content-Type: text/plain")
+        @POST("LeadGenration.svc/UploadDocument")
+        fun uploadDocuments(@Body body: UploadDocRequestEntity): Call<MotorLeadResponse>
 
     }
 }

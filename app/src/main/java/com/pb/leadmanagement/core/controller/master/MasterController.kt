@@ -4,6 +4,7 @@ import android.content.Context
 import com.pb.leadmanagement.core.IResponseSubcriber
 import com.pb.leadmanagement.core.facade.UserFacade
 import com.pb.leadmanagement.core.requestbuilders.MastersRequestBuilder
+import com.pb.leadmanagement.core.requestentity.UploadDocRequestEntity
 import com.pb.leadmanagement.core.response.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -54,6 +55,8 @@ open class MasterController : IMaster {
         }
         return ""
     }
+
+
 
 
     override fun getMotorAllMaster(motorType: String) {

@@ -2,6 +2,7 @@ package com.pb.leadmanagement.health
 
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.design.widget.Snackbar
@@ -23,6 +24,7 @@ import com.pb.leadmanagement.core.model.InsuranceCompanyMasterEntity
 import com.pb.leadmanagement.core.requestentity.HealthLeadRequestEntity
 import com.pb.leadmanagement.core.response.MakeX
 import com.pb.leadmanagement.core.response.MotorLeadResponse
+import com.pb.leadmanagement.upload.UploadImageActivity
 import com.pb.leadmanagement.utility.CityAdapter
 import com.pb.leadmanagement.utility.DateTimePicker
 import kotlinx.android.synthetic.main.content_health.*
@@ -65,6 +67,42 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
         }
 
 
+    }
+
+    private fun uploadImageDialog(leadID: Int) {
+        // Initialize a new instance of
+        val builder = AlertDialog.Builder(this@HealthActivity)
+
+        // Set the alert dialog title
+        builder.setTitle("Upload Document")
+
+        // Display a message on alert dialog
+        builder.setMessage("Lead genarated successfully.! Do you want to upload documents?")
+
+        // Set a positive button and its click listener on alert dialog
+        builder.setPositiveButton("Upload") { dialog, which ->
+
+            if (UserFacade(this@HealthActivity).clearUser()) {
+
+                val intent = Intent(this, UploadImageActivity::class.java)
+                intent.putExtra("LEAD_ID", leadID)
+                intent.putExtra("FROM", "HEALTH")
+                startActivity(intent)
+            }
+        }
+
+
+        // Display a negative button on alert dialog
+        builder.setNegativeButton("CANCEL") { dialog, which ->
+            dialog.dismiss()
+            Handler().postDelayed(Runnable { this!!.finish() }, 500)
+        }
+
+        // Finally, make the alert dialog using builder
+        val dialog: AlertDialog = builder.create()
+
+        // Display the alert dialog on app interface
+        dialog.show()
     }
 
     private fun hideKeyBoard() {
@@ -136,8 +174,13 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
         dismissDialog()
         if (response is MotorLeadResponse) {
             if (response.StatusNo == 0) {
-                showMessage(etName, response.Message, "", null)
-                Handler().postDelayed(Runnable { this!!.finish() }, 1000)
+
+                if (spPolicyIs.selectedItemPosition > 0) {
+                    uploadImageDialog(response.Result.LeadID)
+                } else {
+                    showMessage(etName, response.Message, "", null)
+                    Handler().postDelayed(Runnable { this!!.finish() }, 1000)
+                }
             }
         }
     }
