@@ -82,7 +82,7 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
                 .setAction(action, onClickListener).show()
     }
 
-    fun isValidEMail(email: String): Boolean {
+    internal fun isValidEMail(email: String): Boolean {
         return email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 

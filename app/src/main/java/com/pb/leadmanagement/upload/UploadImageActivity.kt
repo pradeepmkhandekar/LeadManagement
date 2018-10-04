@@ -152,18 +152,19 @@ class UploadImageActivity : AppCompatActivity(), View.OnClickListener, IResponse
             }
 
             R.id.txtUploadPolicy -> {
+                if (imgPolicy.getTag(R.id.imgPolicy) != null) {
+                    var base = encodeTobase64(imgPolicy.getTag(R.id.imgPolicy) as Bitmap)
+                    var uploadDocRequestEntity = UploadDocRequestEntity(productID,
+                            documentName,
+                            leadID,
+                            base)
 
-                var base = encodeTobase64(imgPolicy.getDrawingCache(true))
-                var uploadDocRequestEntity = UploadDocRequestEntity(productID,
-                        documentName,
-                        leadID,
-                        base)
+                    Log.d("TAG", base)
 
-                showLoading("Uploading document..")
-                MotorController(this@UploadImageActivity).uploadDocuments(uploadDocRequestEntity, this)
+                    showLoading("Uploading document..")
+                    MotorController(this@UploadImageActivity).uploadDocuments(uploadDocRequestEntity, this)
+                }
 
-
-                Log.d("TAG", base)
             }
 
             R.id.txtUploadRC -> {
@@ -173,7 +174,7 @@ class UploadImageActivity : AppCompatActivity(), View.OnClickListener, IResponse
         }
     }
 
-    fun encodeTobase64(image: Bitmap): String {
+    private fun encodeTobase64(image: Bitmap): String {
         val baos = ByteArrayOutputStream()
         image.compress(Bitmap.CompressFormat.PNG, 100, baos)
         val b = baos.toByteArray()
@@ -306,16 +307,24 @@ class UploadImageActivity : AppCompatActivity(), View.OnClickListener, IResponse
             val Index = cursor.getColumnIndex(filepath[0])
             val Picture = cursor.getString(Index)
             cursor.close()
+            var bitmap = BitmapFactory.decodeFile(Picture)
             if (isPolicy) {
-                imgPolicy.setImageBitmap(BitmapFactory.decodeFile(Picture))
+                imgPolicy.setImageBitmap(bitmap)
+                imgPolicy.setTag(R.id.imgPolicy, bitmap)
             } else {
-                imgRC.setImageBitmap(BitmapFactory.decodeFile(Picture))
+                imgRC.setImageBitmap(bitmap)
+                imgRC.setTag(R.id.imgRC, bitmap)
             }
         } else if (resultCode == Activity.RESULT_OK && requestCode == TAKE_PHOTO_CAMERA) {
+
             if (isPolicy) {
-                imgPolicy.setImageBitmap(setScaledBitmap(imgPolicy))
+                var bitmap = setScaledBitmap(imgPolicy)
+                imgPolicy.setImageBitmap(bitmap)
+                imgPolicy.setTag(R.id.imgPolicy, bitmap)
             } else {
-                imgRC.setImageBitmap(setScaledBitmap(imgPolicy))
+                var bitmap = setScaledBitmap(imgRC)
+                imgRC.setImageBitmap(bitmap)
+                imgRC.setTag(R.id.imgRC, bitmap)
             }
 
         }
@@ -341,7 +350,6 @@ class UploadImageActivity : AppCompatActivity(), View.OnClickListener, IResponse
         return BitmapFactory.decodeFile(imageFilePath, bmOptions)
 
     }
-
 
     private fun showMessage(view: View, message: String, action: String, onClickListener: View.OnClickListener?) {
         Snackbar.make(view, message, Snackbar.LENGTH_LONG)

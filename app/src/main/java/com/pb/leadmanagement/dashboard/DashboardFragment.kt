@@ -90,14 +90,11 @@ class DashboardFragment : Fragment(), OnClickListener {
         when (v?.id) {
             R.id.cardMotor -> {
 
-                // val intent = Intent(activity, AddMotorLeadActivity::class.java)
-
-                val intent = Intent(activity, UploadImageActivity::class.java)
+                val intent = Intent(activity, AddMotorLeadActivity::class.java)
                 startActivity(intent)
             }
 
             R.id.cardHealth -> {
-                // val intent = Intent(activity, TestActivity::class.java)
 
                 val intent = Intent(activity, HealthActivity::class.java)
                 startActivity(intent)
