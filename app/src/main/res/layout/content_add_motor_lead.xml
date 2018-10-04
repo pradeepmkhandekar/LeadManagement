@@ -50,7 +50,8 @@
                             <android.support.design.widget.TextInputEditText
                                 android:id="@+id/etName"
                                 style="@style/Style.edittext"
-                                android:hint="Full Name" />
+                                android:hint="Full Name"
+                                android:nextFocusDown="@id/etMobileNo" />
                         </android.support.design.widget.TextInputLayout>
 
                         <android.support.design.widget.TextInputLayout
@@ -63,7 +64,8 @@
                                 style="@style/Style.edittext"
                                 android:hint="Mobile No."
                                 android:inputType="number"
-                                android:maxLength="10" />
+                                android:maxLength="10"
+                                android:nextFocusDown="@id/etEmail" />
                         </android.support.design.widget.TextInputLayout>
                     </TableRow>
 
@@ -75,7 +77,8 @@
                             android:id="@+id/etEmail"
                             style="@style/Style.edittext"
                             android:hint="Email ID"
-                            android:inputType="textEmailAddress" />
+                            android:inputType="textEmailAddress"
+                            android:nextFocusDown="@id/spVehicleType" />
                     </android.support.design.widget.TextInputLayout>
 
                     <TextView
@@ -92,7 +95,8 @@
                         style="@style/Spinner.Underline"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:entries="@array/array_vehicleType" />
+                        android:entries="@array/array_vehicleType"
+                        android:nextFocusDown="@id/etVehicleNo" />
 
                     <TextView
                         style="@style/CustomTitle.Medium"
@@ -104,6 +108,7 @@
                         android:textSize="14sp" />
 
                     <Spinner
+
                         android:id="@+id/spRelation"
                         style="@style/Spinner.Underline"
                         android:layout_width="match_parent"
@@ -150,7 +155,8 @@
                         <android.support.design.widget.TextInputEditText
                             android:id="@+id/etVehicleNo"
                             style="@style/Style.edittext"
-                            android:hint="Vehicle No" />
+                            android:hint="Vehicle No"
+                            android:nextFocusDown="@id/etMake" />
                     </android.support.design.widget.TextInputLayout>
 
                     <TableRow
@@ -167,7 +173,8 @@
                                 style="@style/Style.edittext"
                                 android:dropDownWidth="200dp"
                                 android:hint="Make"
-                                android:lines="1" />
+                                android:lines="1"
+                                android:nextFocusDown="@id/etModel" />
                         </android.support.design.widget.TextInputLayout>
 
                         <android.support.design.widget.TextInputLayout
@@ -179,7 +186,8 @@
                                 android:id="@+id/etModel"
                                 style="@style/Style.edittext"
                                 android:hint="Model"
-                                android:lines="1" />
+                                android:lines="1"
+                                android:nextFocusDown="@id/spVariant" />
                         </android.support.design.widget.TextInputLayout>
 
                     </TableRow>
@@ -223,11 +231,11 @@
 
                     <Spinner
                         android:id="@+id/spNCB"
-                        android:visibility="gone"
                         style="@style/Spinner.Underline"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:entries="@array/array_ncb" />
+                        android:entries="@array/array_ncb"
+                        android:visibility="gone" />
 
 
                     <TableRow

@@ -119,10 +119,12 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
             val str = etModel.getText().toString()
 
             val listAdapter = etModel.getAdapter()
-            for (i in 0 until listAdapter.getCount()) {
-                val temp = listAdapter.getItem(i) as ModelX
-                if (str.compareTo(temp.Model) == 0) {
-                    return@OnFocusChangeListener
+            if (listAdapter != null && listAdapter.count > 0) {
+                for (i in 0 until listAdapter.getCount()) {
+                    val temp = listAdapter.getItem(i) as ModelX
+                    if (str.compareTo(temp.Model) == 0) {
+                        return@OnFocusChangeListener
+                    }
                 }
             }
             etModel.setText("")
