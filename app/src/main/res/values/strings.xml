@@ -286,4 +286,5 @@
     <string name="title_activity_health">Add Health Lead</string>
     <string name="title_activity_loan">Add Loan Lead</string>
     <string name="title_activity_upload_image">Upload Document</string>
+    <string name="title_activity_health_report">Health Report</string>
 </resources>

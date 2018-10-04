@@ -18,6 +18,7 @@ import com.pb.leadmanagement.life.LifeActivity
 import com.pb.leadmanagement.loan.LoanActivity
 import com.pb.leadmanagement.motor.AddMotorLeadActivity
 import com.pb.leadmanagement.other.AddOtherActivity
+import com.pb.leadmanagement.reports.health_report.HealthReportActivity
 import kotlinx.android.synthetic.main.fragment_reports.*
 import kotlinx.android.synthetic.main.fragment_reports.view.*
 
@@ -94,7 +95,7 @@ class ReportsFragment : Fragment(), OnClickListener {
             R.id.cardHealth -> {
                 // val intent = Intent(activity, TestActivity::class.java)
 
-                val intent = Intent(activity, HealthActivity::class.java)
+                val intent = Intent(activity, HealthReportActivity::class.java)
                 startActivity(intent)
             }
 
