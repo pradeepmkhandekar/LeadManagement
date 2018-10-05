@@ -8,6 +8,7 @@ import android.os.Handler
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.text.InputType
 import android.util.Patterns
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -31,6 +32,7 @@ import kotlinx.android.synthetic.main.content_add_motor_lead.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.regex.Pattern
 
 class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcriber {
 
@@ -235,6 +237,17 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
                     return
                 }
 
+
+                var regxVehicle = "^[A-Z]{2}[0-9]{1,2}[A-Z]{1,2}[0-9]{4}\$".toRegex()
+
+                //var regxVehicle = "^[A-Z]{2}[0-9]{1,2}(?: [A-Z])?(?: [A-Z]*)? [0-9]{4}\$".toRegex()
+
+                if (!etVehicleNo.text.toString().matches(regxVehicle)) {
+                    showMessage(etName, "Invalid Vehicle no", "", null)
+                    return
+                }
+
+
                 if (spRelation.selectedItemPosition > 0) {
                     if (etRelationName.text.toString().length < 1) {
                         showMessage(etName, "Invalid Relation Name", "", null)
@@ -333,6 +346,8 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
     private fun setListener() {
 
         btnAdd.setOnClickListener(this)
+        etVehicleNo.inputType = InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS
+
         etMfgDate.setOnClickListener(datePickerDialog)
         etPolicyExpiry.setOnClickListener(datePickerDialog)
 

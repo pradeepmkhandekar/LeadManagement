@@ -52,6 +52,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener, IResponseSub
             override fun afterTextChanged(s: Editable?) {
                 if (s?.length == 6) {
                     hideKeyBoard()
+                    showLoading("Fetching city..")
                     MasterController(this@RegisterActivity).fetchCityState(s.toString(), this@RegisterActivity)
                 }
             }
@@ -220,7 +221,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener, IResponseSub
 
                 var loginEntity = LoginEntity(
                         etAddress.text.toString(),
-                        etChainCode.text.toString(),
+                        spChainCode.selectedItem.toString(),
                         chainID,
                         etCity.text.toString(),
                         etEmail.text.toString(),

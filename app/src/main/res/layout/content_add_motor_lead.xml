@@ -156,6 +156,7 @@
                             android:id="@+id/etVehicleNo"
                             style="@style/Style.edittext"
                             android:hint="Vehicle No"
+                            android:maxLength="10"
                             android:nextFocusDown="@id/etMake" />
                     </android.support.design.widget.TextInputLayout>
 
