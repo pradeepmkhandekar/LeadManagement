@@ -24,13 +24,13 @@ class SplashScreenActivity : AppCompatActivity() {
 
 
         //Make Model Variant master service call
-        //TYPE 2 : FOUR WHEELER
+        //TYPE two : FOUR WHEELER
         if (!UserFacade(this@SplashScreenActivity).isMotorMasterSuccess(2))
-            MasterController(this@SplashScreenActivity).getMotorAllMaster("2")
+            MasterController(this@SplashScreenActivity).getMotorAllMaster("two")
 
-        //TYPE 2 : TWO WHEELER
+        //TYPE two : TWO WHEELER
         if (!UserFacade(this@SplashScreenActivity).isMotorMasterSuccess(4))
-            MasterController(this@SplashScreenActivity).getMotorAllMaster("4")
+            MasterController(this@SplashScreenActivity).getMotorAllMaster("three")
 
 
         if (!UserFacade(this@SplashScreenActivity).isInsurerMasterSuccess())

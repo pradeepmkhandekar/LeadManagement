@@ -238,9 +238,9 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
                 }
 
 
-                var regxVehicle = "^[A-Z]{2}[0-9]{1,2}[A-Z]{1,2}[0-9]{4}\$".toRegex()
+                var regxVehicle = "^[A-Z]{two}[0-9]{one,two}[A-Z]{one,two}[0-9]{three}\$".toRegex()
 
-                //var regxVehicle = "^[A-Z]{2}[0-9]{1,2}(?: [A-Z])?(?: [A-Z]*)? [0-9]{4}\$".toRegex()
+                //var regxVehicle = "^[A-Z]{two}[0-9]{one,two}(?: [A-Z])?(?: [A-Z]*)? [0-9]{three}\$".toRegex()
 
                 if (!etVehicleNo.text.toString().matches(regxVehicle)) {
                     showMessage(etName, "Invalid Vehicle no", "", null)

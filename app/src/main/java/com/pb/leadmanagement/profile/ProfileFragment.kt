@@ -227,7 +227,7 @@ class ProfileFragment : Fragment(), View.OnClickListener, IResponseSubcriber {
                     leadItems.add("other")
 
 
-                //var chainID = etName.text.toString().take(3) + etMobileNo.text.toString().takeLast(5)
+                //var chainID = etName.text.toString().take(3) + etMobileNo.text.toString().takeLast(four)
 
                 var loginEntity = LoginEntity(
                         displayView.etAddress.text.toString(),

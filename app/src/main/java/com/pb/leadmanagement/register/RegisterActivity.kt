@@ -239,7 +239,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener, IResponseSub
 
 
                 //endregion
-                //TODO : 1 Service hit for register
+                //TODO : one Service hit for register
                 showLoading("Loading...")
                 AuthenticationController(this@RegisterActivity).register(loginEntity, this)
 

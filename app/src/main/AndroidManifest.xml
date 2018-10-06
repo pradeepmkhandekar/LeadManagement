@@ -10,9 +10,9 @@
     <application
         android:name=".LeadApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/lead_management"
+        android:icon="@mipmap/lead_one"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/lead_management"
+        android:roundIcon="@mipmap/lead_one"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
