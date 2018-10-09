@@ -234,9 +234,9 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
         spExistingDisease?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (position == 4) {
-                    etOtherDisease.visibility = View.VISIBLE
+                    ilOtherDisease.visibility = View.VISIBLE
                 } else {
-                    etOtherDisease.visibility = View.GONE
+                    ilOtherDisease.visibility = View.GONE
                 }
             }
 
