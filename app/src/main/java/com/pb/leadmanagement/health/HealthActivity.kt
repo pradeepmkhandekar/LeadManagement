@@ -53,9 +53,7 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
         acCity?.threshold = 2
 
 
-        var insurerList = UserFacade(this@HealthActivity).getInsuranceList()
-        var spinnerAdapter = InsurerAdapter(this!!, insurerList!!)
-        spInsurer?.adapter = spinnerAdapter
+
 
         setListener()
         initDialog()
@@ -82,7 +80,7 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
         // Set a positive button and its click listener on alert dialog
         builder.setPositiveButton("Upload") { dialog, which ->
 
-            if (UserFacade(this@HealthActivity).clearUser()) {
+            if (UserFacade(this@HealthActivity).getUserID() != 0) {
 
                 val intent = Intent(this, UploadImageActivity::class.java)
                 intent.putExtra("LEAD_ID", leadID)
@@ -220,12 +218,12 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
 
         spInsurer?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if (position == 0) {
-                    showMessage(spInsurer, "Invalid Insurance company", "", null)
-                } else {
-                    var insurer = spInsurer.adapter.getItem(position) as InsuranceCompanyMasterEntity
-                    insurerID = insurer.InsCompanyID
-                }
+                // if (position == 0) {
+                //     showMessage(spInsurer, "Invalid Insurance company", "", null)
+                // } else {
+                var insurer = spInsurer.adapter.getItem(position) as InsuranceCompanyMasterEntity
+                insurerID = insurer.InsCompanyID
+                // }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -257,6 +255,11 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
                     etPolicyExpiry.visibility = View.VISIBLE
                     spInsurer.visibility = View.VISIBLE
                     txtInsurer.visibility = View.VISIBLE
+
+                    var insurerList = UserFacade(this@HealthActivity).getInsuranceList()
+                    var spinnerAdapter = InsurerAdapter(this@HealthActivity, insurerList!!)
+                    spInsurer?.adapter = spinnerAdapter
+
                 }
             }
 

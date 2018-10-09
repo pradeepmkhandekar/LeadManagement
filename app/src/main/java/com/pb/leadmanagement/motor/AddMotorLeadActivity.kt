@@ -171,7 +171,7 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
         // Set a positive button and its click listener on alert dialog
         builder.setPositiveButton("Upload") { dialog, which ->
 
-            if (UserFacade(this@AddMotorLeadActivity).clearUser()) {
+            if (UserFacade(this@AddMotorLeadActivity).getUserID() != 0) {
 
                 val intent = Intent(this, UploadImageActivity::class.java)
                 intent.putExtra("LEAD_ID", leadID)
