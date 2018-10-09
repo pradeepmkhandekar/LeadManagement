@@ -3,6 +3,7 @@ package com.pb.leadmanagement.home
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
@@ -19,6 +20,7 @@ import com.pb.leadmanagement.profile.ProfileFragment
 import com.pb.leadmanagement.reports.ReportsFragment
 import kotlinx.android.synthetic.main.activity_navigation.*
 import kotlinx.android.synthetic.main.app_bar_navigation.*
+import kotlinx.android.synthetic.main.nav_header_navigation.*
 
 class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -122,8 +124,10 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
             }
 
             R.id.nav_report -> {
-                val reportFragment = ReportsFragment()
-                switchFragment(reportFragment)
+                showMessage(txtName, "Coming soon", "", null);
+
+                /*   val reportFragment = ReportsFragment()
+                   switchFragment(reportFragment)*/
                 supportActionBar?.title = "Reports"
             }
 
@@ -135,5 +139,10 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun showMessage(view: View, message: String, action: String, onClickListener: View.OnClickListener?) {
+        Snackbar.make(view, message, Snackbar.LENGTH_LONG)
+                .setAction(action, onClickListener).show()
     }
 }

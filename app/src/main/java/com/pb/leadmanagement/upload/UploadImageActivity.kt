@@ -159,7 +159,7 @@ class UploadImageActivity : AppCompatActivity(), View.OnClickListener, IResponse
                             leadID,
                             base)
 
-                    Log.d("TAG", base)
+                   // Log.d("TAG", base)
 
                     showLoading("Uploading document..")
                     MotorController(this@UploadImageActivity).uploadDocuments(uploadDocRequestEntity, this)
