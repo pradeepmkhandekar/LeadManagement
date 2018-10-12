@@ -11,6 +11,6 @@ data class OtherRequestEntity(
         var RenewalDate: String,
         var CompanyName: String,
         var InsuredName: String,
-        var ChainID: String,
+        var PartnerChildLogin: String,
         var UserID: Int
 )

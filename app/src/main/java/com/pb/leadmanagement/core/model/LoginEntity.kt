@@ -2,11 +2,11 @@ package com.pb.leadmanagement.core.model
 
 data class LoginEntity(
         var Address: String,
-        var ChainCode: String,
-        var ChainID: String,
+        var PartnerLogin: String,
+        var PartnerChildLogin: String,
         var City: String,
         var EmailID: String,
-        var FieldManager: String,
+        var LMAccountManager: String,
         var ID: Int,
         var LeadInterest: List<String>,
         var Location: String,

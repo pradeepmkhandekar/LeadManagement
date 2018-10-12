@@ -4,6 +4,6 @@ data class LoanRequestEntity(
         var Name: String,
         var MobileNo: String,
         var Products: List<String>,
-        var ChaindID: String,
+        var PartnerChildLogin: String,
         var UserID: Int
 )

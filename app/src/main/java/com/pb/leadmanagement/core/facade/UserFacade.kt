@@ -84,7 +84,7 @@ open class UserFacade : IUserfacade, IMotorFacade, IInsurance {
     override fun getChainID(): String {
         var loginEntity = getUser()
         if (loginEntity != null)
-            return loginEntity.ChainID
+            return loginEntity.PartnerChildLogin
         else
             return ""
     }

@@ -17,7 +17,6 @@ import com.pb.leadmanagement.core.facade.UserFacade
 import com.pb.leadmanagement.dashboard.DashboardFragment
 import com.pb.leadmanagement.login.LoginActivity
 import com.pb.leadmanagement.profile.ProfileFragment
-import com.pb.leadmanagement.reports.ReportsFragment
 import kotlinx.android.synthetic.main.activity_navigation.*
 import kotlinx.android.synthetic.main.app_bar_navigation.*
 import kotlinx.android.synthetic.main.nav_header_navigation.*
@@ -56,7 +55,7 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
         txtName.setText(UserFacade(this).getUser()?.Name)
         txtEmail.setText(UserFacade(this).getUser()?.EmailID)
-        txtChainCode.setText("Chain :" + UserFacade(this).getUser()?.ChainCode)
+        txtChainCode.setText("Chain :" + UserFacade(this).getUser()?.PartnerLogin)
     }
 
     override fun onBackPressed() {

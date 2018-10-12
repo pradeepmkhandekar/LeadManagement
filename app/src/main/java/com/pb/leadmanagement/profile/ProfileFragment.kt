@@ -124,7 +124,7 @@ class ProfileFragment : Fragment(), View.OnClickListener, IResponseSubcriber {
         view.etCity.setText(loginEntity?.City)
         view.etState.setText(loginEntity?.State)
         view.etLocation.setText(loginEntity?.Location)
-        view.etChainCode.setText(loginEntity?.ChainCode)
+        view.etChainCode.setText(loginEntity?.PartnerLogin)
 
         for (item: String in loginEntity?.LeadInterest!!) {
 
@@ -232,7 +232,7 @@ class ProfileFragment : Fragment(), View.OnClickListener, IResponseSubcriber {
                 var loginEntity = LoginEntity(
                         displayView.etAddress.text.toString(),
                         displayView.etChainCode.text.toString(),
-                        this.loginEntity!!.ChainID,
+                        this.loginEntity!!.PartnerChildLogin,
                         displayView.etCity.text.toString(),
                         displayView.etEmail.text.toString(),
                         displayView.spFieldManager.selectedItem.toString(),
