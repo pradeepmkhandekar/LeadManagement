@@ -211,6 +211,13 @@ open class UserFacade : IUserfacade, IMotorFacade, IInsurance {
         return false
     }
 
+    override fun getInsuranceName(insurerID: Int): String {
+        if (insurerID != 0)
+            return getInsuranceList()!!.filter { s -> s.InsCompanyID == insurerID }.single().InsCompanyName
+        else
+            return "Not Applicable"
+    }
+
     override fun getInsuranceList(): List<InsuranceCompanyMasterEntity>? {
 
         val insurer = sharedPreferences.getString(INSURER_LIST, "")

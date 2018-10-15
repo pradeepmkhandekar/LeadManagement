@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.util.Patterns
+import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
@@ -22,7 +23,6 @@ import com.pb.leadmanagement.core.facade.UserFacade
 import com.pb.leadmanagement.core.model.CityMasterEntity
 import com.pb.leadmanagement.core.model.InsuranceCompanyMasterEntity
 import com.pb.leadmanagement.core.requestentity.HealthLeadRequestEntity
-import com.pb.leadmanagement.core.response.MakeX
 import com.pb.leadmanagement.core.response.MotorLeadResponse
 import com.pb.leadmanagement.upload.UploadImageActivity
 import com.pb.leadmanagement.utility.CityAdapter
@@ -115,7 +115,7 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
         imm.hideSoftInputFromWindow(etName.windowToken, 0)
     }
 
-    protected var datePickerDialog: View.OnClickListener = View.OnClickListener { view ->
+    private var datePickerDialog: View.OnClickListener = View.OnClickListener { view ->
         hideKeyBoard()
 
         //region regdate
@@ -359,10 +359,57 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
                         UserFacade(this@HealthActivity).getUserID()
                 )
 
-                showLoading("Loading..")
-                HealthController(this@HealthActivity).addHealthLead(healthLeadRequestEntity, this)
+                confirmationAlert(healthLeadRequestEntity)
+
+
             }
         }
+    }
+
+    private fun confirmationAlert(healthLeadRequestEntity: HealthLeadRequestEntity) {
+
+        // Initialize a new instance of
+        val builder = AlertDialog.Builder(this@HealthActivity)
+
+        // Set the alert dialog title
+        builder.setTitle("Create Lead")
+
+        val healthView = LayoutInflater.from(this).inflate(R.layout.layout_health_confirm, null)
+
+        builder.setView(healthView)
+
+        healthView.findViewById<TextView>(R.id.txtName).setText("" + healthLeadRequestEntity.Name)
+        healthView.findViewById<TextView>(R.id.txtMobile).setText("" + healthLeadRequestEntity.MobileNo)
+        healthView.findViewById<TextView>(R.id.txtEmail).setText("" + healthLeadRequestEntity.EmailID)
+        healthView.findViewById<TextView>(R.id.txtCity).setText("" + healthLeadRequestEntity.City)
+        healthView.findViewById<TextView>(R.id.txtPolicyIs).setText("" + healthLeadRequestEntity.ProposalType)
+        healthView.findViewById<TextView>(R.id.txtPolicyType).setText("" + healthLeadRequestEntity.Category)
+        healthView.findViewById<TextView>(R.id.txtPolicyExpiry).setText("" + healthLeadRequestEntity.PolicyExpiryDate)
+        healthView.findViewById<TextView>(R.id.txtExistingDisease).setText("" + healthLeadRequestEntity.ExistingDisease)
+        healthView.findViewById<TextView>(R.id.txtInsuranceName).setText("" + UserFacade(this).getInsuranceName(healthLeadRequestEntity.CurrentYearInsCmpID.toInt()))
+
+
+        // Set a positive button and its click listener on alert dialog
+        builder.setPositiveButton("Create") { dialog, which ->
+
+            dialog.dismiss()
+            showLoading("Loading..")
+            HealthController(this@HealthActivity).addHealthLead(healthLeadRequestEntity, this)
+
+        }
+
+
+        // Display a negative button on alert dialog
+        builder.setNegativeButton("Edit") { dialog, which ->
+            dialog.dismiss()
+
+        }
+
+        // Finally, make the alert dialog using builder
+        val dialog: AlertDialog = builder.create()
+
+        // Display the alert dialog on app interface
+        dialog.show()
     }
 
 }

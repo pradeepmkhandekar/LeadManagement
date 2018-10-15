@@ -13,6 +13,8 @@ interface IInsurance {
 
     fun getInsuranceList(): List<InsuranceCompanyMasterEntity>?
 
+    fun getInsuranceName(insurerID: Int): String
+
     fun isInsurerMasterSuccess(): Boolean
 
 
@@ -22,8 +24,8 @@ interface IInsurance {
 
     fun isCityMasterSuccess(): Boolean
 
-   /* fun getCityName(cityID: Int): String
+    /* fun getCityName(cityID: Int): String
 
-    fun getStateName(stateID: Int): String*/
+     fun getStateName(stateID: Int): String*/
 
 }
