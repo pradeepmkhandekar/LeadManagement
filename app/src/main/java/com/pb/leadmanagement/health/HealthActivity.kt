@@ -384,7 +384,7 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
         healthView.findViewById<TextView>(R.id.txtCity).setText("" + healthLeadRequestEntity.City)
         healthView.findViewById<TextView>(R.id.txtPolicyIs).setText("" + healthLeadRequestEntity.ProposalType)
         healthView.findViewById<TextView>(R.id.txtPolicyType).setText("" + healthLeadRequestEntity.Category)
-        healthView.findViewById<TextView>(R.id.txtPolicyExpiry).setText("" + healthLeadRequestEntity.PolicyExpiryDate)
+        healthView.findViewById<TextView>(R.id.txtPolicyExpiry).setText("" + if (healthLeadRequestEntity.PolicyExpiryDate.length > 0) "${healthLeadRequestEntity.PolicyExpiryDate}" else "Not applicable")
         healthView.findViewById<TextView>(R.id.txtExistingDisease).setText("" + healthLeadRequestEntity.ExistingDisease)
         healthView.findViewById<TextView>(R.id.txtInsuranceName).setText("" + UserFacade(this).getInsuranceName(healthLeadRequestEntity.CurrentYearInsCmpID.toInt()))
 
