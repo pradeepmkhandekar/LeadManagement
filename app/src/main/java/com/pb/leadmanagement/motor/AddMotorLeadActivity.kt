@@ -182,7 +182,7 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
 
 
         // Display a negative button on alert dialog
-        builder.setNegativeButton("CANCEL") { dialog, which ->
+        builder.setNegativeButton("NO") { dialog, which ->
             dialog.dismiss()
             Handler().postDelayed(Runnable { this!!.finish() }, 500)
         }
@@ -278,6 +278,11 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
 
                 if (etPolicyExpiry.text.toString().length < 4) {
                     showMessage(etName, "Invalid Policy Expiry Date", "", null)
+                    return
+                }
+
+                if (NCB == 100) {
+                    showMessage(spNCB, "Choose NCB", "", null)
                     return
                 }
 
@@ -458,21 +463,25 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
 
                     when (position) {
                         0 -> {
-                            NCB = 0
+                            NCB = 100
+                            //showMessage(spNCB, "Invalid NCB", "", null)
                         }
                         1 -> {
-                            NCB = 20
+                            NCB = 0
                         }
                         2 -> {
-                            NCB = 25
+                            NCB = 20
                         }
                         3 -> {
-                            NCB = 35
+                            NCB = 25
                         }
                         4 -> {
-                            NCB = 45
+                            NCB = 35
                         }
                         5 -> {
+                            NCB = 45
+                        }
+                        6 -> {
                             NCB = 50
                         }
                     }

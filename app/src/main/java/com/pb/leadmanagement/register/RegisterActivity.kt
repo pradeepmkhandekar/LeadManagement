@@ -73,7 +73,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener, IResponseSub
             if (response?.MasterData != null) {
                 etState.setText(response?.MasterData.state_name.toLowerCase())
                 etCity.setText(response?.MasterData.cityname.toLowerCase())
-                etLocation.setText(response?.MasterData.postname.toLowerCase())
+                //etLocation.setText(response?.MasterData.postname.toLowerCase())
                 etState.isEnabled = false
                 etCity.isEnabled = false
             } else {

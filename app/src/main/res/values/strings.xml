@@ -43,6 +43,7 @@
     </string-array>
 
     <string-array name="array_ncb">
+        <item>Choose NCB</item>
         <item>0% (less than 1 year)</item>
         <item>20% (1 year age)</item>
         <item>25% (2 year age)</item>

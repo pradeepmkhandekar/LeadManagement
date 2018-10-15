@@ -37,11 +37,13 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
     internal var simpleDateFormat = SimpleDateFormat("dd-MMM-yyyy")
     var insurerID: Int = 0
     var acCity: AutoCompleteTextView? = null
+    var acInsurer: AutoCompleteTextView? = null
     var adapterCity: CityAdapter? = null
 
     lateinit var dialog: AlertDialog
     lateinit var dialogView: View
 
+    var adapterInsurance: InsuranceCompanyAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +55,12 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
         acCity?.threshold = 2
 
 
+        acInsurer = findViewById<AutoCompleteTextView>(R.id.etInsurer)
+        acInsurer?.threshold = 2
 
+        var insurerList = UserFacade(this@HealthActivity).getInsuranceList()
+        adapterInsurance = InsuranceCompanyAdapter(this@HealthActivity, R.layout.activity_health, R.id.lbl_name, insurerList);
+        acInsurer?.setAdapter(adapterInsurance)
 
         setListener()
         initDialog()
@@ -216,20 +223,27 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
         etDOB.setOnClickListener(datePickerDialog)
         etCity.setOnFocusChangeListener(acCityFocusListner)
 
-        spInsurer?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                // if (position == 0) {
-                //     showMessage(spInsurer, "Invalid Insurance company", "", null)
-                // } else {
-                var insurer = spInsurer.adapter.getItem(position) as InsuranceCompanyMasterEntity
-                insurerID = insurer.InsCompanyID
-                // }
-            }
+        etInsurer?.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
+            val makeData = adapterInsurance!!.getItem(position) as InsuranceCompanyMasterEntity
+            insurerID = makeData.InsCompanyID
+            hideKeyBoard()
         }
+
+        /* spInsurer?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                 // if (position == 0) {
+                 //     showMessage(spInsurer, "Invalid Insurance company", "", null)
+                 // } else {
+                 var insurer = spInsurer.adapter.getItem(position) as InsuranceCompanyMasterEntity
+                 insurerID = insurer.InsCompanyID
+                 // }
+             }
+
+             override fun onNothingSelected(parent: AdapterView<*>?) {
+
+             }
+         }*/
 
         spExistingDisease?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -249,16 +263,18 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (position == 0) {
                     etPolicyExpiry.visibility = View.GONE
-                    spInsurer.visibility = View.GONE
-                    txtInsurer.visibility = View.GONE
+                    etInsurer.visibility = View.GONE
+                    //spInsurer.visibility = View.GONE
+                    //txtInsurer.visibility = View.GONE
                 } else {
                     etPolicyExpiry.visibility = View.VISIBLE
-                    spInsurer.visibility = View.VISIBLE
-                    txtInsurer.visibility = View.VISIBLE
+                    etInsurer.visibility = View.VISIBLE
+                    // spInsurer.visibility = View.VISIBLE
+                    //txtInsurer.visibility = View.VISIBLE
 
-                    var insurerList = UserFacade(this@HealthActivity).getInsuranceList()
-                    var spinnerAdapter = InsurerAdapter(this@HealthActivity, insurerList!!)
-                    spInsurer?.adapter = spinnerAdapter
+                    /*  var insurerList = UserFacade(this@HealthActivity).getInsuranceList()
+                      var spinnerAdapter = InsurerAdapter(this@HealthActivity, insurerList!!)
+                      spInsurer?.adapter = spinnerAdapter*/
 
                 }
             }

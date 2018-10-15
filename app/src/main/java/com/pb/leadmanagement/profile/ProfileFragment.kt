@@ -68,7 +68,7 @@ class ProfileFragment : Fragment(), View.OnClickListener, IResponseSubcriber {
             if (response?.MasterData != null) {
                 displayView.etState.setText(response?.MasterData.state_name.toLowerCase())
                 displayView.etCity.setText(response?.MasterData.cityname.toLowerCase())
-                displayView.etLocation.setText(response?.MasterData.postname.toLowerCase())
+                //displayView.etLocation.setText(response?.MasterData.postname.toLowerCase())
                 displayView.etState.isEnabled = false
                 displayView.etCity.isEnabled = false
             } else {
