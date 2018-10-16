@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.util.Patterns
+import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.AutoCompleteTextView
@@ -170,11 +171,53 @@ class LifeActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcrib
                         UserFacade(this!!).getChainID(),
                         UserFacade(this!!).getUserID())
 
-                showLoading("Loading...")
-                LifeController(this@LifeActivity).addLifeLead(lifelead, this)
+                confirmationAlert(lifelead)
             }
         }
     }
+
+    private fun confirmationAlert(lifeLead: LifeLeadRequestEntity) {
+
+        // Initialize a new instance of
+        val builder = AlertDialog.Builder(this@LifeActivity)
+
+        // Set the alert dialog title
+        builder.setTitle("Create Lead")
+
+        val healthView = LayoutInflater.from(this).inflate(R.layout.layout_life_confirm, null)
+
+        builder.setView(healthView)
+
+        healthView.findViewById<TextView>(R.id.txtName).setText("" + lifeLead.Name)
+        healthView.findViewById<TextView>(R.id.txtMobile).setText("" + lifeLead.MobileNo)
+        healthView.findViewById<TextView>(R.id.txtEmail).setText("" + lifeLead.EmailID)
+        healthView.findViewById<TextView>(R.id.txtDOB).setText("" + lifeLead.DOB)
+        healthView.findViewById<TextView>(R.id.txtCity).setText("" + lifeLead.City)
+        healthView.findViewById<TextView>(R.id.txtLifeInsurance).setText("" + lifeLead.InvestmentPlan)
+
+        // Set a positive button and its click listener on alert dialog
+        builder.setPositiveButton("Save") { dialog, which ->
+
+            dialog.dismiss()
+            showLoading("Loading...")
+            LifeController(this@LifeActivity).addLifeLead(lifeLead, this)
+
+        }
+
+
+        // Display a negative button on alert dialog
+        builder.setNegativeButton("Edit") { dialog, which ->
+            dialog.dismiss()
+
+        }
+
+        // Finally, make the alert dialog using builder
+        val dialog: AlertDialog = builder.create()
+
+        // Display the alert dialog on app interface
+        dialog.show()
+    }
+
 
     private fun hideKeyBoard() {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

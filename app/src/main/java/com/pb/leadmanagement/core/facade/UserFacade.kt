@@ -9,6 +9,7 @@ import com.pb.leadmanagement.core.response.MakeX
 import com.pb.leadmanagement.core.response.VehicleMasterResult
 import com.google.gson.reflect.TypeToken
 import com.pb.leadmanagement.core.model.CityMasterEntity
+import com.pb.leadmanagement.core.response.Variant
 
 
 /**
@@ -114,6 +115,43 @@ open class UserFacade : IUserfacade, IMotorFacade, IInsurance {
         }
 
         return false
+    }
+
+    override fun getVehicleName(vehicleType: Int, makeID: Int, modelID: Int, subModelID: Int): String {
+
+        var listVehicle: List<MakeX>? = null
+
+        if (vehicleType == 2) {
+            listVehicle = getFourWheelerMaster(vehicleType)
+        } else if (vehicleType == 4) {
+            listVehicle = getTwoWheelerMaster(vehicleType)
+        }
+        var vehicleName: String = ""
+
+        if (listVehicle != null) {
+
+            //Make list
+            var listMake = listVehicle.filter { s -> s.MakeID == makeID }.single()
+
+            vehicleName = listMake.Make
+
+            //Model list
+            var model = listMake.Model.filter { s -> s.ModelID == modelID }.single()
+
+            vehicleName = vehicleName + "," + model.Model
+
+            //Variant list
+            var varient: Variant? = null
+            if (model.Variant != null) {
+                varient = model.Variant.filter { s -> s.VariantID == subModelID }.single()
+            }
+            if (varient != null)
+                return vehicleName + "," + varient.Variant
+            else
+                return vehicleName
+        }
+
+        return ""
     }
 
     override fun isMotorMasterSuccess(type: Int): Boolean {

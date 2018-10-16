@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_vertical_margin">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/nav_header_vertical_spacing"
+            android:paddingTop="@dimen/nav_header_vertical_spacing">
+
+            <TextView
+                style="@style/CustomTitle.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/txtName"
+                style="@style/CustomTitle.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50" />
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/nav_header_vertical_spacing"
+            android:paddingTop="@dimen/nav_header_vertical_spacing">
+
+            <TextView
+                style="@style/CustomTitle.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:text="Mobile No." />
+
+            <TextView
+                android:id="@+id/txtMobile"
+                style="@style/CustomTitle.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/nav_header_vertical_spacing"
+            android:paddingTop="@dimen/nav_header_vertical_spacing">
+
+            <TextView
+                style="@style/CustomTitle.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:text="Email ID" />
+
+            <TextView
+                android:id="@+id/txtEmail"
+                style="@style/CustomTitle.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50" />
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/nav_header_vertical_spacing"
+            android:paddingTop="@dimen/nav_header_vertical_spacing">
+
+            <TextView
+                style="@style/CustomTitle.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:text="Relationship with Owner" />
+
+            <TextView
+                android:id="@+id/txtRelationshipOwner"
+                style="@style/CustomTitle.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50" />
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/nav_header_vertical_spacing"
+            android:paddingTop="@dimen/nav_header_vertical_spacing">
+
+            <TextView
+                style="@style/CustomTitle.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:text="Relative Name" />
+
+            <TextView
+                android:id="@+id/txtRelativeName"
+                style="@style/CustomTitle.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/nav_header_vertical_spacing"
+            android:paddingTop="@dimen/nav_header_vertical_spacing">
+
+            <TextView
+                style="@style/CustomTitle.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:text="Relative Mobile No" />
+
+            <TextView
+                android:id="@+id/txtRelativeMobileNo"
+                style="@style/CustomTitle.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/nav_header_vertical_spacing"
+            android:paddingTop="@dimen/nav_header_vertical_spacing">
+
+            <TextView
+                style="@style/CustomTitle.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:text="Registration No" />
+
+            <TextView
+                android:id="@+id/txtRegNo"
+                style="@style/CustomTitle.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/nav_header_vertical_spacing"
+            android:paddingTop="@dimen/nav_header_vertical_spacing">
+
+            <TextView
+                style="@style/CustomTitle.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:text="Vehicle" />
+
+            <TextView
+                android:id="@+id/txtVehicleName"
+                style="@style/CustomTitle.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/nav_header_vertical_spacing"
+            android:paddingTop="@dimen/nav_header_vertical_spacing">
+
+            <TextView
+                style="@style/CustomTitle.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:text="Mfg Date" />
+
+            <TextView
+                android:id="@+id/txtMfgDate"
+                style="@style/CustomTitle.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/nav_header_vertical_spacing"
+            android:paddingTop="@dimen/nav_header_vertical_spacing">
+
+            <TextView
+                style="@style/CustomTitle.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:text="Policy Expiry Date" />
+
+            <TextView
+                android:id="@+id/txtPolicyExpiryDate"
+                style="@style/CustomTitle.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/nav_header_vertical_spacing"
+            android:paddingTop="@dimen/nav_header_vertical_spacing">
+
+            <TextView
+                style="@style/CustomTitle.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:text="No Claim Bonus" />
+
+            <TextView
+                android:id="@+id/txtNCB"
+                style="@style/CustomTitle.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50" />
+
+        </TableRow>
+
+
+    </LinearLayout>
+</ScrollView>

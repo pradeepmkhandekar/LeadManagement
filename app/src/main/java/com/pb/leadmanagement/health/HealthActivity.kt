@@ -74,15 +74,16 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
 
     }
 
+
     private fun uploadImageDialog(leadID: Int) {
         // Initialize a new instance of
         val builder = AlertDialog.Builder(this@HealthActivity)
 
         // Set the alert dialog title
-        builder.setTitle("Upload Document")
+        builder.setTitle("SAVED!")
 
         // Display a message on alert dialog
-        builder.setMessage("Lead genarated successfully.! Do you want to upload documents?")
+        builder.setMessage("Do you want to upload any document?")
 
         // Set a positive button and its click listener on alert dialog
         builder.setPositiveButton("Upload") { dialog, which ->
@@ -98,7 +99,7 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
 
 
         // Display a negative button on alert dialog
-        builder.setNegativeButton("CANCEL") { dialog, which ->
+        builder.setNegativeButton("No") { dialog, which ->
             dialog.dismiss()
             Handler().postDelayed(Runnable { this!!.finish() }, 500)
         }
@@ -230,20 +231,6 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
             hideKeyBoard()
         }
 
-        /* spInsurer?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                 // if (position == 0) {
-                 //     showMessage(spInsurer, "Invalid Insurance company", "", null)
-                 // } else {
-                 var insurer = spInsurer.adapter.getItem(position) as InsuranceCompanyMasterEntity
-                 insurerID = insurer.InsCompanyID
-                 // }
-             }
-
-             override fun onNothingSelected(parent: AdapterView<*>?) {
-
-             }
-         }*/
 
         spExistingDisease?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -264,18 +251,9 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
                 if (position == 0) {
                     etPolicyExpiry.visibility = View.GONE
                     etInsurer.visibility = View.GONE
-                    //spInsurer.visibility = View.GONE
-                    //txtInsurer.visibility = View.GONE
                 } else {
                     etPolicyExpiry.visibility = View.VISIBLE
                     etInsurer.visibility = View.VISIBLE
-                    // spInsurer.visibility = View.VISIBLE
-                    //txtInsurer.visibility = View.VISIBLE
-
-                    /*  var insurerList = UserFacade(this@HealthActivity).getInsuranceList()
-                      var spinnerAdapter = InsurerAdapter(this@HealthActivity, insurerList!!)
-                      spInsurer?.adapter = spinnerAdapter*/
-
                 }
             }
 
@@ -290,7 +268,7 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
                 .setAction(action, onClickListener).show()
     }
 
-    fun isValidEMail(email: String): Boolean {
+    private fun isValidEMail(email: String): Boolean {
         return email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
@@ -390,7 +368,7 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
 
 
         // Set a positive button and its click listener on alert dialog
-        builder.setPositiveButton("Create") { dialog, which ->
+        builder.setPositiveButton("Save") { dialog, which ->
 
             dialog.dismiss()
             showLoading("Loading..")

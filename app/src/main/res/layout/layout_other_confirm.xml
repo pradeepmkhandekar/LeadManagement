@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_vertical_margin">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/nav_header_vertical_spacing"
+            android:paddingTop="@dimen/nav_header_vertical_spacing">
+
+            <TextView
+                style="@style/CustomTitle.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/txtName"
+                style="@style/CustomTitle.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50" />
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/nav_header_vertical_spacing"
+            android:paddingTop="@dimen/nav_header_vertical_spacing">
+
+            <TextView
+                style="@style/CustomTitle.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:text="Mobile No." />
+
+            <TextView
+                android:id="@+id/txtMobile"
+                style="@style/CustomTitle.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/nav_header_vertical_spacing"
+            android:paddingTop="@dimen/nav_header_vertical_spacing">
+
+            <TextView
+                style="@style/CustomTitle.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:text="Policy Type" />
+
+            <TextView
+                android:id="@+id/txtPolicyType"
+                style="@style/CustomTitle.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/nav_header_vertical_spacing"
+            android:paddingTop="@dimen/nav_header_vertical_spacing">
+
+            <TextView
+                style="@style/CustomTitle.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:text="Travel Date" />
+
+            <TextView
+                android:id="@+id/txtTravelDate"
+                style="@style/CustomTitle.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50" />
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/nav_header_vertical_spacing"
+            android:paddingTop="@dimen/nav_header_vertical_spacing">
+
+            <TextView
+                style="@style/CustomTitle.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:text="Travel Country" />
+
+            <TextView
+                android:id="@+id/txtTravelCountry"
+                style="@style/CustomTitle.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50" />
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/nav_header_vertical_spacing"
+            android:paddingTop="@dimen/nav_header_vertical_spacing">
+
+            <TextView
+                style="@style/CustomTitle.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:text="Renewal Date" />
+
+            <TextView
+                android:id="@+id/txtRenewalDate"
+                style="@style/CustomTitle.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/nav_header_vertical_spacing"
+            android:paddingTop="@dimen/nav_header_vertical_spacing">
+
+            <TextView
+                style="@style/CustomTitle.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:text="Company Name" />
+
+            <TextView
+                android:id="@+id/txtCompanyName"
+                style="@style/CustomTitle.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/nav_header_vertical_spacing"
+            android:paddingTop="@dimen/nav_header_vertical_spacing">
+
+            <TextView
+                style="@style/CustomTitle.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:text="Insurance Name" />
+
+            <TextView
+                android:id="@+id/txtInsuranceName"
+                style="@style/CustomTitle.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50" />
+
+        </TableRow>
+
+
+    </LinearLayout>
+</ScrollView>

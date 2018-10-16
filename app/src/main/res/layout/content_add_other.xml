@@ -68,7 +68,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="4dp"
                         android:layout_marginTop="12dp"
-                        android:text="Insurance Type"
+                        android:text="Product Type"
                         android:textSize="14sp" />
 
                     <Spinner
@@ -95,6 +95,16 @@
                                 android:hint="Travel Date" />
                         </android.support.design.widget.TextInputLayout>
 
+
+                        <TextView
+                            style="@style/CustomTitle.Medium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="12dp"
+                            android:text="Policy Type"
+                            android:textSize="14sp" />
+
                         <Spinner
                             android:id="@+id/spTravelCategory"
                             style="@style/Spinner.Underline"
@@ -119,6 +129,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
+
+                        <TextView
+                            style="@style/CustomTitle.Medium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="12dp"
+                            android:text="Insurance Type"
+                            android:textSize="14sp" />
 
                         <Spinner
                             android:id="@+id/spInsuranceType"

@@ -10,6 +10,7 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.text.InputType
 import android.util.Patterns
+import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
@@ -32,7 +33,6 @@ import kotlinx.android.synthetic.main.content_add_motor_lead.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.regex.Pattern
 
 class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcriber {
 
@@ -163,19 +163,21 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
         val builder = AlertDialog.Builder(this@AddMotorLeadActivity)
 
         // Set the alert dialog title
-        builder.setTitle("Upload Document")
+        builder.setTitle("SAVED!")
 
         // Display a message on alert dialog
-        builder.setMessage("Lead genarated successfully.! Do you want to upload documents?")
+        builder.setMessage("Do you want to upload any document?")
 
         // Set a positive button and its click listener on alert dialog
         builder.setPositiveButton("Upload") { dialog, which ->
 
             if (UserFacade(this@AddMotorLeadActivity).getUserID() != 0) {
 
+                dialog.dismiss()
                 val intent = Intent(this, UploadImageActivity::class.java)
                 intent.putExtra("LEAD_ID", leadID)
                 intent.putExtra("FROM", "MOTOR")
+                this!!.finish()
                 startActivity(intent)
             }
         }
@@ -193,6 +195,58 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
         // Display the alert dialog on app interface
         dialog.show()
     }
+
+    private fun confirmationAlert(motorLeadRequestEntity: MotorLeadRequestEntity) {
+
+        // Initialize a new instance of
+        val builder = AlertDialog.Builder(this@AddMotorLeadActivity)
+
+        // Set the alert dialog title
+        builder.setTitle("Create Lead")
+
+        val healthView = LayoutInflater.from(this).inflate(R.layout.layout_motor_confirm, null)
+
+        builder.setView(healthView)
+
+        healthView.findViewById<TextView>(R.id.txtName).setText("" + motorLeadRequestEntity.Name)
+        healthView.findViewById<TextView>(R.id.txtMobile).setText("" + motorLeadRequestEntity.MobileNo)
+        healthView.findViewById<TextView>(R.id.txtEmail).setText("" + motorLeadRequestEntity.EmailID)
+        healthView.findViewById<TextView>(R.id.txtRelationshipOwner).setText("" + if (motorLeadRequestEntity.RelationshipWithOwner.length > 0) "${motorLeadRequestEntity.RelationshipWithOwner}" else "Not applicable")
+        healthView.findViewById<TextView>(R.id.txtRelativeName).setText("" + if (motorLeadRequestEntity.RelativeName.length > 0) "${motorLeadRequestEntity.RelativeName}" else "Not applicable")
+        healthView.findViewById<TextView>(R.id.txtRelativeMobileNo).setText("" + if (motorLeadRequestEntity.RelativeMobileNo.length > 0) "${motorLeadRequestEntity.RelativeMobileNo}" else "Not applicable")
+        healthView.findViewById<TextView>(R.id.txtRegNo).setText("" + motorLeadRequestEntity.RegistrationNo);//if (healthLeadRequestEntity.PolicyExpiryDate.length > 0) "${healthLeadRequestEntity.PolicyExpiryDate}" else "Not applicable")
+
+        var motorName = UserFacade(this@AddMotorLeadActivity).getVehicleName(vehicleTypeID, motorLeadRequestEntity.MakeID, motorLeadRequestEntity.ModelID, motorLeadRequestEntity.SubModelID)
+
+        healthView.findViewById<TextView>(R.id.txtVehicleName).setText("" + motorName)
+        healthView.findViewById<TextView>(R.id.txtMfgDate).setText("" + motorLeadRequestEntity.ManufacturingDate)
+        healthView.findViewById<TextView>(R.id.txtPolicyExpiryDate).setText("" + if (motorLeadRequestEntity.PolicyExpiryDate.length > 0) "${motorLeadRequestEntity.PolicyExpiryDate}" else "Not applicable")
+        healthView.findViewById<TextView>(R.id.txtNCB).setText("" + if (motorLeadRequestEntity.NCB > 0) "${motorLeadRequestEntity.NCB}" else "Not applicable")
+
+
+        // Set a positive button and its click listener on alert dialog
+        builder.setPositiveButton("Save") { dialog, which ->
+
+            dialog.dismiss()
+            showLoading("Loading..")
+            MotorController(this@AddMotorLeadActivity).addMotorLead(motorLeadRequestEntity, this)
+
+        }
+
+
+        // Display a negative button on alert dialog
+        builder.setNegativeButton("Edit") { dialog, which ->
+            dialog.dismiss()
+
+        }
+
+        // Finally, make the alert dialog using builder
+        val dialog: AlertDialog = builder.create()
+
+        // Display the alert dialog on app interface
+        dialog.show()
+    }
+
 
     override fun OnSuccess(response: APIResponse?, message: String?) {
 
@@ -305,8 +359,8 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
 
                 )
 
-                showLoading("Loading..")
-                MotorController(this@AddMotorLeadActivity).addMotorLead(motorRequestEntity, this)
+                confirmationAlert(motorRequestEntity)
+
 
                 //endregion
             }

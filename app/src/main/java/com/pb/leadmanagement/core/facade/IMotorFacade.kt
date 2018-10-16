@@ -19,6 +19,8 @@ interface IMotorFacade {
 
     fun getFourWheelerMaster(type: Int): List<MakeX>?
 
+    fun getVehicleName(vehicleType:Int,makeID: Int, modelID: Int, subModelID: Int): String
+
 
     /* fun storeModel(modelMasterResult: List<ModelMasterResult>)
 

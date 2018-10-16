@@ -114,7 +114,7 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
                 homeFragment.arguments = bundle*/
                 //homeFragment.arguments?.putString("TITLE", "CAMERA")
                 switchFragment(homeFragment)
-                supportActionBar?.title = "Dashboard"
+                supportActionBar?.title = "Generate Lead"
             }
             R.id.nav_profile -> {
                 val updateProfile = ProfileFragment()

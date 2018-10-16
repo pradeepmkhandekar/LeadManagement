@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.util.Patterns
+import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
@@ -16,6 +17,7 @@ import android.widget.TextView
 import com.android.chemistlead.core.APIResponse
 import com.pb.leadmanagement.R
 import com.pb.leadmanagement.core.IResponseSubcriber
+import com.pb.leadmanagement.core.controller.life.LifeController
 import com.pb.leadmanagement.core.controller.other.OtherLeadController
 import com.pb.leadmanagement.core.facade.UserFacade
 import com.pb.leadmanagement.core.requestentity.OtherRequestEntity
@@ -306,9 +308,51 @@ class AddOtherActivity : AppCompatActivity(), View.OnClickListener, IResponseSub
                         UserFacade(this@AddOtherActivity).getUserID()
                 )
 
-                showLoading("Loading..")
-                OtherLeadController(this@AddOtherActivity).addOtherLead(otherRequestEntity, this)
+                confirmationAlert(otherRequestEntity)
             }
         }
+    }
+
+    private fun confirmationAlert(otherRequestEntity: OtherRequestEntity) {
+
+        // Initialize a new instance of
+        val builder = AlertDialog.Builder(this@AddOtherActivity)
+
+        // Set the alert dialog title
+        builder.setTitle("Create Lead")
+
+        val healthView = LayoutInflater.from(this).inflate(R.layout.layout_other_confirm, null)
+
+        builder.setView(healthView)
+
+        healthView.findViewById<TextView>(R.id.txtName).setText("" + otherRequestEntity.Name)
+        healthView.findViewById<TextView>(R.id.txtMobile).setText("" + otherRequestEntity.MobileNo)
+        healthView.findViewById<TextView>(R.id.txtPolicyType).setText("" + spInsurance.selectedItem.toString())
+        healthView.findViewById<TextView>(R.id.txtTravelDate).setText("" + otherRequestEntity.TravelDate)
+        healthView.findViewById<TextView>(R.id.txtTravelCountry).setText("" + otherRequestEntity.TravelCountry)
+        healthView.findViewById<TextView>(R.id.txtRenewalDate).setText("" + if (otherRequestEntity.RenewalDate.length > 0) "${otherRequestEntity.RenewalDate}" else "Not applicable")
+        healthView.findViewById<TextView>(R.id.txtCompanyName).setText("" + if (otherRequestEntity.CompanyName.length > 0) "${otherRequestEntity.CompanyName}" else "Not applicable")
+        healthView.findViewById<TextView>(R.id.txtInsuranceName).setText("" + if (otherRequestEntity.InsuredName.length > 0) "${otherRequestEntity.InsuredName}" else "Not applicable")
+
+        // Set a positive button and its click listener on alert dialog
+        builder.setPositiveButton("Save") { dialog, which ->
+
+            dialog.dismiss()
+            showLoading("Loading..")
+            OtherLeadController(this@AddOtherActivity).addOtherLead(otherRequestEntity, this)
+        }
+
+
+        // Display a negative button on alert dialog
+        builder.setNegativeButton("Edit") { dialog, which ->
+            dialog.dismiss()
+
+        }
+
+        // Finally, make the alert dialog using builder
+        val dialog: AlertDialog = builder.create()
+
+        // Display the alert dialog on app interface
+        dialog.show()
     }
 }
