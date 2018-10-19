@@ -5,7 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
+import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
@@ -14,7 +14,6 @@ import android.support.v4.content.FileProvider
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.util.Base64
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -44,8 +43,6 @@ class UploadImageActivity : AppCompatActivity(), View.OnClickListener, IResponse
     val TAKE_PHOTO_CAMERA: Int = 1111
     val TAKE_PHOTO_GALLERY: Int = 2222
 
-    lateinit var dialogView: View
-    lateinit var dialog: AlertDialog
 
     lateinit var imageFilePath: String
     var isPolicy: Boolean = false
@@ -53,12 +50,33 @@ class UploadImageActivity : AppCompatActivity(), View.OnClickListener, IResponse
     var leadID: Int = 0
     var productID: Int = 0
     var documentName: String = ""
+    lateinit var dialogView: View
+    lateinit var dialog: AlertDialog
 
 
     companion object {
         private val IMAGE_DIRECTORY = "/LeadManagement"
     }
 
+    open fun encodeTobase64(image: Bitmap): String {
+        val baos = ByteArrayOutputStream()
+        image.compress(Bitmap.CompressFormat.PNG, 100, baos)
+        val b = baos.toByteArray()
+        return Base64.encodeToString(b, Base64.DEFAULT)
+    }
+
+    private fun showLoading(message: CharSequence) {
+        val msg = dialogView.findViewById<TextView>(R.id.txtProgressTitle)
+        msg.text = message
+        dialog.show()
+    }
+
+    private fun dismissDialog() {
+
+        if (dialog != null && dialog.isShowing) {
+            dialog.dismiss()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -152,34 +170,47 @@ class UploadImageActivity : AppCompatActivity(), View.OnClickListener, IResponse
             }
 
             R.id.txtUploadPolicy -> {
-                if (imgPolicy.getTag(R.id.imgPolicy) != null) {
-                    var base = encodeTobase64(imgPolicy.getTag(R.id.imgPolicy) as Bitmap)
-                    var uploadDocRequestEntity = UploadDocRequestEntity(productID,
-                            documentName,
-                            leadID,
-                            base)
-
-                   // Log.d("TAG", base)
-
-                    showLoading("Uploading document..")
-                    MotorController(this@UploadImageActivity).uploadDocuments(uploadDocRequestEntity, this)
-                }
-
+                baseAsync(this, imgPolicy.getTag(R.id.imgPolicy) as Bitmap, documentName, leadID, productID).execute()
             }
 
             R.id.txtUploadRC -> {
-                var base = encodeTobase64(imgRC.getDrawingCache(true))
-                Log.d("TAG", base)
+                baseAsync(this, imgRC.getTag(R.id.imgRC) as Bitmap, documentName, leadID, productID).execute()
             }
         }
     }
 
-    private fun encodeTobase64(image: Bitmap): String {
-        val baos = ByteArrayOutputStream()
-        image.compress(Bitmap.CompressFormat.PNG, 100, baos)
-        val b = baos.toByteArray()
-        return Base64.encodeToString(b, Base64.DEFAULT)
+    fun uploadImageToServer(uploadDocRequestEntity: UploadDocRequestEntity) {
+        showLoading("Uploading document..")
+        MotorController(this@UploadImageActivity).uploadDocuments(uploadDocRequestEntity, this)
+
     }
+
+    class baseAsync(var activity: UploadImageActivity?, var bitmap: Bitmap, var docName: String, var leadID: Int, var pID: Int)
+        : AsyncTask<Void, Void, String>() {
+
+
+        override fun onPreExecute() {
+            super.onPreExecute()
+            activity?.showLoading("Preparing document to upload")
+        }
+
+        override fun doInBackground(vararg params: Void?): String {
+            return activity?.encodeTobase64(bitmap)!!
+        }
+
+        override fun onPostExecute(result: String?) {
+
+            var uploadDocRequestEntity = UploadDocRequestEntity(pID,
+                    docName,
+                    leadID,
+                    result!!)
+            activity?.uploadImageToServer(uploadDocRequestEntity)
+
+            super.onPostExecute(result)
+
+        }
+    }
+
 
     //region Progress Dialog
 
@@ -191,20 +222,6 @@ class UploadImageActivity : AppCompatActivity(), View.OnClickListener, IResponse
         dialog = builder.create()
     }
 
-    private fun showLoading(message: CharSequence) {
-        val msg = dialogView.findViewById<TextView>(R.id.txtProgressTitle)
-        msg.text = message
-
-
-        dialog.show()
-    }
-
-    private fun dismissDialog() {
-
-        if (dialog != null && dialog.isShowing) {
-            dialog.dismiss()
-        }
-    }
 
     //endregion
 

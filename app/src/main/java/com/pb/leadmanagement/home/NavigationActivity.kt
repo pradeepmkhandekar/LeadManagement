@@ -67,6 +67,8 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
     }
 
 
+
+
     private fun switchFragment(switchFragment: Fragment) {
         supportFragmentManager.beginTransaction().replace(R.id.frame, switchFragment).commit()
     }

@@ -8,6 +8,9 @@ import android.os.Handler
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
@@ -42,6 +45,8 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
 
     lateinit var dialog: AlertDialog
     lateinit var dialogView: View
+
+    var CityID: Int = 0
 
     var adapterInsurance: InsuranceCompanyAdapter? = null
 
@@ -222,7 +227,49 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
         btnAddHealth.setOnClickListener(this)
         etPolicyExpiry.setOnClickListener(datePickerDialog)
         etDOB.setOnClickListener(datePickerDialog)
-        etCity.setOnFocusChangeListener(acCityFocusListner)
+        // etCity.setOnFocusChangeListener(acCityFocusListner)
+
+        acCity?.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+
+            val selectedCity = adapterCity!!.getItem(position) as CityMasterEntity
+            CityID = selectedCity.CityID
+            acCity?.setError(null)
+            hideKeyBoard()
+        }
+
+        acCity?.addTextChangedListener(object : TextWatcher {
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+                val str = acCity?.getText().toString()
+
+                val listAdapter = acCity?.getAdapter()
+
+                Log.d("CITY", "" + listAdapter?.count)
+
+                if (listAdapter != null) {
+                    for (i in 0 until listAdapter.getCount()) {
+                        val temp = listAdapter.getItem(i).toString()
+                        if (str.compareTo(temp) == 0) {
+                            acCity?.setError(null)
+                            return
+                        }
+                    }
+
+                    acCity?.setError("Invalid City")
+                    CityID = 0
+                    acCity?.setFocusable(true)
+                }
+
+            }
+
+        })
 
         etInsurer?.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
 
@@ -297,7 +344,7 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
                     return
                 }
 
-                if (etCity.text.toString().length < 2) {
+                if (etCity.text.toString().length < 2 || CityID == 0) {
                     showMessage(etName, "Invalid City", "", null)
                     return
                 }

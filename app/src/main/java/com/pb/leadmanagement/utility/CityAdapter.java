@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.pb.leadmanagement.R;
 import com.pb.leadmanagement.core.model.CityMasterEntity;
-import com.pb.leadmanagement.core.response.MakeX;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -8,7 +8,9 @@ import android.os.Handler
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.text.Editable
 import android.text.InputType
+import android.text.TextWatcher
 import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
@@ -315,12 +317,12 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
                     }
                 }
 
-                if (etMake.text.toString().length < 2) {
+                if (etMake.text.toString().length < 2 || MakeID == 0) {
                     showMessage(etName, "Invalid Make", "", null)
                     return
                 }
 
-                if (etModel.text.toString().length < 2) {
+                if (etModel.text.toString().length < 2 || ModelID == 0) {
                     showMessage(etName, "Invalid Model", "", null)
                     return
                 }
@@ -411,8 +413,68 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
         etMfgDate.setOnClickListener(datePickerDialog)
         etPolicyExpiry.setOnClickListener(datePickerDialog)
 
-        etMake.setOnFocusChangeListener(acMakeFocusListner)
-        etModel.setOnFocusChangeListener(acModelFocusListner)
+        // etMake.setOnFocusChangeListener(acMakeFocusListner)
+        //etModel.setOnFocusChangeListener(acModelFocusListner)
+
+        etMake.addTextChangedListener(object : TextWatcher {
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+                val str = etMake.getText().toString()
+
+                val listAdapter = etMake.getAdapter()
+
+                if (listAdapter != null) {
+                    for (i in 0 until listAdapter.getCount()) {
+                        val temp = listAdapter.getItem(i).toString()
+                        if (str.compareTo(temp) == 0) {
+                            etMake.setError(null)
+                            return
+                        }
+                    }
+
+                    etMake.setError("Invalid Make")
+                    MakeID = 0
+                    etMake.setFocusable(true)
+                }
+            }
+        })
+
+        etModel.addTextChangedListener(object : TextWatcher {
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+                val str = etModel.getText().toString()
+
+                val listAdapter = etModel.getAdapter()
+
+                if (listAdapter != null) {
+                    for (i in 0 until listAdapter.getCount()) {
+                        val temp = listAdapter.getItem(i).toString()
+                        if (str.compareTo(temp) == 0) {
+                            etModel.setError(null)
+                            return
+                        }
+                    }
+
+                    etModel.setError("Invalid Make")
+                    ModelID = 0
+                    etModel.setFocusable(true)
+                }
+            }
+        })
 
         spRelation?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -478,6 +540,7 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
             val makeData = adapterMake!!.getItem(position) as MakeX
             MakeID = makeData.MakeID
             mListModel = makeData.Model
+            txtMakeSearch?.setError(null)
             txtModelSearch?.setText("")
             changeModelAdapter()
             hideKeyBoard()
@@ -487,6 +550,7 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
 
             if (adapterModel!!.getItem(position) != null) {
                 ModelID = adapterModel!!.getItem(position)!!.ModelID
+                etModel.setError(null)
             }
 
             if (adapterModel!!.getItem(position)?.Variant != null) {
