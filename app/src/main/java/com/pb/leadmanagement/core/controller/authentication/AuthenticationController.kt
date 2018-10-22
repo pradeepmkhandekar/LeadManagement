@@ -31,7 +31,7 @@ open class AuthenticationController : IAuthentication {
     fun errorStatus(statusCode: Int): String {
         when (statusCode) {
             400 -> {
-                return "Bad request :The server cannot or will not process the request due to an apparent client errorStatus"
+                return "Bad request :The server cannot or will not process the request due to an apparent client error status"
             }
             403 -> {
                 return "Forbidden :Server is refusing action"

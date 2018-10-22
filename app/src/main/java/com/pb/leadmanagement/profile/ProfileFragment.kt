@@ -232,6 +232,7 @@ class ProfileFragment : Fragment(), View.OnClickListener, IResponseSubcriber {
                 var loginEntity = LoginEntity(
                         displayView.etAddress.text.toString(),
                         displayView.etChainCode.text.toString(),
+                        displayView.etChainCode.text.toString(),
                         this.loginEntity!!.PartnerChildLogin,
                         displayView.etCity.text.toString(),
                         displayView.etEmail.text.toString(),

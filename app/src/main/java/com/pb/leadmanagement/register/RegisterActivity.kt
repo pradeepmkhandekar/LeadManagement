@@ -199,6 +199,11 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener, IResponseSub
                     return
                 }
 
+                if (etPartnerLogin.text.toString().length < 1) {
+                    showMessage(etName, "Invalid Partner Reference ID", "", null)
+                    return
+                }
+
                 val leadItems = mutableListOf<String>()
 
                 if (chkHealth.isChecked)
@@ -221,7 +226,8 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener, IResponseSub
 
                 var loginEntity = LoginEntity(
                         etAddress.text.toString(),
-                        spChainCode.selectedItem.toString(),
+                        etPartnerLogin.text.toString(),
+                        etPartnerLogin.text.toString(),
                         chainID,
                         etCity.text.toString(),
                         etEmail.text.toString(),

@@ -192,7 +192,7 @@
 
                         android:entries="@array/array_fieldmanager" />
 
-                    <TextView
+                   <!-- <TextView
                         style="@style/CustomTitle.Medium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -206,7 +206,20 @@
                         style="@style/Spinner.Underline"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:entries="@array/array_fieldmanager" />
+                        android:entries="@array/array_fieldmanager" />-->
+
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/etPartnerLogin"
+                            style="@style/Style.edittext"
+                            android:hint="Partner Login Reference ID" />
+                    </android.support.design.widget.TextInputLayout>
+
 
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"

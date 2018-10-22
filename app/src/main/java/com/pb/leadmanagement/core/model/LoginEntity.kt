@@ -2,6 +2,7 @@ package com.pb.leadmanagement.core.model
 
 data class LoginEntity(
         var Address: String,
+        var ReferenceCode: String,
         var PartnerLogin: String,
         var PartnerChildLogin: String,
         var City: String,
