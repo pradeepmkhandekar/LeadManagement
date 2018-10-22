@@ -184,8 +184,10 @@
                         <android.support.design.widget.TextInputEditText
                             android:id="@+id/etChainCode"
                             style="@style/Style.edittext"
+                            android:enabled="false"
                             android:hint="Partner Login" />
                     </android.support.design.widget.TextInputLayout>
+
 
                     <TextView
                         style="@style/CustomTitle.Medium"

@@ -16,5 +16,5 @@ interface IUserfacade {
 
     fun getUserID(): Int
 
-    fun getChainID(): String
+    fun getReferenceCode(): String
 }

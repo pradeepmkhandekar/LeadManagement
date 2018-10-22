@@ -124,7 +124,7 @@ class ProfileFragment : Fragment(), View.OnClickListener, IResponseSubcriber {
         view.etCity.setText(loginEntity?.City)
         view.etState.setText(loginEntity?.State)
         view.etLocation.setText(loginEntity?.Location)
-        view.etChainCode.setText(loginEntity?.PartnerLogin)
+        view.etChainCode.setText(loginEntity?.ReferenceCode)
 
         for (item: String in loginEntity?.LeadInterest!!) {
 

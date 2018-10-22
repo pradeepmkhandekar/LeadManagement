@@ -82,10 +82,10 @@ open class UserFacade : IUserfacade, IMotorFacade, IInsurance {
 
     }
 
-    override fun getChainID(): String {
+    override fun getReferenceCode(): String {
         var loginEntity = getUser()
         if (loginEntity != null)
-            return loginEntity.PartnerChildLogin
+            return loginEntity.ReferenceCode
         else
             return ""
     }

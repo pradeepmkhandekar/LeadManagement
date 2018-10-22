@@ -107,7 +107,7 @@ class LoanActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcrib
                         etName.text.toString(),
                         etMobileNo.text.toString(),
                         listProduct,
-                        UserFacade(this@LoanActivity).getChainID(),
+                        UserFacade(this@LoanActivity).getReferenceCode(),
                         UserFacade(this@LoanActivity).getUserID())
 
                 showLoading("Loading..")

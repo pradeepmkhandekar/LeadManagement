@@ -380,7 +380,7 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
                         spExistingDisease.selectedItem.toString(),
                         etOtherDisease.text.toString(),
                         insurerID.toString(),
-                        UserFacade(this@HealthActivity).getChainID(),
+                        UserFacade(this@HealthActivity).getReferenceCode(),
                         UserFacade(this@HealthActivity).getUserID()
                 )
 

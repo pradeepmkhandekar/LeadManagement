@@ -17,7 +17,6 @@ import android.widget.TextView
 import com.android.chemistlead.core.APIResponse
 import com.pb.leadmanagement.R
 import com.pb.leadmanagement.core.IResponseSubcriber
-import com.pb.leadmanagement.core.controller.life.LifeController
 import com.pb.leadmanagement.core.controller.other.OtherLeadController
 import com.pb.leadmanagement.core.facade.UserFacade
 import com.pb.leadmanagement.core.requestentity.OtherRequestEntity
@@ -304,7 +303,7 @@ class AddOtherActivity : AppCompatActivity(), View.OnClickListener, IResponseSub
                         etInsuranceDate.text.toString(),
                         etCompanyName.text.toString(),
                         etCompanyName.text.toString(),
-                        UserFacade(this@AddOtherActivity).getChainID(),
+                        UserFacade(this@AddOtherActivity).getReferenceCode(),
                         UserFacade(this@AddOtherActivity).getUserID()
                 )
 
