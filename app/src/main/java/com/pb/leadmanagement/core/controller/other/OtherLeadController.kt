@@ -67,7 +67,7 @@ open class OtherLeadController : IOther {
                     if (response!!.body()?.StatusNo == 0) {
 
                         iResponseSubcriber.OnSuccess(response.body(), response.message())
-                        SaveLeadController(mContext).SaveOtherLead(otherRequestEntity)
+                      //  SaveLeadController(mContext).SaveOtherLead(otherRequestEntity)
 
                     } else {
                         iResponseSubcriber.OnFailure(response!!.body()?.Message)

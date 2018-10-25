@@ -66,7 +66,7 @@ open class HealthController : IHealth {
 
                         iResponseSubcriber.OnSuccess(response.body(), response.message())
 
-                        SaveLeadController(mContext).SaveHealthLead(healthLeadRequestEntity)
+                       // SaveLeadController(mContext).SaveHealthLead(healthLeadRequestEntity)
 
 
                     } else {

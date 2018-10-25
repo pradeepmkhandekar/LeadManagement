@@ -19,7 +19,7 @@
 
     <string-array name="array_health_policytype">
         <item>Individual</item>
-        <item>Floater</item>
+        <item>Family Floater</item>
     </string-array>
 
     <string-array name="array_health_disease">
@@ -224,22 +224,28 @@
         <item>Two Wheeler</item>
     </string-array>
 
-    <string-array name="loan_product">
+    <string-array name="array_car_type">
+        <item>New Car</item>
+        <item>Used Car</item>
+    </string-array>
 
-        <item>Credit Card</item>
-        <item>Used Car Loan</item>
-        <item>Lap BT</item>
-        <item>LRD</item>
-        <item>Car Loan</item>
-        <item>Home Loan BT</item>
-        <item>MERCHANT BUSINESS</item>
-        <item>LAP</item>
-        <item>Car Refinance</item>
+    <string-array name="array_pl_salaried">
+        <item>Salaried</item>
+        <item>Not Salaried</item>
+    </string-array>
+
+
+    <string-array name="array_hm_bg_flat">
+        <item>Bunglow</item>
+        <item>Flat</item>
+    </string-array>
+    <string-array name="loan_product">
+        <item>Choose Loan Type</item>
+        <item>Business/Workmen Compensation Loan</item>
+        <item>Home/LAP Loan</item>
         <item>Personal Loan</item>
-        <item>Working Capital</item>
-        <item>Home Loan</item>
-        <item>Business Loan</item>
-        <!--<item>Term Loan</item>-->
+        <item>Car Loan</item>
+        <item>Credit Card</item>
 
 
     </string-array>

@@ -80,12 +80,14 @@ class ProfileFragment : Fragment(), View.OnClickListener, IResponseSubcriber {
             if (response.StatusNo == 0) {
                 showMessage(etName, response.Message, "", null)
 
+            } else {
+                showMessage(etName, response.Message, "", null)
             }
         }
     }
 
     override fun OnFailure(error: String?) {
-        dismissDialog()
+;        dismissDialog()
         showMessage(displayView.etName, error.toString(), "", null)
     }
 

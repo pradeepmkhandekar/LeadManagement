@@ -104,7 +104,7 @@ open class MotorController : IMotor {
                 if (response!!.isSuccessful) {
                     if (response!!.body()?.StatusNo == 0) {
                         iResponseSubcriber.OnSuccess(response.body(), response.message())
-                        SaveLeadController(mContext).SaveMotorLead(motorLeadRequestEntity)
+                       // SaveLeadController(mContext).SaveMotorLead(motorLeadRequestEntity)
                     } else {
                         iResponseSubcriber.OnFailure(response!!.body()?.Message)
                     }

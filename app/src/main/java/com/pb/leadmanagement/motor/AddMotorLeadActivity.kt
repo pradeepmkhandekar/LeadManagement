@@ -356,7 +356,7 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
                         etMfgDate.text.toString(),
                         etPolicyExpiry.text.toString(),
                         NCB,
-                        UserFacade(this@AddMotorLeadActivity).getReferenceCode(),
+                        if (UserFacade(this@AddMotorLeadActivity).getReferenceCode() != null) UserFacade(this@AddMotorLeadActivity).getReferenceCode() else "",
                         UserFacade(this@AddMotorLeadActivity).getUserID()
 
                 )

@@ -141,6 +141,8 @@ open class AuthenticationController : IAuthentication {
                         } else {
                             iResponseSubcriber.OnFailure("User not found")
                         }
+                    } else {
+                        iResponseSubcriber.OnSuccess(response.body(), response.message())
                     }
                 } else {
                     iResponseSubcriber.OnFailure(errorStatus(response.code()))

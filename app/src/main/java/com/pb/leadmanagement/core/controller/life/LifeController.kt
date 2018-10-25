@@ -71,7 +71,7 @@ open class LifeController : ILife {
                         iResponseSubcriber.OnSuccess(response.body(), response.message())
 
                         // save lead for report
-                        SaveLeadController(mContext).SaveLifeLead(lifeLeadRequestEntity)
+                       // SaveLeadController(mContext).SaveLifeLead(lifeLeadRequestEntity)
 
                     } else {
                         iResponseSubcriber.OnFailure(response!!.body()?.Message)

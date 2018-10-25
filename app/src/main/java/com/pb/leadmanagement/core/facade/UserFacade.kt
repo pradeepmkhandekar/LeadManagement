@@ -2,6 +2,7 @@ package com.pb.leadmanagement.core.facade
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import com.google.gson.Gson
 import com.pb.leadmanagement.core.model.InsuranceCompanyMasterEntity
 import com.pb.leadmanagement.core.model.LoginEntity
@@ -85,7 +86,7 @@ open class UserFacade : IUserfacade, IMotorFacade, IInsurance {
     override fun getReferenceCode(): String {
         var loginEntity = getUser()
         if (loginEntity != null)
-            return loginEntity.ReferenceCode
+            return if (loginEntity.ReferenceCode != null) loginEntity.ReferenceCode else ""
         else
             return ""
     }
@@ -130,6 +131,11 @@ open class UserFacade : IUserfacade, IMotorFacade, IInsurance {
 
         if (listVehicle != null) {
 
+
+            //var variantName = listVehicle.filter { s -> s.MakeID == makeID }.single().Model.filter { m -> m.ModelID == modelID }.single().Variant.filter { v -> v.VariantID == subModelID }.single().Variant
+
+            //Log.d("Var", variantName)
+
             //Make list
             var listMake = listVehicle.filter { s -> s.MakeID == makeID }.single()
 
@@ -145,6 +151,7 @@ open class UserFacade : IUserfacade, IMotorFacade, IInsurance {
             if (model.Variant != null) {
                 varient = model.Variant.filter { s -> s.VariantID == subModelID }.single()
             }
+
             if (varient != null)
                 return vehicleName + "," + varient.Variant
             else
@@ -226,9 +233,9 @@ open class UserFacade : IUserfacade, IMotorFacade, IInsurance {
         return null
     }
 
-    //endregion
+//endregion
 
-    //region Insurance List
+//region Insurance List
 
     override fun isInsurerMasterSuccess(): Boolean {
         return sharedPreferences.getBoolean(INSURER_SUCCESS, false)
@@ -275,7 +282,7 @@ open class UserFacade : IUserfacade, IMotorFacade, IInsurance {
         }
     }
 
-    //endregion
+//endregion
 
     override fun storeCityMaster(cityMasterEntity: List<CityMasterEntity>): Boolean {
         try {

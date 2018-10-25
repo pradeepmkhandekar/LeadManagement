@@ -1,6 +1,7 @@
 package com.pb.leadmanagement.dashboard
 
 
+import android.animation.ArgbEvaluator
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -20,6 +21,8 @@ import com.pb.leadmanagement.test.TestActivity
 import com.pb.leadmanagement.upload.UploadImageActivity
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.fragment_dashboard.view.*
+import android.animation.ObjectAnimator
+import android.graphics.Color
 
 
 /**
@@ -68,6 +71,8 @@ class DashboardFragment : Fragment(), OnClickListener {
                 }
             }
         }
+
+
     }
 
 

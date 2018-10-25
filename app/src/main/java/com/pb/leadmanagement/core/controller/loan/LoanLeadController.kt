@@ -68,7 +68,7 @@ open class LoanLeadController : ILoan {
 
                         iResponseSubcriber.OnSuccess(response.body(), response.message())
 
-                        SaveLeadController(mContext).SaveLoanLead(loanRequestEntity)
+                        //SaveLeadController(mContext).SaveLoanLead(loanRequestEntity)
 
                     } else {
                         iResponseSubcriber.OnFailure(response!!.body()?.Message)

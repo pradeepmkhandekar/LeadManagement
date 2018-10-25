@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_weight="1"
+
             android:visibility="gone"
             card_view:cardCornerRadius="2dp"
             card_view:cardElevation="3dp"
@@ -60,6 +61,7 @@
                     android:background="@color/colorAccent" />
 
                 <TextView
+                    android:id="@+id/lblMotor"
                     style="@style/CustomTitle.Medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
