@@ -9,6 +9,7 @@ import com.pb.leadmanagement.core.response.MotorLeadResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.IOException
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
@@ -76,17 +77,19 @@ open class SaveLeadController : ISaveLead {
             }
 
             override fun onFailure(call: Call<MotorLeadResponse>?, t: Throwable?) {
-                /* if (t is ConnectException) {
-                     iResponseSubcriber.OnFailure("Check your internet connection")
-                 } else if (t is SocketTimeoutException) {
-                     iResponseSubcriber.OnFailure("Socket time-out")
-                 } else if (t is UnknownHostException) {
-                     iResponseSubcriber.OnFailure("Unknown host exception")
-                 } else if (t is NumberFormatException) {
-                     iResponseSubcriber.OnFailure("Unknown response from server")
-                 } else {
-                     iResponseSubcriber.OnFailure(t?.message)
-                 }*/
+               /* if (t is ConnectException) {
+                    iResponseSubcriber.OnFailure("Check your internet connection")
+                } else if (t is SocketTimeoutException) {
+                    iResponseSubcriber.OnFailure("Socket time-out")
+                } else if (t is UnknownHostException) {
+                    iResponseSubcriber.OnFailure("Unknown host exception")
+                } else if (t is NumberFormatException) {
+                    iResponseSubcriber.OnFailure("Unknown response from server")
+                } else if (t is IOException) {
+                    iResponseSubcriber.OnFailure("Server Time-out")
+                } else {
+                    iResponseSubcriber.OnFailure(t?.message)
+                }*/
             }
         })
     }
