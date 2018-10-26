@@ -182,31 +182,33 @@
                         android:layout_marginLeft="4dp"
                         android:layout_marginTop="12dp"
                         android:text="Landmark Account Manager"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:visibility="gone" />
 
                     <Spinner
                         android:id="@+id/spFieldManager"
                         style="@style/Spinner.Underline"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:entries="@array/array_fieldmanager"
 
-                        android:entries="@array/array_fieldmanager" />
+                        android:visibility="gone" />
 
-                   <!-- <TextView
-                        style="@style/CustomTitle.Medium"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginTop="12dp"
-                        android:text="Partner Login"
-                        android:textSize="14sp" />
+                    <!-- <TextView
+                         style="@style/CustomTitle.Medium"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_marginLeft="4dp"
+                         android:layout_marginTop="12dp"
+                         android:text="Partner Login"
+                         android:textSize="14sp" />
 
-                    <Spinner
-                        android:id="@+id/spChainCode"
-                        style="@style/Spinner.Underline"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:entries="@array/array_fieldmanager" />-->
+                     <Spinner
+                         android:id="@+id/spChainCode"
+                         style="@style/Spinner.Underline"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:entries="@array/array_fieldmanager" />-->
 
 
                     <android.support.design.widget.TextInputLayout
@@ -217,7 +219,7 @@
                         <android.support.design.widget.TextInputEditText
                             android:id="@+id/etPartnerLogin"
                             style="@style/Style.edittext"
-                            android:hint="Partner Login Reference ID" />
+                            android:hint="Partner Reference Code" />
                     </android.support.design.widget.TextInputLayout>
 
 
@@ -239,19 +241,22 @@
                         android:layout_marginLeft="4dp"
                         android:layout_marginTop="12dp"
                         android:text="Lead Interest"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:visibility="gone" />
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingBottom="8dp"
-                        android:paddingTop="8dp">
+                        android:paddingTop="8dp"
+                        android:visibility="gone">
 
                         <CheckBox
                             android:id="@+id/chkLife"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:checked="true"
                             android:text="Life" />
 
                         <CheckBox
@@ -259,6 +264,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:checked="true"
                             android:text="Loan" />
 
                     </TableRow>
@@ -267,13 +273,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingBottom="8dp"
-                        android:paddingTop="8dp">
+                        android:paddingTop="8dp"
+                        android:visibility="gone">
 
                         <CheckBox
                             android:id="@+id/chkHealth"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:checked="true"
                             android:text="Health" />
 
                         <CheckBox
@@ -281,29 +289,32 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:checked="true"
                             android:text="Motor" />
 
 
                     </TableRow>
 
-
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingBottom="8dp"
-                        android:paddingTop="8dp">
+                        android:paddingTop="8dp"
+                        android:visibility="gone">
 
                         <CheckBox
                             android:id="@+id/chkOther"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:checked="true"
                             android:text="Other" />
 
                         <CheckBox
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:checked="true"
                             android:text="Other"
                             android:visibility="invisible" />
                     </TableRow>

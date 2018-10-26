@@ -193,11 +193,11 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener, IResponseSub
                 }
 
 
-                if (!chkHealth.isChecked && !chkLife.isChecked && !chkLoan.isChecked
+           /*     if (!chkHealth.isChecked && !chkLife.isChecked && !chkLoan.isChecked
                         && !chkMotor.isChecked && !chkOther.isChecked) {
                     showMessage(etName, "Select Lead Interest", "", null)
                     return
-                }
+                }*/
 
                 if (etPartnerLogin.text.toString().length < 1) {
                     showMessage(etName, "Invalid Partner Reference ID", "", null)
@@ -205,8 +205,13 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener, IResponseSub
                 }
 
                 val leadItems = mutableListOf<String>()
+                leadItems.add("health")
+                leadItems.add("life")
+                leadItems.add("loan")
+                leadItems.add("motor")
+                leadItems.add("other")
 
-                if (chkHealth.isChecked)
+             /*   if (chkHealth.isChecked)
                     leadItems.add("health")
 
                 if (chkLife.isChecked)
@@ -219,7 +224,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener, IResponseSub
                     leadItems.add("motor")
 
                 if (chkOther.isChecked)
-                    leadItems.add("other")
+                    leadItems.add("other")*/
 
 
                 var chainID = etName.text.toString().take(3) + etMobileNo.text.toString().takeLast(5)

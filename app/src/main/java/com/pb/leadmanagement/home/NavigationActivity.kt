@@ -17,6 +17,7 @@ import com.pb.leadmanagement.core.facade.UserFacade
 import com.pb.leadmanagement.dashboard.DashboardFragment
 import com.pb.leadmanagement.login.LoginActivity
 import com.pb.leadmanagement.profile.ProfileFragment
+import com.pb.leadmanagement.reports.ReportsFragment
 import kotlinx.android.synthetic.main.activity_navigation.*
 import kotlinx.android.synthetic.main.app_bar_navigation.*
 import kotlinx.android.synthetic.main.nav_header_navigation.*
@@ -67,8 +68,6 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
     }
 
 
-
-
     private fun switchFragment(switchFragment: Fragment) {
         supportFragmentManager.beginTransaction().replace(R.id.frame, switchFragment).commit()
     }
@@ -111,10 +110,6 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
             R.id.nav_dashboard -> {
                 // Handle the camera action
                 val homeFragment = DashboardFragment()
-                /*val bundle = Bundle()
-                bundle.putString("TITLE", "CAMERA")
-                homeFragment.arguments = bundle*/
-                //homeFragment.arguments?.putString("TITLE", "CAMERA")
                 switchFragment(homeFragment)
                 supportActionBar?.title = "Generate Lead"
             }
@@ -125,11 +120,16 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
             }
 
             R.id.nav_report -> {
-                showMessage(txtName, "Coming soon", "", null);
 
-                /*   val reportFragment = ReportsFragment()
-                   switchFragment(reportFragment)*/
+                val reportFragment = ReportsFragment()
+                switchFragment(reportFragment)
                 supportActionBar?.title = "Reports"
+            }
+
+            R.id.nav_change_password -> {
+                val reportFragment = ReportsFragment()
+                switchFragment(reportFragment)
+                supportActionBar?.title = "Change Password"
             }
 
             R.id.nav_logout -> {

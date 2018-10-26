@@ -87,7 +87,7 @@ class ProfileFragment : Fragment(), View.OnClickListener, IResponseSubcriber {
     }
 
     override fun OnFailure(error: String?) {
-;        dismissDialog()
+        ; dismissDialog()
         showMessage(displayView.etName, error.toString(), "", null)
     }
 
@@ -205,28 +205,36 @@ class ProfileFragment : Fragment(), View.OnClickListener, IResponseSubcriber {
                 }
 
 
-                if (!displayView.chkHealth.isChecked && !displayView.chkLife.isChecked && !displayView.chkLoan.isChecked
-                        && !displayView.chkMotor.isChecked && !displayView.chkOther.isChecked) {
-                    showMessage(displayView.etName, "Select Lead Interest", "", null)
-                    return
-                }
+                /*  if (!displayView.chkHealth.isChecked && !displayView.chkLife.isChecked && !displayView.chkLoan.isChecked
+                          && !displayView.chkMotor.isChecked && !displayView.chkOther.isChecked) {
+                      showMessage(displayView.etName, "Select Lead Interest", "", null)
+                      return
+                  }*/
+
+                /*  val leadItems = mutableListOf<String>()
+
+                  if (displayView.chkHealth.isChecked)
+                      leadItems.add("health")
+
+                  if (displayView.chkLife.isChecked)
+                      leadItems.add("life")
+
+                  if (displayView.chkLoan.isChecked)
+                      leadItems.add("loan")
+
+                  if (displayView.chkMotor.isChecked)
+                      leadItems.add("motor")
+
+                  if (displayView.chkOther.isChecked)
+                      leadItems.add("other")*/
+
 
                 val leadItems = mutableListOf<String>()
-
-                if (displayView.chkHealth.isChecked)
-                    leadItems.add("health")
-
-                if (displayView.chkLife.isChecked)
-                    leadItems.add("life")
-
-                if (displayView.chkLoan.isChecked)
-                    leadItems.add("loan")
-
-                if (displayView.chkMotor.isChecked)
-                    leadItems.add("motor")
-
-                if (displayView.chkOther.isChecked)
-                    leadItems.add("other")
+                leadItems.add("health")
+                leadItems.add("life")
+                leadItems.add("loan")
+                leadItems.add("motor")
+                leadItems.add("other")
 
 
                 //var chainID = etName.text.toString().take(3) + etMobileNo.text.toString().takeLast(four)
@@ -239,7 +247,7 @@ class ProfileFragment : Fragment(), View.OnClickListener, IResponseSubcriber {
                         displayView.etCity.text.toString(),
                         displayView.etEmail.text.toString(),
                         displayView.spFieldManager.selectedItem.toString(),
-                        0,
+                        this.loginEntity!!.ID,
                         leadItems,
                         displayView.etLocation.text.toString(),
                         displayView.etMobileNo.text.toString(),
