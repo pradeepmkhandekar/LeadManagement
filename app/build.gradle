@@ -18,6 +18,11 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "URL", '"http://202.131.96.100:7541/"'
+        }
+        debug {
+            debuggable true
+            buildConfigField "String", "URL", '"http://202.131.96.100:7541/"'
         }
     }
 }

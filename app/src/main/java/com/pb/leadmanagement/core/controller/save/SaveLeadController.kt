@@ -2,9 +2,11 @@ package com.pb.leadmanagement.core.controller.save
 
 import android.content.Context
 import com.pb.leadmanagement.core.IResponseSubcriber
+import com.pb.leadmanagement.core.model.SaveError
 import com.pb.leadmanagement.core.requestbuilders.HomeSaveLeadRequestBuilder
 import com.pb.leadmanagement.core.requestbuilders.LeadRequestBuilder
 import com.pb.leadmanagement.core.requestentity.*
+import com.pb.leadmanagement.core.response.ErrorResponse
 import com.pb.leadmanagement.core.response.MotorLeadResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -59,6 +61,24 @@ open class SaveLeadController : ISaveLead {
     }
 
 
+    override fun saveError(saveError: SaveError) {
+
+        var url = "http://49.50.95.141:2001/LeadCollection.svc/SendErrorMail"
+
+        mSaveNetwork.sendError(url, saveError).enqueue(object : Callback<ErrorResponse> {
+
+            override fun onResponse(call: Call<ErrorResponse>?, response: Response<ErrorResponse>?) {
+
+            }
+
+            override fun onFailure(call: Call<ErrorResponse>?, t: Throwable?) {
+
+            }
+        })
+
+    }
+
+
     override fun SaveMotorLead(motorLeadRequestEntity: MotorLeadRequestEntity) {
         var url = "http://49.50.95.141:2001/LeadCollection.svc/SaveMotorLeads"
 
@@ -77,19 +97,19 @@ open class SaveLeadController : ISaveLead {
             }
 
             override fun onFailure(call: Call<MotorLeadResponse>?, t: Throwable?) {
-               /* if (t is ConnectException) {
-                    iResponseSubcriber.OnFailure("Check your internet connection")
-                } else if (t is SocketTimeoutException) {
-                    iResponseSubcriber.OnFailure("Socket time-out")
-                } else if (t is UnknownHostException) {
-                    iResponseSubcriber.OnFailure("Unknown host exception")
-                } else if (t is NumberFormatException) {
-                    iResponseSubcriber.OnFailure("Unknown response from server")
-                } else if (t is IOException) {
-                    iResponseSubcriber.OnFailure("Server Time-out")
-                } else {
-                    iResponseSubcriber.OnFailure(t?.message)
-                }*/
+                /* if (t is ConnectException) {
+                     iResponseSubcriber.OnFailure("Check your internet connection")
+                 } else if (t is SocketTimeoutException) {
+                     iResponseSubcriber.OnFailure("Socket time-out")
+                 } else if (t is UnknownHostException) {
+                     iResponseSubcriber.OnFailure("Unknown host exception")
+                 } else if (t is NumberFormatException) {
+                     iResponseSubcriber.OnFailure("Unknown response from server")
+                 } else if (t is IOException) {
+                     iResponseSubcriber.OnFailure("Server Time-out")
+                 } else {
+                     iResponseSubcriber.OnFailure(t?.message)
+                 }*/
             }
         })
     }

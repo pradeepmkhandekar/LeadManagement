@@ -1,7 +1,9 @@
 package com.pb.leadmanagement.core.requestbuilders
 
 import com.pb.leadmanagement.core.RetroRequestBuilder
+import com.pb.leadmanagement.core.model.SaveError
 import com.pb.leadmanagement.core.requestentity.*
+import com.pb.leadmanagement.core.response.ErrorResponse
 import com.pb.leadmanagement.core.response.MotorLeadResponse
 import retrofit2.Call
 import retrofit2.http.Body
@@ -34,6 +36,9 @@ open class HomeSaveLeadRequestBuilder : RetroRequestBuilder() {
 
         @POST
         fun saveLoanLead(@Url url: String, @Body body: LoanRequestEntity): Call<MotorLeadResponse>
+
+        @POST
+        fun sendError(@Url url: String, @Body body: SaveError): Call<ErrorResponse>
 
     }
 }

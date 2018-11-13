@@ -1,6 +1,7 @@
 package com.pb.leadmanagement.core.controller.save
 
 import com.pb.leadmanagement.core.IResponseSubcriber
+import com.pb.leadmanagement.core.model.SaveError
 import com.pb.leadmanagement.core.requestentity.*
 
 /**
@@ -17,4 +18,6 @@ interface ISaveLead {
     fun SaveLoanLead(loanRequestEntity: LoanRequestEntity)
 
     fun SaveOtherLead(otherRequestEntity: OtherRequestEntity)
+
+    fun saveError(saveError: SaveError)
 }

@@ -1,8 +1,11 @@
 package com.pb.leadmanagement.core.controller.master
 
 import android.content.Context
+import com.google.gson.Gson
 import com.pb.leadmanagement.core.IResponseSubcriber
+import com.pb.leadmanagement.core.controller.authentication.AuthenticationController
 import com.pb.leadmanagement.core.facade.UserFacade
+import com.pb.leadmanagement.core.model.SaveError
 import com.pb.leadmanagement.core.requestbuilders.MastersRequestBuilder
 import com.pb.leadmanagement.core.requestentity.UploadDocRequestEntity
 import com.pb.leadmanagement.core.response.*
@@ -58,8 +61,6 @@ open class MasterController : IMaster {
     }
 
 
-
-
     override fun getMotorAllMaster(motorType: String) {
         mMastersNetwork.getMakeModelVariant(motorType).enqueue(object : Callback<MakeModelMasterResponse> {
 
@@ -95,23 +96,73 @@ open class MasterController : IMaster {
                         iResponseSubcriber.OnFailure(response!!.body()?.Message)
 
                 } else {
-                    iResponseSubcriber.OnFailure(errorStatus(response.code()))
+                    var saveError = AuthenticationController.errorStatus(mContext,
+                            SaveError(response.code().toString(), "", pincode,
+                                    response.raw().request().url().toString()))
+                    iResponseSubcriber.OnFailure(saveError)
                 }
             }
 
             override fun onFailure(call: Call<PincodeResponse>?, t: Throwable?) {
+                /*       if (t is ConnectException) {
+                           iResponseSubcriber.OnFailure("Check your internet connection")
+                       } else if (t is SocketTimeoutException) {
+                           iResponseSubcriber.OnFailure("Socket time-out")
+                       } else if (t is UnknownHostException) {
+                           iResponseSubcriber.OnFailure("Unknown host exception")
+                       } else if (t is NumberFormatException) {
+                           iResponseSubcriber.OnFailure("Unknown response from server")
+                       } else if (t is IOException) {
+                           iResponseSubcriber.OnFailure("Server Time-out")
+                       } else {
+                           iResponseSubcriber.OnFailure(t?.message)
+                       }*/
+
                 if (t is ConnectException) {
-                    iResponseSubcriber.OnFailure("Check your internet connection")
+                    var saveError = AuthenticationController.errorStatus(mContext, SaveError("0",
+                            "ConnectException", pincode, call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
                 } else if (t is SocketTimeoutException) {
-                    iResponseSubcriber.OnFailure("Socket time-out")
+
+                    var saveError = AuthenticationController.errorStatus(mContext, SaveError("0",
+                            "SocketTimeoutException", pincode, call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+                    // iResponseSubcriber.OnFailure("Socket time-out")
                 } else if (t is UnknownHostException) {
-                    iResponseSubcriber.OnFailure("Unknown host exception")
+
+                    var saveError = AuthenticationController.errorStatus(mContext, SaveError("0",
+                            "UnknownHostException", pincode, call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+                    // iResponseSubcriber.OnFailure("Unknown host exception")
                 } else if (t is NumberFormatException) {
-                    iResponseSubcriber.OnFailure("Unknown response from server")
+
+                    var saveError = AuthenticationController.errorStatus(mContext, SaveError("0",
+                            "NumberFormatException", pincode, call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+                    //  iResponseSubcriber.OnFailure("Unknown response from server")
                 } else if (t is IOException) {
-                    iResponseSubcriber.OnFailure("Server Time-out")
+
+                    var saveError = AuthenticationController.errorStatus(mContext, SaveError("0",
+                            "IOException", pincode, call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+
+                    //iResponseSubcriber.OnFailure("Server Time-out")
                 } else {
-                    iResponseSubcriber.OnFailure(t?.message)
+                    var saveError = AuthenticationController.errorStatus(mContext, SaveError("0",
+                            "Exception", pincode, call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+                    //iResponseSubcriber.OnFailure(t?.message)
                 }
             }
         })
@@ -145,23 +196,73 @@ open class MasterController : IMaster {
                     iResponseSubcriber.OnSuccess(response.body(), response.message())
 
                 } else {
-                    iResponseSubcriber.OnFailure(errorStatus(response.code()))
+                    var saveError = AuthenticationController.errorStatus(mContext,
+                            SaveError(response.code().toString(), "", "",
+                                    response.raw().request().url().toString()))
+                    iResponseSubcriber.OnFailure(saveError)
                 }
             }
 
             override fun onFailure(call: Call<StateMasterResponse>?, t: Throwable?) {
+                /*       if (t is ConnectException) {
+                           iResponseSubcriber.OnFailure("Check your internet connection")
+                       } else if (t is SocketTimeoutException) {
+                           iResponseSubcriber.OnFailure("Socket time-out")
+                       } else if (t is UnknownHostException) {
+                           iResponseSubcriber.OnFailure("Unknown host exception")
+                       } else if (t is NumberFormatException) {
+                           iResponseSubcriber.OnFailure("Unknown response from server")
+                       } else if (t is IOException) {
+                           iResponseSubcriber.OnFailure("Server Time-out")
+                       } else {
+                           iResponseSubcriber.OnFailure(t?.message)
+                       }*/
+
                 if (t is ConnectException) {
-                    iResponseSubcriber.OnFailure("Check your internet connection")
+                    var saveError = AuthenticationController.errorStatus(mContext, SaveError("0",
+                            "ConnectException", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
                 } else if (t is SocketTimeoutException) {
-                    iResponseSubcriber.OnFailure("Socket time-out")
+
+                    var saveError = AuthenticationController.errorStatus(mContext, SaveError("0",
+                            "SocketTimeoutException", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+                    // iResponseSubcriber.OnFailure("Socket time-out")
                 } else if (t is UnknownHostException) {
-                    iResponseSubcriber.OnFailure("Unknown host exception")
+
+                    var saveError = AuthenticationController.errorStatus(mContext, SaveError("0",
+                            "UnknownHostException", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+                    // iResponseSubcriber.OnFailure("Unknown host exception")
                 } else if (t is NumberFormatException) {
-                    iResponseSubcriber.OnFailure("Unknown response from server")
+
+                    var saveError = AuthenticationController.errorStatus(mContext, SaveError("0",
+                            "NumberFormatException", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+                    //  iResponseSubcriber.OnFailure("Unknown response from server")
                 } else if (t is IOException) {
-                    iResponseSubcriber.OnFailure("Server Time-out")
+
+                    var saveError = AuthenticationController.errorStatus(mContext, SaveError("0",
+                            "IOException", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+
+                    //iResponseSubcriber.OnFailure("Server Time-out")
                 } else {
-                    iResponseSubcriber.OnFailure(t?.message)
+                    var saveError = AuthenticationController.errorStatus(mContext, SaveError("0",
+                            "Exception", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+                    //iResponseSubcriber.OnFailure(t?.message)
                 }
             }
         })
@@ -181,18 +282,65 @@ open class MasterController : IMaster {
             }
 
             override fun onFailure(call: Call<VehicleTypeMasterResponse>?, t: Throwable?) {
+                /*       if (t is ConnectException) {
+                           iResponseSubcriber.OnFailure("Check your internet connection")
+                       } else if (t is SocketTimeoutException) {
+                           iResponseSubcriber.OnFailure("Socket time-out")
+                       } else if (t is UnknownHostException) {
+                           iResponseSubcriber.OnFailure("Unknown host exception")
+                       } else if (t is NumberFormatException) {
+                           iResponseSubcriber.OnFailure("Unknown response from server")
+                       } else if (t is IOException) {
+                           iResponseSubcriber.OnFailure("Server Time-out")
+                       } else {
+                           iResponseSubcriber.OnFailure(t?.message)
+                       }*/
+
                 if (t is ConnectException) {
-                    iResponseSubcriber.OnFailure("Check your internet connection")
+                    var saveError = AuthenticationController.errorStatus(mContext, SaveError("0",
+                            "ConnectException", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
                 } else if (t is SocketTimeoutException) {
-                    iResponseSubcriber.OnFailure("Socket time-out")
+
+                    var saveError = AuthenticationController.errorStatus(mContext, SaveError("0",
+                            "SocketTimeoutException", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+                    // iResponseSubcriber.OnFailure("Socket time-out")
                 } else if (t is UnknownHostException) {
-                    iResponseSubcriber.OnFailure("Unknown host exception")
+
+                    var saveError = AuthenticationController.errorStatus(mContext, SaveError("0",
+                            "UnknownHostException", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+                    // iResponseSubcriber.OnFailure("Unknown host exception")
                 } else if (t is NumberFormatException) {
-                    iResponseSubcriber.OnFailure("Unknown response from server")
+
+                    var saveError = AuthenticationController.errorStatus(mContext, SaveError("0",
+                            "NumberFormatException", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+                    //  iResponseSubcriber.OnFailure("Unknown response from server")
                 } else if (t is IOException) {
-                    iResponseSubcriber.OnFailure("Server Time-out")
+
+                    var saveError = AuthenticationController.errorStatus(mContext, SaveError("0",
+                            "IOException", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+
+                    //iResponseSubcriber.OnFailure("Server Time-out")
                 } else {
-                    iResponseSubcriber.OnFailure(t?.message)
+                    var saveError = AuthenticationController.errorStatus(mContext, SaveError("0",
+                            "Exception", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+                    //iResponseSubcriber.OnFailure(t?.message)
                 }
             }
         })
