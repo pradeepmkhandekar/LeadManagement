@@ -294,4 +294,8 @@
     <string name="title_activity_loan">Add Loan Lead</string>
     <string name="title_activity_upload_image">Upload Document</string>
     <string name="title_activity_health_report">Health Report</string>
+    <string name="contact_us">1800 267 6296</string>
+    <string name="email">delight@rupeeboss.com</string>
+    <string name="rupeeboss_financial_services_pvt_ltd">Rupeeboss Financial Services Pvt. Ltd</string>
+    <string name="address">5C/5D, 1st Floor, The Centrium, Phoenix Market City, Kamani, Ashok Nagar, Kurla West, Mumbai, Maharashtra 400070</string>
 </resources>

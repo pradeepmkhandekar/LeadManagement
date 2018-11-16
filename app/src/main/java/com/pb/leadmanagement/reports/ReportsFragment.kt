@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import com.pb.leadmanagement.R
 import com.pb.leadmanagement.core.facade.UserFacade
 import com.pb.leadmanagement.health.HealthActivity
+import com.pb.leadmanagement.home.NavigationActivity
 import com.pb.leadmanagement.life.LifeActivity
 import com.pb.leadmanagement.loan.LoanActivity
 import com.pb.leadmanagement.motor.AddMotorLeadActivity
@@ -37,6 +38,11 @@ class ReportsFragment : Fragment() {
 
 
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (view.context as NavigationActivity).setTitle("Reports")
     }
 
 

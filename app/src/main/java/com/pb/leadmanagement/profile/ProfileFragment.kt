@@ -23,6 +23,7 @@ import com.pb.leadmanagement.core.facade.UserFacade
 import com.pb.leadmanagement.core.model.LoginEntity
 import com.pb.leadmanagement.core.response.LoginResponse
 import com.pb.leadmanagement.core.response.PincodeResponse
+import com.pb.leadmanagement.home.NavigationActivity
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 
@@ -51,6 +52,11 @@ class ProfileFragment : Fragment(), View.OnClickListener, IResponseSubcriber {
         bindUserProfile(displayView)
 
         return displayView
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (view.context as NavigationActivity).setTitle("Profile")
     }
 
 

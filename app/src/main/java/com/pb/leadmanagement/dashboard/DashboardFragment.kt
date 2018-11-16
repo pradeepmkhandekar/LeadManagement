@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.fragment_dashboard.view.*
 import android.animation.ObjectAnimator
 import android.graphics.Color
+import com.pb.leadmanagement.home.NavigationActivity
 
 
 /**
@@ -38,6 +39,11 @@ class DashboardFragment : Fragment(), OnClickListener {
         val view = inflater.inflate(R.layout.fragment_dashboard, container, false)
         setListener(view)
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (view.context as NavigationActivity).setTitle("Generate Lead")
     }
 
     override fun onResume() {

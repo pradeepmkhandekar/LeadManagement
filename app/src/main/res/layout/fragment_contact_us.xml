@@ -1,0 +1,86 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/nav_header_vertical_spacing"
+    android:orientation="vertical"
+    tools:context="com.pb.leadmanagement.contactus.ContactUsFragment">
+
+    <TextView
+        style="@style/CustomTitle.Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/nav_header_vertical_spacing"
+        android:text="@string/rupeeboss_financial_services_pvt_ltd"
+        android:textSize="24sp" />
+
+
+    <TextView
+        style="@style/CustomTitle.Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:paddingLeft="@dimen/nav_header_vertical_spacing"
+        android:text="Office Address:" />
+
+    <TextView
+        style="@style/CustomTitle.Medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/nav_header_vertical_spacing"
+        android:text="@string/address" />
+
+
+    <TableRow
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:padding="@dimen/nav_header_vertical_spacing">
+
+        <TextView
+            style="@style/CustomTitle.Title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:gravity="left|center"
+            android:text="Toll Free Number" />
+
+        <TextView
+            style="@style/CustomTitle.Medium"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_weight="0.7"
+            android:gravity="left|center"
+            android:text="@string/contact_us"
+            android:textSize="18sp" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:padding="@dimen/nav_header_vertical_spacing">
+
+        <TextView
+            style="@style/CustomTitle.Title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:gravity="left|center"
+            android:text="Email" />
+
+        <TextView
+            style="@style/CustomTitle.Medium"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_weight="0.7"
+            android:gravity="left|center"
+            android:text="@string/email"
+            android:textSize="18sp" />
+
+    </TableRow>
+</LinearLayout>

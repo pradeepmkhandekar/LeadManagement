@@ -1,5 +1,6 @@
 package com.pb.leadmanagement.home
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -12,7 +13,9 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import com.pb.leadmanagement.R
+import com.pb.leadmanagement.contactus.ContactUsFragment
 import com.pb.leadmanagement.core.facade.UserFacade
 import com.pb.leadmanagement.dashboard.DashboardFragment
 import com.pb.leadmanagement.login.LoginActivity
@@ -63,13 +66,29 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
         } else {
-            super.onBackPressed()
+            clearStack()
         }
     }
 
 
-    private fun switchFragment(switchFragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.frame, switchFragment).commit()
+    private fun switchFragment(fragment: Fragment) {
+
+        var fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frame, fragment)
+
+
+        if (fragment is DashboardFragment) {
+            fragmentTransaction.addToBackStack(DashboardFragment::class.java.simpleName)
+        } else if (fragment is ProfileFragment) {
+            fragmentTransaction.addToBackStack(ProfileFragment::class.java.simpleName)
+        } else if (fragment is ReportsFragment) {
+            fragmentTransaction.addToBackStack(ReportsFragment::class.java.simpleName)
+        } else if (fragment is ContactUsFragment) {
+            fragmentTransaction.addToBackStack(ContactUsFragment::class.java.simpleName)
+        }
+
+        fragmentTransaction.commitAllowingStateLoss()
+
     }
 
     private fun alertLogoutDialog() {
@@ -111,25 +130,29 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
                 // Handle the camera action
                 val homeFragment = DashboardFragment()
                 switchFragment(homeFragment)
-                supportActionBar?.title = "Generate Lead"
             }
             R.id.nav_profile -> {
                 val updateProfile = ProfileFragment()
                 switchFragment(updateProfile)
-                supportActionBar?.title = "Profile"
+
             }
 
             R.id.nav_report -> {
 
                 val reportFragment = ReportsFragment()
                 switchFragment(reportFragment)
-                supportActionBar?.title = "Reports"
+
+            }
+            R.id.nav_contact_us -> {
+                val contactUsFragment = ContactUsFragment()
+                switchFragment(contactUsFragment)
+
             }
 
             R.id.nav_change_password -> {
                 val reportFragment = ReportsFragment()
                 switchFragment(reportFragment)
-                supportActionBar?.title = "Change Password"
+                setTitle("Change Password")
             }
 
             R.id.nav_logout -> {
@@ -142,8 +165,58 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         return true
     }
 
+    public fun setTitle(title: String) {
+        supportActionBar?.title = title
+    }
+
     private fun showMessage(view: View, message: String, action: String, onClickListener: View.OnClickListener?) {
         Snackbar.make(view, message, Snackbar.LENGTH_LONG)
                 .setAction(action, onClickListener).show()
+    }
+
+
+    private fun clearStack() {
+
+
+        val manager = supportFragmentManager
+        val trans = manager.beginTransaction()
+
+        for (i in 0 until manager.fragments.size) {
+
+            val fragment = manager.fragments[i]
+            if (fragment is DashboardFragment) {
+                dialogExit()
+            } else {
+                trans.remove(manager.fragments[i])
+                trans.commit()
+                manager.popBackStack()
+
+            }
+        }
+
+    }
+
+    private fun dialogExit() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Exit")
+        builder.setMessage("Do you want to exit the application?")
+        builder.setCancelable(false)
+
+        builder.setPositiveButton(
+                "YES"
+        ) { dialog, id ->
+            dialog.cancel()
+            finish()
+        }
+
+        builder.setNegativeButton(
+                "NO",
+                object : DialogInterface.OnClickListener {
+                    override fun onClick(dialog: DialogInterface, id: Int) {
+                        dialog.cancel()
+                    }
+                })
+        val exitdialog = builder.create()
+        exitdialog.show()
     }
 }
