@@ -5,5 +5,6 @@ data class LoanRequestEntity(
         var MobileNo: String,
         var Products: List<String>,
         var PartnerChildLogin: String,
-        var UserID: Int
+        var UserID: Int,
+        var Remark: String
 )

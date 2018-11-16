@@ -8,6 +8,7 @@ import com.pb.leadmanagement.core.controller.save.SaveLeadController
 import com.pb.leadmanagement.core.model.SaveError
 import com.pb.leadmanagement.core.requestbuilders.LeadRequestBuilder
 import com.pb.leadmanagement.core.requestentity.LoanRequestEntity
+import com.pb.leadmanagement.core.requestentity.LoanRequestModifiedEntity
 import com.pb.leadmanagement.core.response.MotorLeadResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -61,7 +62,7 @@ open class LoanLeadController : ILoan {
     }
 
 
-    override fun addLoanLead(loanRequestEntity: LoanRequestEntity, iResponseSubcriber: IResponseSubcriber) {
+    override fun addLoanLead(loanRequestEntity: LoanRequestModifiedEntity, iResponseSubcriber: IResponseSubcriber) {
 
 
         mLeadNetwork.addLoanLead(loanRequestEntity).enqueue(object : Callback<MotorLeadResponse> {

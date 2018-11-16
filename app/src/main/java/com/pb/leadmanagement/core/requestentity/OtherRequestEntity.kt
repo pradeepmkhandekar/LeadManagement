@@ -12,5 +12,6 @@ data class OtherRequestEntity(
         var CompanyName: String,
         var InsuredName: String,
         var PartnerChildLogin: String,
-        var UserID: Int
+        var UserID: Int,
+        var Remark: String
 )

@@ -8,5 +8,6 @@ data class LifeLeadRequestEntity(
         var City: String,
         var InvestmentPlan: String,
         var PartnerChildLogin: String,
-        var UserID: Int
+        var UserID: Int,
+        var Remark: String
 )

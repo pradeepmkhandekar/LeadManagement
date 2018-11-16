@@ -13,5 +13,6 @@ data class HealthLeadRequestEntity(
         var OtherExistingDisease: String,
         var CurrentYearInsCmpID: String,
         var PartnerChildLogin: String,
-        var UserID: Int
+        var UserID: Int,
+        var Remark: String
 )

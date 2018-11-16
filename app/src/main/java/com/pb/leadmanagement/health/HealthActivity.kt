@@ -187,10 +187,12 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
             if (response.StatusNo == 0) {
 
                 if (spPolicyIs.selectedItemPosition > 0) {
-                    uploadImageDialog(response.Result.LeadID)
+                    showMessage(etName, response.Message, "", null)
+                    Handler().postDelayed(Runnable { uploadImageDialog(response.Result.LeadID) }, 2000)
+
                 } else {
                     showMessage(etName, response.Message, "", null)
-                    Handler().postDelayed(Runnable { this!!.finish() }, 1000)
+                    Handler().postDelayed(Runnable { this!!.finish() }, 2000)
                 }
             }
         }
@@ -381,7 +383,8 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
                         etOtherDisease.text.toString(),
                         insurerID.toString(),
                         UserFacade(this@HealthActivity).getReferenceCode(),
-                        UserFacade(this@HealthActivity).getUserID()
+                        UserFacade(this@HealthActivity).getUserID(),
+                        etRemark.text.toString()
                 )
 
                 confirmationAlert(healthLeadRequestEntity)

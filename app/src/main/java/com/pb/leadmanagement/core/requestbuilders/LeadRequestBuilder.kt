@@ -33,7 +33,7 @@ open class LeadRequestBuilder : RetroRequestBuilder() {
         fun addOtherLead(@Body body: OtherRequestEntity): Call<MotorLeadResponse>
 
         @POST("LeadGenration.svc/LoanLead")
-        fun addLoanLead(@Body body: LoanRequestEntity): Call<MotorLeadResponse>
+        fun addLoanLead(@Body body: LoanRequestModifiedEntity): Call<MotorLeadResponse>
 
         @Headers("Content-Type: text/plain")
         @POST("LeadGenration.svc/UploadDocument")

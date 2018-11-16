@@ -304,7 +304,8 @@ class AddOtherActivity : AppCompatActivity(), View.OnClickListener, IResponseSub
                         etCompanyName.text.toString(),
                         etCompanyName.text.toString(),
                         UserFacade(this@AddOtherActivity).getReferenceCode(),
-                        UserFacade(this@AddOtherActivity).getUserID()
+                        UserFacade(this@AddOtherActivity).getUserID(),
+                        etRemark.text.toString()
                 )
 
                 confirmationAlert(otherRequestEntity)

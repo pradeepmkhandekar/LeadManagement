@@ -2,6 +2,7 @@ package com.pb.leadmanagement.core.controller.loan
 
 import com.pb.leadmanagement.core.IResponseSubcriber
 import com.pb.leadmanagement.core.requestentity.LoanRequestEntity
+import com.pb.leadmanagement.core.requestentity.LoanRequestModifiedEntity
 import com.pb.leadmanagement.core.requestentity.OtherRequestEntity
 
 /**
@@ -9,5 +10,5 @@ import com.pb.leadmanagement.core.requestentity.OtherRequestEntity
  */
 interface ILoan {
 
-    fun addLoanLead(loanRequestEntity: LoanRequestEntity, iResponseSubcriber: IResponseSubcriber)
+    fun addLoanLead(loanRequestEntity: LoanRequestModifiedEntity, iResponseSubcriber: IResponseSubcriber)
 }

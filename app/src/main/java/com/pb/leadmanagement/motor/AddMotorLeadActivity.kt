@@ -165,7 +165,7 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
         val builder = AlertDialog.Builder(this@AddMotorLeadActivity)
 
         // Set the alert dialog title
-        builder.setTitle("SAVED!")
+        builder.setTitle("LEAD SAVED.!")
 
         // Display a message on alert dialog
         builder.setMessage("Do you want to upload any document?")
@@ -255,9 +255,9 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
         dismissDialog()
         if (response is MotorLeadResponse) {
             if (response.StatusNo == 0) {
-                //showMessage(etName, response.Message, "", null)
-                //Handler().postDelayed(Runnable { this!!.finish() }, 1000)
-                uploadImageDialog(response.Result.LeadID)
+                showMessage(etName, response.Message, "", null)
+                Handler().postDelayed(Runnable { uploadImageDialog(response.Result.LeadID) }, 2000)
+
             }
         }
     }
@@ -357,6 +357,7 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
                         etPolicyExpiry.text.toString(),
                         NCB,
                         if (UserFacade(this@AddMotorLeadActivity).getReferenceCode() != null) UserFacade(this@AddMotorLeadActivity).getReferenceCode() else "",
+                        etRemark.text.toString(),
                         UserFacade(this@AddMotorLeadActivity).getUserID()
 
                 )

@@ -217,7 +217,8 @@ class LifeActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcrib
                         acCity?.text.toString(),
                         spInvestment.selectedItem.toString(),
                         UserFacade(this!!).getReferenceCode(),
-                        UserFacade(this!!).getUserID())
+                        UserFacade(this!!).getUserID(),
+                        etRemark.text.toString())
 
                 confirmationAlert(lifelead)
             }

@@ -183,14 +183,14 @@
                     </android.support.design.widget.TextInputLayout>
 
                     <TextView
-                        android:visibility="gone"
                         android:id="@+id/txtInsurer"
                         style="@style/CustomTitle.Medium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="4dp"
                         android:layout_marginTop="0dp"
-                        android:text="Insurer company" />
+                        android:text="Insurer company"
+                        android:visibility="gone" />
 
 
                     <AutoCompleteTextView
@@ -200,14 +200,20 @@
                         android:hint="Insurance company"
                         android:lines="1"
                         android:nextFocusDown="@id/etModel" />
-<!--
-                    <Spinner
-                        android:id="@+id/spInsurer"
-                        style="@style/Spinner.Underline"
+
+                    <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:visibility="gone" />-->
+                        android:layout_weight="1">
 
+                        <EditText
+                            android:id="@+id/etRemark"
+                            style="@style/Style.edittext"
+                            android:gravity="bottom"
+                            android:hint="Remark"
+                            android:inputType="textMultiLine"
+                            android:lines="2" />
+                    </android.support.design.widget.TextInputLayout>
 
                 </LinearLayout>
             </ScrollView>

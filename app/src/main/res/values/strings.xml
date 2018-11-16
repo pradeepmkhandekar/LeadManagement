@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">LeadManagement</string>
+    <string name="app_name">Lead Tracker</string>
     <string name="title_activity_login">Login</string>
-    <string name="sign_up_s">New to Lead Management? <b>Signup</b> now</string>
+    <string name="sign_up_s">New to Lead Tracker? <b>Signup</b> now</string>
 
-    <string name="sign_up">New to Lead Management?<![CDATA[<b><font color=#00BFA5> Signup</font></b>]]> now</string>
+    <string name="sign_up">New to Lead Tracker?<![CDATA[<b><font color=#00BFA5> Signup</font></b>]]> now</string>
     <string name="title_activity_register">Sign up</string>
     <string name="title_activity_forgot">Forgot password</string>
 

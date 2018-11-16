@@ -100,33 +100,33 @@ class LoanActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcrib
 
         btnAddLoan.setOnClickListener(this)
 
-       /* spVehicleType?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        /* spVehicleType?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
 
-                etMakeSearch?.setText("")
-                etModelSearch?.setText("")
+                 etMakeSearch?.setText("")
+                 etModelSearch?.setText("")
 
 
-                //fetch all new data again
-                mListMake = emptyList()
-                mListModel = emptyList()
+                 //fetch all new data again
+                 mListMake = emptyList()
+                 mListModel = emptyList()
 
 
-                if (position == 0) {
-                    vehicleTypeID = 2
-                    mListMake = UserFacade(this@LoanActivity).getFourWheelerMaster(2) //four wheeler
-                } else if (position == 1) {
-                    vehicleTypeID = 4
-                    mListMake = UserFacade(this@LoanActivity).getTwoWheelerMaster(4)//two wheeler
-                }
-                changeMakeAdapter()
-            }
+                 if (position == 0) {
+                     vehicleTypeID = 2
+                     mListMake = UserFacade(this@LoanActivity).getFourWheelerMaster(2) //four wheeler
+                 } else if (position == 1) {
+                     vehicleTypeID = 4
+                     mListMake = UserFacade(this@LoanActivity).getTwoWheelerMaster(4)//two wheeler
+                 }
+                 changeMakeAdapter()
+             }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
+             override fun onNothingSelected(parent: AdapterView<*>?) {
 
-            }
-        }*/
+             }
+         }*/
 
         chkExistingLoan.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
@@ -473,10 +473,10 @@ class LoanActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcrib
                     return
                 }
 
-                if (etDOB.text.toString().length < 4) {
-                    showMessage(etName, "Invalid Date of Birth", "", null)
-                    return
-                }
+                /*    if (etDOB.text.toString().length < 4) {
+                        showMessage(etName, "Invalid Date of Birth", "", null)
+                        return
+                    }*/
 
                 if (spLoanProduct.selectedItemPosition == 0) {
                     showMessage(etName, "Select Loan Product", "", null)
@@ -492,22 +492,20 @@ class LoanActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcrib
                     Log.d("REQUEST", Gson().toJson(loanRequestModifiedEntity))
 
 
-                    /*
+                    /*              val listProduct = mutableListOf<String>()
 
-                    val listProduct = mutableListOf<String>()
+                                  listProduct.add(
+                                          spLoanProduct.selectedItem.toString())
 
-                    listProduct.add(
-                            spLoanProduct.selectedItem.toString())
-
-                    var loanRequestEntity = LoanRequestEntity(
-                            etName.text.toString(),
-                            etMobileNo.text.toString(),
-                            listProduct,
-                            UserFacade(this@LoanActivity).getReferenceCode(),
-                            UserFacade(this@LoanActivity).getUserID())
+                                  var loanRequestEntity = LoanRequestEntity(
+                                          etName.text.toString(),
+                                          etMobileNo.text.toString(),
+                                          listProduct,
+                                          UserFacade(this@LoanActivity).getReferenceCode(),
+                                          UserFacade(this@LoanActivity).getUserID(), etRemark.text.toString())*/
 
                     showLoading("Loading..")
-                    LoanLeadController(this@LoanActivity).addLoanLead(loanRequestEntity, this)*/
+                    LoanLeadController(this@LoanActivity).addLoanLead(loanRequestModifiedEntity!!, this)
                 }
             }
         }
@@ -520,6 +518,7 @@ class LoanActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcrib
         var product = spLoanProduct.selectedItem.toString()
         var refCode = UserFacade(this@LoanActivity).getReferenceCode()
         var userID = UserFacade(this@LoanActivity).getUserID()
+        var remark = etRemark.text.toString()
 
 
         //Business inputs
@@ -666,7 +665,7 @@ class LoanActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcrib
                 mfgDate,
                 ccEmployeeType,
                 refCode,
-                userID
+                userID, remark
         )
 
 

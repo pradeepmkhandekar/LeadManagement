@@ -24,5 +24,6 @@ data class LoanRequestModifiedEntity(
         var CCEmployeeType: String,
 
         var PartnerChildLogin: String,
-        var UserID: Int
+        var UserID: Int,
+        var Remark: String
 )
