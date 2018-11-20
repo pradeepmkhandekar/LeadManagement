@@ -1,29 +1,26 @@
 package com.pb.leadmanagement.dashboard
 
 
-import android.animation.ArgbEvaluator
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
-import android.view.*
-import android.view.ActionMode.Callback
-import android.view.View.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.View.OnClickListener
+import android.view.View.VISIBLE
+import android.view.ViewGroup
 import com.pb.leadmanagement.R
 import com.pb.leadmanagement.core.facade.UserFacade
 import com.pb.leadmanagement.health.HealthActivity
+import com.pb.leadmanagement.home.NavigationActivity
 import com.pb.leadmanagement.life.LifeActivity
 import com.pb.leadmanagement.loan.LoanActivity
 import com.pb.leadmanagement.motor.AddMotorLeadActivity
 import com.pb.leadmanagement.other.AddOtherActivity
-import com.pb.leadmanagement.test.TestActivity
-import com.pb.leadmanagement.upload.UploadImageActivity
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.fragment_dashboard.view.*
-import android.animation.ObjectAnimator
-import android.graphics.Color
-import com.pb.leadmanagement.home.NavigationActivity
 
 
 /**

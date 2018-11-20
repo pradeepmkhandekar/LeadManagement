@@ -13,7 +13,6 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import com.pb.leadmanagement.R
 import com.pb.leadmanagement.contactus.ContactUsFragment
 import com.pb.leadmanagement.core.facade.UserFacade
@@ -23,7 +22,6 @@ import com.pb.leadmanagement.profile.ProfileFragment
 import com.pb.leadmanagement.reports.ReportsFragment
 import kotlinx.android.synthetic.main.activity_navigation.*
 import kotlinx.android.synthetic.main.app_bar_navigation.*
-import kotlinx.android.synthetic.main.nav_header_navigation.*
 
 class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
