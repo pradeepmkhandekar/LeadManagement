@@ -124,4 +124,4 @@ class DashboardFragment : Fragment(), OnClickListener {
         }
     }
 
-}// Required empty public constructor
+}

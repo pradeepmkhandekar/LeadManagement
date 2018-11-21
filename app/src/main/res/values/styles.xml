@@ -2,10 +2,15 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+
+        <!--colorPrimary toolbar color-->
         <item name="colorPrimary">@color/colorPrimary</item>
+
+        <!--colorPrimaryDark status bar color-->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+
         <item name="colorAccent">@color/colorNormal</item>
+
         <item name="android:fontFamily">@font/oxygenregular</item>
         <!--normal state of displayViewview ie. Checkbox, radiobutton-->
         <item name="colorControlNormal">@color/colorNormal</item>
@@ -13,14 +18,31 @@
         <item name="toolbarStyle">@style/custom_toolbar</item>
 
 
-        <!--Text Colors-->
+        <!--textColorPrimary toolbar text color-->
         <item name="android:textColorPrimary">@color/textTitle</item>
+
         <item name="android:textColorSecondary">@color/textSubTitle</item>
         <item name="android:textColorTertiary">@color/colorAccent</item>
         <item name="android:textColorHint">@color/textSubTitle</item>
 
         <item name="drawerArrowStyle">@style/DrawerStyle</item>
     </style>
+
+
+    <style name="AppTheme.Blue" parent="AppTheme.NoActionBar">
+        <item name="colorPrimary">@color/primaryColor_blue</item>
+        <item name="colorPrimaryDark">@color/primaryColorDark_blue</item>
+        <item name="colorAccent">@color/primaryAccent_blue</item>
+        <item name="backgroundColor">@color/primaryColorDark_blue</item>
+    </style>
+
+    <style name="AppTheme.Red" parent="AppTheme.NoActionBar">
+        <item name="colorPrimary">@color/primaryColor_red</item>
+        <item name="colorPrimaryDark">@color/primaryColorDark_red</item>
+        <item name="colorAccent">@color/primaryAccent_red</item>
+        <item name="backgroundColor">@color/primaryColorDark_red</item>
+    </style>
+
 
     <style name="DrawerStyle" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="colorControlNormal">@color/colorNormal</item>
@@ -110,7 +132,7 @@
     </style>
 
 
-    <style name="AppTheme.NoActionBar">
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 

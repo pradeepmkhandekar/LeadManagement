@@ -9,4 +9,12 @@
     <color name="button_background">#00BFA5</color>
     <color name="background">#F5F5F5</color>
     <color name="icon_tint">#00695C</color>
+
+
+    <color name="primaryColor_blue">#2196F3</color>
+    <color name="primaryColorDark_blue">#1976D2</color>
+    <color name="primaryAccent_blue">#E3F2FD</color>
+    <color name="primaryColor_red">#F44336</color>
+    <color name="primaryColorDark_red">#D32F2F</color>
+    <color name="primaryAccent_red">#FFEBEE</color>
 </resources>

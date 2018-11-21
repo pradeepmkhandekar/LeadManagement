@@ -10,6 +10,8 @@ import com.pb.leadmanagement.core.model.SaveError
 import com.pb.leadmanagement.core.requestbuilders.AuthenticationRequestBuilder
 import com.pb.leadmanagement.core.requestentity.LoginRequestEntity
 import com.pb.leadmanagement.core.response.LoginResponse
+import com.pb.leadmanagement.core.response.MotorLeadResponse
+import com.pb.leadmanagement.core.response.OTPResponse
 import com.pb.leadmanagement.core.response.RegisterResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -318,6 +320,158 @@ open class AuthenticationController : IAuthentication {
                     //iResponseSubcriber.OnFailure(t?.message)
                 }
 
+            }
+        })
+    }
+
+    override fun verifyOTP(mobileNo: String, flag: String, iResponseSubcriber: IResponseSubcriber) {
+
+        val map = HashMap<String, String>()
+        map.put("MobileNo", mobileNo)
+        map.put("Flag", flag)
+
+        mAuthNetwork.verifyOTP(map).enqueue(object : Callback<OTPResponse> {
+
+            override fun onResponse(call: Call<OTPResponse>?, response: Response<OTPResponse>?) {
+                if (response!!.isSuccessful) {
+                    if (response.body()?.StatusNo == 0) {
+                        iResponseSubcriber.OnSuccess(response.body(), response.message())
+                    } else {
+                        iResponseSubcriber.OnFailure(response.body()?.Message)
+                    }
+
+                } else {
+
+                    var saveError = errorStatus(mContext, SaveError(response.code().toString(), "", mobileNo, response.raw().request().url().toString()))
+                    iResponseSubcriber.OnFailure(saveError)
+
+                }
+            }
+
+            override fun onFailure(call: Call<OTPResponse>?, t: Throwable?) {
+
+                if (t is ConnectException) {
+                    var saveError = errorStatus(mContext, SaveError("0",
+                            "ConnectException", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+                } else if (t is SocketTimeoutException) {
+
+                    var saveError = errorStatus(mContext, SaveError("0",
+                            "SocketTimeoutException", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+                    // iResponseSubcriber.OnFailure("Socket time-out")
+                } else if (t is UnknownHostException) {
+
+                    var saveError = errorStatus(mContext, SaveError("0",
+                            "UnknownHostException", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+                    // iResponseSubcriber.OnFailure("Unknown host exception")
+                } else if (t is NumberFormatException) {
+
+                    var saveError = errorStatus(mContext, SaveError("0",
+                            "NumberFormatException", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+                    //  iResponseSubcriber.OnFailure("Unknown response from server")
+                } else if (t is IOException) {
+
+                    var saveError = errorStatus(mContext, SaveError("0",
+                            "IOException", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+
+                    //iResponseSubcriber.OnFailure("Server Time-out")
+                } else {
+                    var saveError = errorStatus(mContext, SaveError("0",
+                            "Exception", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+                    //iResponseSubcriber.OnFailure(t?.message)
+                }
+            }
+        })
+    }
+
+    override fun forgotPassword(mobileNo: String, password: String, iResponseSubcriber: IResponseSubcriber) {
+
+        val map = HashMap<String, String>()
+        map.put("MobileNo", mobileNo)
+        map.put("Password", password)
+
+        mAuthNetwork.forgotPassword(map).enqueue(object : Callback<MotorLeadResponse> {
+
+            override fun onResponse(call: Call<MotorLeadResponse>?, response: Response<MotorLeadResponse>?) {
+                if (response!!.isSuccessful) {
+                    if (response.body()?.StatusNo == 0) {
+                        iResponseSubcriber.OnSuccess(response.body(), response.message())
+                    } else {
+                        iResponseSubcriber.OnFailure(response.body()?.Message)
+                    }
+
+                } else {
+
+                    var saveError = errorStatus(mContext, SaveError(response.code().toString(), "", mobileNo, response.raw().request().url().toString()))
+                    iResponseSubcriber.OnFailure(saveError)
+
+                }
+            }
+
+            override fun onFailure(call: Call<MotorLeadResponse>?, t: Throwable?) {
+
+                if (t is ConnectException) {
+                    var saveError = errorStatus(mContext, SaveError("0",
+                            "ConnectException", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+                } else if (t is SocketTimeoutException) {
+
+                    var saveError = errorStatus(mContext, SaveError("0",
+                            "SocketTimeoutException", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+                    // iResponseSubcriber.OnFailure("Socket time-out")
+                } else if (t is UnknownHostException) {
+
+                    var saveError = errorStatus(mContext, SaveError("0",
+                            "UnknownHostException", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+                    // iResponseSubcriber.OnFailure("Unknown host exception")
+                } else if (t is NumberFormatException) {
+
+                    var saveError = errorStatus(mContext, SaveError("0",
+                            "NumberFormatException", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+                    //  iResponseSubcriber.OnFailure("Unknown response from server")
+                } else if (t is IOException) {
+
+                    var saveError = errorStatus(mContext, SaveError("0",
+                            "IOException", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+
+                    //iResponseSubcriber.OnFailure("Server Time-out")
+                } else {
+                    var saveError = errorStatus(mContext, SaveError("0",
+                            "Exception", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+                    //iResponseSubcriber.OnFailure(t?.message)
+                }
             }
         })
     }

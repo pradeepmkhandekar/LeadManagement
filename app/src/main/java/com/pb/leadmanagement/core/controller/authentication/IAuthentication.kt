@@ -15,4 +15,8 @@ interface IAuthentication {
 
     fun updateProfile(loginEntity: LoginEntity, iResponseSubcriber: IResponseSubcriber)
 
+    fun verifyOTP(mobileNo: String, flag: String, iResponseSubcriber: IResponseSubcriber)
+
+    fun forgotPassword(mobileNo: String, password: String, iResponseSubcriber: IResponseSubcriber)
+
 }

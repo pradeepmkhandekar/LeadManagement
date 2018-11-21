@@ -4,13 +4,16 @@ import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.support.design.widget.Snackbar
+import android.support.design.widget.TextInputEditText
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
+import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Button
 import android.widget.TextView
 import com.android.chemistlead.core.APIResponse
 import com.pb.leadmanagement.R
@@ -18,6 +21,7 @@ import com.pb.leadmanagement.core.IResponseSubcriber
 import com.pb.leadmanagement.core.controller.authentication.AuthenticationController
 import com.pb.leadmanagement.core.controller.master.MasterController
 import com.pb.leadmanagement.core.model.LoginEntity
+import com.pb.leadmanagement.core.response.OTPResponse
 import com.pb.leadmanagement.core.response.PincodeResponse
 import com.pb.leadmanagement.core.response.RegisterResponse
 import kotlinx.android.synthetic.main.content_register.*
@@ -38,6 +42,48 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener, IResponseSub
         initDialog()
     }
 
+    private fun otpVerifyDialog(strOTP: String) {
+
+        // Initialize a new instance of
+        val builder = AlertDialog.Builder(this@RegisterActivity)
+
+        // Set the alert dialog title
+        //builder.setTitle("Verify OTP")
+
+        val healthView = LayoutInflater.from(this).inflate(R.layout.layout_verify_otp, null)
+
+        builder.setView(healthView)
+
+        builder.setCancelable(false)
+
+        var etOTP = healthView.findViewById<TextInputEditText>(R.id.etOTP)
+
+        // Finally, make the alert dialog using builder
+        val dialog: AlertDialog = builder.create()
+
+
+        healthView.findViewById<Button>(R.id.btnVerifyCancel).setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                dialog.dismiss()
+            }
+        })
+        healthView.findViewById<Button>(R.id.btnVerify).setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+
+                if (etOTP.text.toString().contentEquals(strOTP)) {
+                    dialog.dismiss()
+                    registerUser()
+                } else {
+                    showMessage(healthView, "Invalid OTP", "", null)
+                }
+            }
+        })
+
+        // Display the alert dialog on app interface
+        dialog.show()
+    }
+
+
     private fun setListener() {
         btnRegister.setOnClickListener(this)
         etPincode.addTextChangedListener(object : TextWatcher {
@@ -57,6 +103,30 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener, IResponseSub
                 }
             }
         })
+
+        /*etMobileNo.addTextChangedListener(object : TextWatcher {
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+                if (s?.length == 10) {
+                    verifyOTP()
+                }
+            }
+        })*/
+    }
+
+    private fun verifyOTP() {
+        showLoading("Verify OTP")
+        AuthenticationController(this@RegisterActivity).verifyOTP(etMobileNo.text.toString(), "0", this@RegisterActivity)
+
     }
 
     fun hideKeyBoard() {
@@ -68,7 +138,13 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener, IResponseSub
     override fun OnSuccess(response: APIResponse?, message: String?) {
 
         dismissDialog()
-        if (response is PincodeResponse) {
+        if (response is OTPResponse) {
+
+            if (response?.StatusNo == 0) {
+                otpVerifyDialog(response?.Result.OTP)
+            }
+
+        } else if (response is PincodeResponse) {
 
             if (response?.MasterData != null) {
                 etState.setText(response?.MasterData.state_name.toLowerCase())
@@ -193,70 +269,75 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener, IResponseSub
                 }
 
 
-           /*     if (!chkHealth.isChecked && !chkLife.isChecked && !chkLoan.isChecked
-                        && !chkMotor.isChecked && !chkOther.isChecked) {
-                    showMessage(etName, "Select Lead Interest", "", null)
-                    return
-                }*/
+                /*     if (!chkHealth.isChecked && !chkLife.isChecked && !chkLoan.isChecked
+                             && !chkMotor.isChecked && !chkOther.isChecked) {
+                         showMessage(etName, "Select Lead Interest", "", null)
+                         return
+                     }*/
 
                 if (etPartnerLogin.text.toString().length < 1) {
                     showMessage(etName, "Invalid Partner Reference ID", "", null)
                     return
                 }
 
-                val leadItems = mutableListOf<String>()
-                leadItems.add("health")
-                leadItems.add("life")
-                leadItems.add("loan")
-                leadItems.add("motor")
-                leadItems.add("other")
 
-             /*   if (chkHealth.isChecked)
-                    leadItems.add("health")
+                /*   if (chkHealth.isChecked)
+                       leadItems.add("health")
 
-                if (chkLife.isChecked)
-                    leadItems.add("life")
+                   if (chkLife.isChecked)
+                       leadItems.add("life")
 
-                if (chkLoan.isChecked)
-                    leadItems.add("loan")
+                   if (chkLoan.isChecked)
+                       leadItems.add("loan")
 
-                if (chkMotor.isChecked)
-                    leadItems.add("motor")
+                   if (chkMotor.isChecked)
+                       leadItems.add("motor")
 
-                if (chkOther.isChecked)
-                    leadItems.add("other")*/
+                   if (chkOther.isChecked)
+                       leadItems.add("other")*/
 
-
-                var chainID = etName.text.toString().take(3) + etMobileNo.text.toString().takeLast(5)
-
-                var loginEntity = LoginEntity(
-                        etAddress.text.toString(),
-                        etPartnerLogin.text.toString(),
-                        etPartnerLogin.text.toString(),
-                        chainID,
-                        etCity.text.toString(),
-                        etEmail.text.toString(),
-                        spFieldManager.selectedItem.toString(),
-                        0,
-                        leadItems,
-                        etLocation.text.toString(),
-                        etMobileNo.text.toString(),
-                        etName.text.toString(),
-                        etPassword.text.toString(),
-                        etPincode.text.toString(),
-                        etState.text.toString()
-
-                )
-
-
-                //endregion
-                //TODO : one Service hit for register
-                showLoading("Loading...")
-                AuthenticationController(this@RegisterActivity).register(loginEntity, this)
+                verifyOTP()
 
             }
         }
     }
 
+    private fun registerUser() {
+
+        val leadItems = mutableListOf<String>()
+        leadItems.add("health")
+        leadItems.add("life")
+        leadItems.add("loan")
+        leadItems.add("motor")
+        leadItems.add("other")
+
+
+        var chainID = etName.text.toString().take(3) + etMobileNo.text.toString().takeLast(5)
+
+        var loginEntity = LoginEntity(
+                etAddress.text.toString(),
+                etPartnerLogin.text.toString(),
+                etPartnerLogin.text.toString(),
+                chainID,
+                etCity.text.toString(),
+                etEmail.text.toString(),
+                spFieldManager.selectedItem.toString(),
+                0,
+                leadItems,
+                etLocation.text.toString(),
+                etMobileNo.text.toString(),
+                etName.text.toString(),
+                etPassword.text.toString(),
+                etPincode.text.toString(),
+                etState.text.toString()
+
+        )
+
+
+        //endregion
+        //TODO : one Service hit for register
+        showLoading("Loading...")
+        AuthenticationController(this@RegisterActivity).register(loginEntity, this)
+    }
 
 }

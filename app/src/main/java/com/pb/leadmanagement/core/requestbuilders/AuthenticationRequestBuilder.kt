@@ -4,6 +4,8 @@ import com.pb.leadmanagement.core.RetroRequestBuilder
 import com.pb.leadmanagement.core.model.LoginEntity
 import com.pb.leadmanagement.core.requestentity.LoginRequestEntity
 import com.pb.leadmanagement.core.response.LoginResponse
+import com.pb.leadmanagement.core.response.MotorLeadResponse
+import com.pb.leadmanagement.core.response.OTPResponse
 import com.pb.leadmanagement.core.response.RegisterResponse
 import retrofit2.Call
 import retrofit2.http.Body
@@ -29,5 +31,11 @@ open class AuthenticationRequestBuilder : RetroRequestBuilder() {
         @POST("LeadGenration.svc/UpdateProfile")
         fun updateProfile(@Body body: LoginEntity): Call<LoginResponse>
 
+
+        @POST("/LeadGenration.svc/OTPService")
+        fun verifyOTP(@Body map: HashMap<String, String>): Call<OTPResponse>
+
+        @POST("/LeadGenration.svc/ForgotPassword")
+        fun forgotPassword(@Body map: HashMap<String, String>): Call<MotorLeadResponse>
     }
 }

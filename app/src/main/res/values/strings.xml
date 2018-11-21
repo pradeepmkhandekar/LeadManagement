@@ -298,4 +298,6 @@
     <string name="email">delight@rupeeboss.com</string>
     <string name="rupeeboss_financial_services_pvt_ltd">Rupeeboss Financial Services Pvt. Ltd</string>
     <string name="address">5C/5D, 1st Floor, The Centrium, Phoenix Market City, Kamani, Ashok Nagar, Kurla West, Mumbai, Maharashtra 400070</string>
+    <string name="verify_mobile_number">verify mobile number</string>
+    <string name="otp_description">OTP has been sent to you on your \n mobile number, please enter below</string>
 </resources>
