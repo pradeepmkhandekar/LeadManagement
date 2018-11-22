@@ -34,7 +34,7 @@
                     android:layout_height="72dp"
                     android:scaleType="centerInside"
                     android:src="@drawable/car"
-                    android:tint="@color/icon_tint" />
+                    android:tint="?attr/colorPrimaryDark" />
 
                 <TextView
                     style="@style/CustomTitle.Title"
@@ -98,7 +98,7 @@
                     android:padding="8dp"
                     android:scaleType="centerInside"
                     android:src="@drawable/health"
-                    android:tint="@color/icon_tint" />
+                    android:tint="?attr/colorPrimaryDark" />
 
                 <TextView
                     style="@style/CustomTitle.Title"
@@ -167,7 +167,7 @@
                     android:padding="8dp"
                     android:scaleType="centerInside"
                     android:src="@drawable/life"
-                    android:tint="@color/icon_tint" />
+                    android:tint="?attr/colorPrimaryDark" />
 
                 <TextView
                     style="@style/CustomTitle.Title"
@@ -230,7 +230,7 @@
                     android:padding="6dp"
                     android:scaleType="centerInside"
                     android:src="@drawable/loan"
-                    android:tint="@color/icon_tint" />
+                    android:tint="?attr/colorPrimaryDark" />
 
                 <TextView
                     style="@style/CustomTitle.Title"
@@ -298,7 +298,7 @@
                     android:layout_height="72dp"
                     android:scaleType="centerInside"
                     android:src="@drawable/other"
-                    android:tint="@color/icon_tint" />
+                    android:tint="?attr/colorPrimaryDark" />
 
                 <TextView
                     style="@style/CustomTitle.Title"

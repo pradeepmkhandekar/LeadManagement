@@ -16,7 +16,7 @@
         <gradient
             android:angle="0"
             android:endColor="@color/colorAccent"
-            android:startColor="@color/button_background"
+            android:startColor="?attr/colorPrimary"
             android:type="radial"
             android:useLevel="false" />
     </shape>

@@ -15,7 +15,7 @@
         <!--normal state of displayViewview ie. Checkbox, radiobutton-->
         <item name="colorControlNormal">@color/colorNormal</item>
         <item name="android:colorForeground">@color/colorNormal</item>
-        <item name="toolbarStyle">@style/custom_toolbar</item>
+       <!-- <item name="toolbarStyle">@style/custom_toolbar</item>-->
 
 
         <!--textColorPrimary toolbar text color-->
@@ -43,11 +43,25 @@
         <item name="backgroundColor">@color/primaryColorDark_red</item>
     </style>
 
+    <style name="AppTheme.TealGreen" parent="AppTheme.NoActionBar">
+        <item name="colorPrimary">@color/primaryColor_tealgreen</item>
+        <item name="colorPrimaryDark">@color/primaryColorDark_tealgreen</item>
+        <item name="colorAccent">@color/primaryAccent_tealgreen</item>
+        <item name="backgroundColor">@color/primaryColorDark_tealgreen</item>
+    </style>
+
+    <style name="AppTheme.BlueGrey" parent="AppTheme.NoActionBar">
+        <item name="colorPrimary">@color/primaryColor_bluegrey</item>
+        <item name="colorPrimaryDark">@color/primaryColorDark_bluegrey</item>
+        <item name="colorAccent">@color/primaryAccent_bluegrey</item>
+        <item name="backgroundColor">@color/primaryColorDark_bluegrey</item>
+    </style>
+
 
     <style name="DrawerStyle" parent="Widget.AppCompat.DrawerArrowToggle">
-        <item name="colorControlNormal">@color/colorNormal</item>
+        <!--<item name="colorControlNormal">@color/colorNormal</item>-->
         <item name="spinBars">true</item>
-        <item name="color">@color/textTitle</item>
+        <!--<item name="color">@color/textTitle</item>-->
     </style>
 
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
@@ -82,7 +96,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textAllCaps">true</item>
-        <item name="android:background">@color/button_background</item>
+        <item name="android:background">?attr/colorPrimary</item>
         <item name="android:focusable">true</item>
         <item name="android:textSize">14sp</item>
 

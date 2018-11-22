@@ -216,5 +216,10 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
                 })
         val exitdialog = builder.create()
         exitdialog.show()
+
+        exitdialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(resources.getColor(R.color.textTitle))
+        exitdialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(resources.getColor(R.color.textTitle))
+
+
     }
 }

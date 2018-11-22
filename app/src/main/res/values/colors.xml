@@ -6,15 +6,26 @@
     <color name="textTitle">#616161</color>
     <color name="textSubTitle">#BDBDBD</color>
     <color name="colorNormal">#9E9E9E</color>
-    <color name="button_background">#00BFA5</color>
     <color name="background">#F5F5F5</color>
     <color name="icon_tint">#00695C</color>
 
 
     <color name="primaryColor_blue">#2196F3</color>
     <color name="primaryColorDark_blue">#1976D2</color>
-    <color name="primaryAccent_blue">#E3F2FD</color>
+    <color name="primaryAccent_blue">#90caf9</color>
+
     <color name="primaryColor_red">#F44336</color>
     <color name="primaryColorDark_red">#D32F2F</color>
-    <color name="primaryAccent_red">#FFEBEE</color>
+    <color name="primaryAccent_red">#ef9a9a</color>
+
+
+    <color name="primaryColor_bluegrey">#607d8b</color>
+    <color name="primaryColorDark_bluegrey">#455a64</color>
+    <color name="primaryAccent_bluegrey">#b0bec5</color>
+
+
+    <color name="primaryColor_tealgreen">#009688</color>
+    <color name="primaryColorDark_tealgreen">#00796b</color>
+    <color name="primaryAccent_tealgreen">#80cbc4</color>
+
 </resources>
