@@ -11,6 +11,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.util.Patterns
+import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
@@ -488,28 +489,79 @@ class LoanActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcrib
 
                     val loanRequestModifiedEntity = prepareLoanRequest();
 
+                    confirmationAlert(loanRequestModifiedEntity!!)
 
-                    Log.d("REQUEST", Gson().toJson(loanRequestModifiedEntity))
-
-
-                    /*              val listProduct = mutableListOf<String>()
-
-                                  listProduct.add(
-                                          spLoanProduct.selectedItem.toString())
-
-                                  var loanRequestEntity = LoanRequestEntity(
-                                          etName.text.toString(),
-                                          etMobileNo.text.toString(),
-                                          listProduct,
-                                          UserFacade(this@LoanActivity).getReferenceCode(),
-                                          UserFacade(this@LoanActivity).getUserID(), etRemark.text.toString())*/
-
-                    showLoading("Loading..")
-                    LoanLeadController(this@LoanActivity).addLoanLead(loanRequestModifiedEntity!!, this)
+                    //  showLoading("Loading..")
+                    //  LoanLeadController(this@LoanActivity).addLoanLead(loanRequestModifiedEntity!!, this)
                 }
             }
         }
     }
+
+
+    private fun confirmationAlert(motorLeadRequestEntity: LoanRequestModifiedEntity) {
+
+        // Initialize a new instance of
+        val builder = AlertDialog.Builder(this@LoanActivity)
+
+        // Set the alert dialog title
+        builder.setTitle("Create Lead")
+
+        val healthView = LayoutInflater.from(this).inflate(R.layout.layout_loan_confirm, null)
+
+        builder.setView(healthView)
+
+        healthView.findViewById<TextView>(R.id.txtName).setText("" + motorLeadRequestEntity.Name)
+        healthView.findViewById<TextView>(R.id.txtMobile).setText("" + motorLeadRequestEntity.MobileNo)
+        healthView.findViewById<TextView>(R.id.txtProduct).setText("" + motorLeadRequestEntity.Products)
+
+        healthView.findViewById<TextView>(R.id.txtBusinessLoanAmount).setText("" + if (motorLeadRequestEntity.BusinessLoanAmount > 0) "${motorLeadRequestEntity.BusinessLoanAmount.toString()}" else "Not applicable")
+        healthView.findViewById<TextView>(R.id.isExistingBusinessLoan).setText("" + if (motorLeadRequestEntity.isBusinessExistingLoan) "${motorLeadRequestEntity.isBusinessExistingLoan}" else "No")
+        healthView.findViewById<TextView>(R.id.txtExBusinessLoanAmount).setText("" + if (motorLeadRequestEntity.isBusinessExistingLoan) "${motorLeadRequestEntity.ExistingBusinessLoanAmount.toString()}" else "0")
+
+        healthView.findViewById<TextView>(R.id.txtHomeLoanAmount).setText("" + motorLeadRequestEntity.HomeLoanAmount.toString());//if (healthLeadRequestEntity.PolicyExpiryDate.length > 0) "${healthLeadRequestEntity.PolicyExpiryDate}" else "Not applicable")
+        healthView.findViewById<TextView>(R.id.txtHomeLoanCity).setText("" + motorLeadRequestEntity.HomeLoanCityName)
+        healthView.findViewById<TextView>(R.id.txtHomeLoanType).setText("" + motorLeadRequestEntity.HomeLoantype)
+
+
+
+        healthView.findViewById<TextView>(R.id.txtPLAmount).setText("" + motorLeadRequestEntity.PLAmount.toString())
+        healthView.findViewById<TextView>(R.id.txtPLEmployeeType).setText("" + motorLeadRequestEntity.PLEmployeeType)
+        healthView.findViewById<TextView>(R.id.txtPLDispatchDate).setText("" + motorLeadRequestEntity.PLDispatchDate)
+
+
+        healthView.findViewById<TextView>(R.id.txtCarType).setText("" + motorLeadRequestEntity.CarType)
+
+        var motorName = UserFacade(this@LoanActivity).getVehicleName(vehicleTypeID, motorLeadRequestEntity.CarMakeID.toInt(), motorLeadRequestEntity.CarModelID.toInt(), 0)
+
+        healthView.findViewById<TextView>(R.id.txtCar).setText("" + motorName)
+        healthView.findViewById<TextView>(R.id.txtCarMfgDate).setText("" + motorLeadRequestEntity.CarMfgDate)
+
+
+        healthView.findViewById<TextView>(R.id.txtCCEmployeeType).setText("" + motorLeadRequestEntity.CCEmployeeType)
+        // Set a positive button and its click listener on alert dialog
+        builder.setPositiveButton("Save") { dialog, which ->
+
+            dialog.dismiss()
+            showLoading("Loading..")
+            LoanLeadController(this@LoanActivity).addLoanLead(motorLeadRequestEntity!!, this)
+
+        }
+
+
+        // Display a negative button on alert dialog
+        builder.setNegativeButton("Edit") { dialog, which ->
+            dialog.dismiss()
+
+        }
+
+        // Finally, make the alert dialog using builder
+        val dialog: AlertDialog = builder.create()
+
+        // Display the alert dialog on app interface
+        dialog.show()
+    }
+
 
     private fun prepareLoanRequest(): LoanRequestModifiedEntity? {
 
@@ -607,8 +659,8 @@ class LoanActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcrib
 
         } else if (spLoanProduct.selectedItemPosition == 4) {
 
-            make = etMake.text.toString()
-            model = etModel.text.toString()
+            make = MakeID.toString() // etMake.text.toString()
+            model = ModelID.toString() // etModel.text.toString()
             mfgDate = etDOBMfg.text.toString()
             carType = spVehicleType.selectedItem.toString()
 

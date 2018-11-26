@@ -197,7 +197,7 @@
                         android:id="@+id/etInsurer"
                         style="@style/Style.edittext"
                         android:dropDownWidth="200dp"
-                        android:hint="Insurance company"
+                        android:hint="Enter Previous Insurer"
                         android:lines="1"
                         android:nextFocusDown="@id/etModel" />
 

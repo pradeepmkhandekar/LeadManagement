@@ -3,6 +3,7 @@ package com.pb.leadmanagement.core.requestbuilders
 import com.pb.leadmanagement.core.RetroRequestBuilder
 import com.pb.leadmanagement.core.requestentity.*
 import com.pb.leadmanagement.core.response.MotorLeadResponse
+import com.pb.leadmanagement.core.response.UploadImageResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.Headers
@@ -37,7 +38,7 @@ open class LeadRequestBuilder : RetroRequestBuilder() {
 
         @Headers("Content-Type: text/plain")
         @POST("LeadGenration.svc/UploadDocument")
-        fun uploadDocuments(@Body body: UploadDocRequestEntity): Call<MotorLeadResponse>
+        fun uploadDocuments(@Body body: UploadDocRequestEntity): Call<UploadImageResponse>
 
     }
 }

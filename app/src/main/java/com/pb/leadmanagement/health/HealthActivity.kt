@@ -61,7 +61,7 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
 
 
         acInsurer = findViewById<AutoCompleteTextView>(R.id.etInsurer)
-        acInsurer?.threshold = 2
+        acInsurer?.threshold = 1
 
         var insurerList = UserFacade(this@HealthActivity).getInsuranceList()
         adapterInsurance = InsuranceCompanyAdapter(this@HealthActivity, R.layout.activity_health, R.id.lbl_name, insurerList);

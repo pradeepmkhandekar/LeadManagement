@@ -17,13 +17,13 @@ data class LoanRequestModifiedEntity(
         var PLDispatchDate: String,
 
         var CarType: String,
-        var CarMake: String,
-        var CarModel: String,
+        var CarMakeID: String,
+        var CarModelID: String,
         var CarMfgDate: String,
 
         var CCEmployeeType: String,
 
         var PartnerChildLogin: String,
         var UserID: Int,
-        var Remark: String
+        var Remarks: String
 )

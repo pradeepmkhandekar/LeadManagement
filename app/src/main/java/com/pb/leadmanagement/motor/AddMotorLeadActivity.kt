@@ -22,6 +22,7 @@ import android.widget.TextView
 import com.android.chemistlead.core.APIResponse
 import com.pb.leadmanagement.R
 import com.pb.leadmanagement.core.IResponseSubcriber
+import com.pb.leadmanagement.core.controller.master.MasterController
 import com.pb.leadmanagement.core.controller.motor.MotorController
 import com.pb.leadmanagement.core.facade.UserFacade
 import com.pb.leadmanagement.core.requestentity.MotorLeadRequestEntity
@@ -528,7 +529,12 @@ class AddMotorLeadActivity : AppCompatActivity(), View.OnClickListener, IRespons
                     vehicleTypeID = 4
                     mListMake = UserFacade(this@AddMotorLeadActivity).getTwoWheelerMaster(4)//two wheeler
                 }
-                changeMakeAdapter()
+
+                if (mListMake!!.isNotEmpty()) {
+                    changeMakeAdapter()
+                } else {
+                   // showMessage("")
+                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {

@@ -35,6 +35,10 @@ class AddOtherActivity : AppCompatActivity(), View.OnClickListener, IResponseSub
     var catNONMOTOR_FIRE_ID: Int = 38
     var catNONMOTOR_MARINE_ID: Int = 47
     var catNONMOTOR_WORKMEN_ID: Int = 72
+    var catGROUP_MEDICLAIM: Int = 116
+
+
+    var HEALTH_PRODUCT: Int = 10
     var NONMOTOR_PRODUCT: Int = 3
 
     var TRAVEL_PRODUCT: Int = 12
@@ -260,6 +264,8 @@ class AddOtherActivity : AppCompatActivity(), View.OnClickListener, IResponseSub
                 var productID = 0
                 if (spInsurance.selectedItemPosition == 0) {
                     productID = TRAVEL_PRODUCT
+                } else if (spInsurance.selectedItemPosition == 4) {
+                    productID = HEALTH_PRODUCT
                 } else {
                     productID = NONMOTOR_PRODUCT
                 }
@@ -281,6 +287,8 @@ class AddOtherActivity : AppCompatActivity(), View.OnClickListener, IResponseSub
                 } else if (spInsurance.selectedItemPosition == 3) {
                     //workmen
                     catID = catNONMOTOR_WORKMEN_ID
+                } else if (spInsurance.selectedItemPosition == 4) {
+                    catID = catGROUP_MEDICLAIM
                 }
 
 

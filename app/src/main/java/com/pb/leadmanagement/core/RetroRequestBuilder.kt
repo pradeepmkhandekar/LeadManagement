@@ -15,7 +15,7 @@ open class RetroRequestBuilder {
         if (restAdapter == null) {
 
             val interceptor = HttpLoggingInterceptor()
-            interceptor.level = HttpLoggingInterceptor.Level.BASIC
+            interceptor.level = HttpLoggingInterceptor.Level.BODY
             val gson = GsonBuilder()
                     .serializeNulls()
                     // .setLenient()

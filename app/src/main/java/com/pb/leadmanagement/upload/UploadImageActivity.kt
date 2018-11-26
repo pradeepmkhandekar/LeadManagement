@@ -36,6 +36,7 @@ import com.pb.leadmanagement.core.IResponseSubcriber
 import com.pb.leadmanagement.core.controller.motor.MotorController
 import com.pb.leadmanagement.core.requestentity.UploadDocRequestEntity
 import com.pb.leadmanagement.core.response.MotorLeadResponse
+import com.pb.leadmanagement.core.response.UploadImageResponse
 import kotlinx.android.synthetic.main.content_upload_image.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import java.io.ByteArrayOutputStream

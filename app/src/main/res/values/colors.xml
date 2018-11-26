@@ -28,4 +28,13 @@
     <color name="primaryColorDark_tealgreen">#00796b</color>
     <color name="primaryAccent_tealgreen">#80cbc4</color>
 
+
+    <color name="primaryColor_purple">#921FA5</color>
+    <color name="primaryColorDark_purple">#6D1495</color>
+    <color name="primaryAccent_purple">#DBA7DD</color>
+
+
+    <color name="primaryColor_orange">#FF582C</color>
+    <color name="primaryColorDark_orange">#EE4B23</color>
+    <color name="primaryAccent_orange">#FFBEAC</color>
 </resources>

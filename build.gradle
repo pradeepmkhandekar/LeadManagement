@@ -19,6 +19,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "http://49.50.95.141:8081/artifactory/libs-release-local" }
     }
 }
 

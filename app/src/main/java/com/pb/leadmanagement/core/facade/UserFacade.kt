@@ -148,7 +148,7 @@ open class UserFacade : IUserfacade, IMotorFacade, IInsurance {
 
             //Variant list
             var varient: Variant? = null
-            if (model.Variant != null) {
+            if (model.Variant != null && subModelID > 0) {
                 varient = model.Variant.filter { s -> s.VariantID == subModelID }.single()
             }
 

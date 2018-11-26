@@ -15,7 +15,7 @@
         <!--normal state of displayViewview ie. Checkbox, radiobutton-->
         <item name="colorControlNormal">@color/colorNormal</item>
         <item name="android:colorForeground">@color/colorNormal</item>
-       <!-- <item name="toolbarStyle">@style/custom_toolbar</item>-->
+        <!-- <item name="toolbarStyle">@style/custom_toolbar</item>-->
 
 
         <!--textColorPrimary toolbar text color-->
@@ -26,6 +26,20 @@
         <item name="android:textColorHint">@color/textSubTitle</item>
 
         <item name="drawerArrowStyle">@style/DrawerStyle</item>
+    </style>
+
+    <style name="AppTheme.Orange" parent="AppTheme.NoActionBar">
+        <item name="colorPrimary">@color/primaryColor_orange</item>
+        <item name="colorPrimaryDark">@color/primaryColorDark_orange</item>
+        <item name="colorAccent">@color/primaryAccent_orange</item>
+        <item name="backgroundColor">@color/primaryColorDark_blue</item>
+    </style>
+
+    <style name="AppTheme.Purple" parent="AppTheme.NoActionBar">
+        <item name="colorPrimary">@color/primaryColor_purple</item>
+        <item name="colorPrimaryDark">@color/primaryColorDark_purple</item>
+        <item name="colorAccent">@color/primaryAccent_purple</item>
+        <item name="backgroundColor">@color/primaryColorDark_blue</item>
     </style>
 
 

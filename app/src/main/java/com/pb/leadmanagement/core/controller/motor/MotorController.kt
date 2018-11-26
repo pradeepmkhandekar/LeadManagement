@@ -9,7 +9,9 @@ import com.pb.leadmanagement.core.model.SaveError
 import com.pb.leadmanagement.core.requestbuilders.LeadRequestBuilder
 import com.pb.leadmanagement.core.requestentity.MotorLeadRequestEntity
 import com.pb.leadmanagement.core.requestentity.UploadDocRequestEntity
+import com.pb.leadmanagement.core.response.LeadEntity
 import com.pb.leadmanagement.core.response.MotorLeadResponse
+import com.pb.leadmanagement.core.response.UploadImageResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,16 +36,19 @@ open class MotorController : IMotor {
 
     override fun uploadDocuments(uploadDocRequestEntity: UploadDocRequestEntity, iResponseSubcriber: IResponseSubcriber) {
 
-        mLeadNetwork.uploadDocuments(uploadDocRequestEntity).enqueue(object : Callback<MotorLeadResponse> {
+        mLeadNetwork.uploadDocuments(uploadDocRequestEntity).enqueue(object : Callback<UploadImageResponse> {
 
-            override fun onResponse(call: Call<MotorLeadResponse>?, response: Response<MotorLeadResponse>?) {
+            override fun onResponse(call: Call<UploadImageResponse>?, response: Response<UploadImageResponse>?) {
 
                 if (response!!.isSuccessful) {
-                    if (response!!.body()?.StatusNo == 0) {
-                        iResponseSubcriber.OnSuccess(response.body(), response.message())
+                    if (response!!.body()?.UploadDocumentResult?.StatusNo == 0) {
+                        var motorLeadResponse = MotorLeadResponse(LeadEntity(0))
+                        motorLeadResponse!!.Message = response!!.body()!!.UploadDocumentResult.Message
+                        motorLeadResponse!!.StatusNo = response!!.body()!!.UploadDocumentResult.StatusNo
+                        iResponseSubcriber.OnSuccess(motorLeadResponse, response.message())
 
                     } else {
-                        iResponseSubcriber.OnFailure(response!!.body()?.Message)
+                        iResponseSubcriber.OnFailure(response!!.body()!!.UploadDocumentResult.Message)
                     }
 
                 } else {
@@ -55,30 +60,18 @@ open class MotorController : IMotor {
 
             }
 
-            override fun onFailure(call: Call<MotorLeadResponse>?, t: Throwable?) {
-                /* if (t is ConnectException) {
-                     iResponseSubcriber.OnFailure("Check your internet connection")
-                 } else if (t is SocketTimeoutException) {
-                     iResponseSubcriber.OnFailure("Socket time-out")
-                 } else if (t is UnknownHostException) {
-                     iResponseSubcriber.OnFailure("Unknown host exception")
-                 } else if (t is NumberFormatException) {
-                     iResponseSubcriber.OnFailure("Unknown response from server")
-                 } else if (t is IOException) {
-                     iResponseSubcriber.OnFailure("Server Time-out")
-                 } else {
-                     iResponseSubcriber.OnFailure(t?.message)
-                 }*/
+            override fun onFailure(call: Call<UploadImageResponse>?, t: Throwable?) {
+
 
                 if (t is ConnectException) {
                     var saveError = AuthenticationController.errorStatus(mContext, SaveError("0",
-                            "ConnectException", Gson().toJson(uploadDocRequestEntity), call?.request()?.url().toString()))
+                            "ConnectException", "", call?.request()?.url().toString()))
 
                     iResponseSubcriber.OnFailure(saveError)
                 } else if (t is SocketTimeoutException) {
 
                     var saveError = AuthenticationController.errorStatus(mContext, SaveError("0",
-                            "SocketTimeoutException", Gson().toJson(uploadDocRequestEntity), call?.request()?.url().toString()))
+                            "SocketTimeoutException", "", call?.request()?.url().toString()))
 
                     iResponseSubcriber.OnFailure(saveError)
 
@@ -86,7 +79,7 @@ open class MotorController : IMotor {
                 } else if (t is UnknownHostException) {
 
                     var saveError = AuthenticationController.errorStatus(mContext, SaveError("0",
-                            "UnknownHostException", Gson().toJson(uploadDocRequestEntity), call?.request()?.url().toString()))
+                            "UnknownHostException", "", call?.request()?.url().toString()))
 
                     iResponseSubcriber.OnFailure(saveError)
 
@@ -94,7 +87,7 @@ open class MotorController : IMotor {
                 } else if (t is NumberFormatException) {
 
                     var saveError = AuthenticationController.errorStatus(mContext, SaveError("0",
-                            "NumberFormatException", Gson().toJson(uploadDocRequestEntity), call?.request()?.url().toString()))
+                            "NumberFormatException", "", call?.request()?.url().toString()))
 
                     iResponseSubcriber.OnFailure(saveError)
 
@@ -102,7 +95,7 @@ open class MotorController : IMotor {
                 } else if (t is IOException) {
 
                     var saveError = AuthenticationController.errorStatus(mContext, SaveError("0",
-                            "IOException", Gson().toJson(uploadDocRequestEntity), call?.request()?.url().toString()))
+                            "IOException", "", call?.request()?.url().toString()))
 
                     iResponseSubcriber.OnFailure(saveError)
 
@@ -110,7 +103,7 @@ open class MotorController : IMotor {
                     //iResponseSubcriber.OnFailure("Server Time-out")
                 } else {
                     var saveError = AuthenticationController.errorStatus(mContext, SaveError("0",
-                            "Exception", Gson().toJson(uploadDocRequestEntity), call?.request()?.url().toString()))
+                            "Exception","", call?.request()?.url().toString()))
 
                     iResponseSubcriber.OnFailure(saveError)
 

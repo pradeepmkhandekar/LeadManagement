@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/lead_one"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.TealGreen">
+        android:theme="@style/AppTheme.Orange">
         <activity
             android:name=".SplashScreenActivity"
             android:screenOrientation="portrait"
