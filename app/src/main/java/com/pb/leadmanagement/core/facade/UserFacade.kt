@@ -50,6 +50,18 @@ open class UserFacade : IUserfacade, IMotorFacade, IInsurance {
         return editor.commit()
     }
 
+    override fun updateLeadInterest(leadInterest: List<String>?): Boolean {
+        try {
+            var loginEntity = getUser()
+            loginEntity?.LeadInterest = leadInterest!!
+            return storeUser(loginEntity!!)
+
+        } catch (e: Exception) {
+            return false
+        }
+        return false
+    }
+
     override fun storeUser(loginActivity: LoginEntity): Boolean {
         try {
             val gson = Gson()
@@ -62,6 +74,7 @@ open class UserFacade : IUserfacade, IMotorFacade, IInsurance {
 
         return false
     }
+
 
     override fun getUser(): LoginEntity? {
         val user = sharedPreferences.getString(LOGIN_DATA, "")
@@ -119,6 +132,7 @@ open class UserFacade : IUserfacade, IMotorFacade, IInsurance {
     }
 
     override fun getVehicleName(vehicleType: Int, makeID: Int, modelID: Int, subModelID: Int): String {
+
 
         var listVehicle: List<MakeX>? = null
 

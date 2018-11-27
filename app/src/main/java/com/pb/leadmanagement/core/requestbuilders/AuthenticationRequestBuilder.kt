@@ -3,13 +3,11 @@ package com.pb.leadmanagement.core.requestbuilders
 import com.pb.leadmanagement.core.RetroRequestBuilder
 import com.pb.leadmanagement.core.model.LoginEntity
 import com.pb.leadmanagement.core.requestentity.LoginRequestEntity
-import com.pb.leadmanagement.core.response.LoginResponse
-import com.pb.leadmanagement.core.response.MotorLeadResponse
-import com.pb.leadmanagement.core.response.OTPResponse
-import com.pb.leadmanagement.core.response.RegisterResponse
+import com.pb.leadmanagement.core.response.*
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
+import retrofit2.http.Url
 
 /**
  * Created by Nilesh Birhade on 18-09-2018.
@@ -37,5 +35,8 @@ open class AuthenticationRequestBuilder : RetroRequestBuilder() {
 
         @POST("/LeadGenration.svc/ForgotPassword")
         fun forgotPassword(@Body map: HashMap<String, String>): Call<MotorLeadResponse>
+
+        @POST
+        fun fetchLeadInterest(@Url leadUrl: String, @Body map: HashMap<String, String>): Call<LeadInterestPolicyResponse>
     }
 }

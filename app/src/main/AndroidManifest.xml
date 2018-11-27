@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.pb.leadmanagement">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -14,7 +15,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/lead_one"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.Orange">
+        android:theme="@style/AppTheme.TealGreen"
+        tools:node="replace">
         <activity
             android:name=".SplashScreenActivity"
             android:screenOrientation="portrait"
@@ -31,10 +33,12 @@
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
             android:exported="false"
-            android:grantUriPermissions="true">
+            android:grantUriPermissions="true"
+            >
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
+                android:resource="@xml/leadmanagment_file_paths"
+                />
         </provider>
 
         <activity

@@ -22,23 +22,30 @@
 
     <TextView
         android:id="@+id/txtName"
+        style="@style/CustomTitle.Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        style="@style/CustomTitle.Title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    <TextView
+        android:id="@+id/txtReferenceCode"
+        style="@style/CustomTitle.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:id="@+id/txtEmail"
         style="@style/CustomTitle.Medium"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/txtChainCode"
-        android:visibility="gone"
         style="@style/CustomTitle.Medium"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
 
 </LinearLayout>

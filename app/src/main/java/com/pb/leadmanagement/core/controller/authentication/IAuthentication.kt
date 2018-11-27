@@ -19,4 +19,6 @@ interface IAuthentication {
 
     fun forgotPassword(mobileNo: String, password: String, iResponseSubcriber: IResponseSubcriber)
 
+    fun fetchLeadInterest( iResponseSubcriber: IResponseSubcriber)
+
 }

@@ -206,15 +206,24 @@ class UploadImageActivity : AppCompatActivity(), View.OnClickListener, IResponse
             }
 
             R.id.txtUploadPolicy -> {
-                baseConvertPDFAsync(this, imgPolicy.getTag(R.id.imgPolicy) as Bitmap, documentName,
-                        leadID, productID).execute()
+                if (imgPolicy.getTag(R.id.imgPolicy) != null) {
+
+                    baseConvertPDFAsync(this, imgPolicy.getTag(R.id.imgPolicy) as Bitmap, documentName,
+                            leadID, productID).execute()
+                } else {
+                    showMessage(imgPolicy, "Attach image to upload", "", null)
+                }
 
                 // baseAsync(this, imgPolicy.getTag(R.id.imgPolicy) as Bitmap, documentName, leadID, productID).execute()
             }
 
             R.id.txtUploadRC -> {
-                baseConvertPDFAsync(this, imgRC.getTag(R.id.imgRC) as Bitmap, documentName,
-                        leadID, productID).execute()
+                if (imgRC.getTag(R.id.imgRC) != null) {
+                    baseConvertPDFAsync(this, imgRC.getTag(R.id.imgRC) as Bitmap, documentName,
+                            leadID, productID).execute()
+                } else {
+                    showMessage(imgPolicy, "Attach image to upload", "", null)
+                }
                 // baseAsync(this, imgRC.getTag(R.id.imgRC) as Bitmap, documentName, leadID, productID).execute()
             }
         }

@@ -172,7 +172,6 @@
                             <AutoCompleteTextView
                                 android:id="@+id/etMake"
                                 style="@style/Style.edittext"
-                                android:dropDownWidth="200dp"
                                 android:hint="Make"
                                 android:lines="1"
                                 android:nextFocusDown="@id/etModel" />

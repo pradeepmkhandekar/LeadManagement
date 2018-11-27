@@ -196,7 +196,6 @@
                     <AutoCompleteTextView
                         android:id="@+id/etInsurer"
                         style="@style/Style.edittext"
-                        android:dropDownWidth="200dp"
                         android:hint="Enter Previous Insurer"
                         android:lines="1"
                         android:nextFocusDown="@id/etModel" />

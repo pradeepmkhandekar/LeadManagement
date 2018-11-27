@@ -18,6 +18,7 @@ import com.pb.leadmanagement.R
 import com.pb.leadmanagement.core.IResponseSubcriber
 import com.pb.leadmanagement.core.controller.authentication.AuthenticationController
 import com.pb.leadmanagement.core.requestentity.LoginRequestEntity
+import com.pb.leadmanagement.core.response.LeadInterestPolicyResponse
 import com.pb.leadmanagement.core.response.LoginResponse
 import com.pb.leadmanagement.forgot.ForgotActivity
 import com.pb.leadmanagement.home.NavigationActivity
@@ -51,6 +52,11 @@ class LoginActivity : AppCompatActivity(), OnClickListener, IResponseSubcriber {
         dismissDialog()
         if (response is LoginResponse) {
 
+            showLoading("Loading..")
+            AuthenticationController(this).fetchLeadInterest(this)
+
+
+        } else if (response is LeadInterestPolicyResponse) {
 
             showMessage(etMobileNo, response.Message, "", null)
 
@@ -59,8 +65,6 @@ class LoginActivity : AppCompatActivity(), OnClickListener, IResponseSubcriber {
                 val intent = Intent(this, NavigationActivity::class.java)
                 startActivity(intent)
             }, 2000)
-
-
         }
 
     }

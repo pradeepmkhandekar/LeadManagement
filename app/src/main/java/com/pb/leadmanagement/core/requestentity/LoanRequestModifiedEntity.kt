@@ -17,8 +17,8 @@ data class LoanRequestModifiedEntity(
         var PLDispatchDate: String,
 
         var CarType: String,
-        var CarMakeID: String,
-        var CarModelID: String,
+        var CarMakeID: Int,
+        var CarModelID: Int,
         var CarMfgDate: String,
 
         var CCEmployeeType: String,

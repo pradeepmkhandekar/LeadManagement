@@ -532,8 +532,12 @@ class LoanActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcrib
 
         healthView.findViewById<TextView>(R.id.txtCarType).setText("" + motorLeadRequestEntity.CarType)
 
-        var motorName = UserFacade(this@LoanActivity).getVehicleName(vehicleTypeID, motorLeadRequestEntity.CarMakeID.toInt(), motorLeadRequestEntity.CarModelID.toInt(), 0)
-
+        var motorName: String = ""
+        if (motorLeadRequestEntity.CarMakeID > 0 && motorLeadRequestEntity.CarModelID > 0) {
+            motorName = UserFacade(this@LoanActivity).getVehicleName(vehicleTypeID,
+                    motorLeadRequestEntity.CarMakeID.toInt(),
+                    motorLeadRequestEntity.CarModelID.toInt(), 0)
+        }
         healthView.findViewById<TextView>(R.id.txtCar).setText("" + motorName)
         healthView.findViewById<TextView>(R.id.txtCarMfgDate).setText("" + motorLeadRequestEntity.CarMfgDate)
 
@@ -589,8 +593,8 @@ class LoanActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcrib
         var plDispatchDate = ""
 
         //car loan
-        var make = ""
-        var model = ""
+        var make = 0
+        var model = 0
         var mfgDate = ""
         var carType = ""
 
@@ -612,8 +616,8 @@ class LoanActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcrib
             personalLoanAmount = 0
             employeeType = ""
             plDispatchDate = ""
-            make = ""
-            model = ""
+            make = 0
+            model = 0
             mfgDate = ""
             carType = ""
             ccEmployeeType = ""
@@ -632,8 +636,8 @@ class LoanActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcrib
             employeeType = ""
             plDispatchDate = ""
             carType = ""
-            make = ""
-            model = ""
+            make = 0
+            model = 0
             mfgDate = ""
             ccEmployeeType = ""
 
@@ -651,16 +655,16 @@ class LoanActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcrib
             blLoanAmount = 0
             isExistingLoan = false
             currentBLLoanAmount = 0
-            make = ""
-            model = ""
+            make = 0
+            model = 0
             mfgDate = ""
             carType = ""
             ccEmployeeType = ""
 
         } else if (spLoanProduct.selectedItemPosition == 4) {
 
-            make = MakeID.toString() // etMake.text.toString()
-            model = ModelID.toString() // etModel.text.toString()
+            make = MakeID// etMake.text.toString()
+            model = ModelID // etModel.text.toString()
             mfgDate = etDOBMfg.text.toString()
             carType = spVehicleType.selectedItem.toString()
 
@@ -683,8 +687,8 @@ class LoanActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcrib
 
             //others empty
             carType = ""
-            make = ""
-            model = ""
+            make = 0
+            model = 0
             mfgDate = ""
             personalLoanAmount = 0
             employeeType = ""
@@ -712,8 +716,8 @@ class LoanActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcrib
                 employeeType,
                 plDispatchDate,
                 carType,
-                make,
-                model,
+                make.toInt(),
+                model.toInt(),
                 mfgDate,
                 ccEmployeeType,
                 refCode,

@@ -25,6 +25,8 @@ import kotlinx.android.synthetic.main.app_bar_navigation.*
 
 class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    lateinit var navigationView: NavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation)
@@ -39,24 +41,26 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
+        navigationView = nav_view
+        navigationView.setNavigationItemSelectedListener(this)
 
-        nav_view.setNavigationItemSelectedListener(this)
-
-        bindHeader(nav_view.getHeaderView(0))
+        bindHeader()
 
         //by default first item clicked.
         onNavigationItemSelected(nav_view.menu.getItem(0))
     }
 
-    fun bindHeader(header: View) {
+    public fun bindHeader() {
 
-        var txtName = header.findViewById<TextView>(R.id.txtName)
-        var txtEmail = header.findViewById<TextView>(R.id.txtEmail)
-        var txtChainCode = header.findViewById<TextView>(R.id.txtChainCode)
+        var txtName = navigationView.getHeaderView(0).findViewById<TextView>(R.id.txtName)
+        var txtEmail = navigationView.getHeaderView(0).findViewById<TextView>(R.id.txtEmail)
+        var txtChainCode = navigationView.getHeaderView(0).findViewById<TextView>(R.id.txtChainCode)
+        var txtReferenceCode = navigationView.getHeaderView(0).findViewById<TextView>(R.id.txtReferenceCode)
 
 
         txtName.setText(UserFacade(this).getUser()?.Name)
         txtEmail.setText(UserFacade(this).getUser()?.EmailID)
+        txtReferenceCode.setText("Reference Code : " + UserFacade(this).getUser()?.ReferenceCode)
         txtChainCode.setText("Chain :" + UserFacade(this).getUser()?.PartnerLogin)
     }
 
@@ -193,6 +197,7 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         }
 
     }
+
 
     private fun dialogExit() {
         val builder = AlertDialog.Builder(this)

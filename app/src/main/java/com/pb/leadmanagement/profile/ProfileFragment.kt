@@ -38,10 +38,13 @@ class ProfileFragment : Fragment(), View.OnClickListener, IResponseSubcriber {
     lateinit var dialog: AlertDialog
     lateinit var dialogView: View
 
+    lateinit var mContext: Context
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         displayView = inflater.inflate(R.layout.fragment_profile, container, false)
+
+        mContext = displayView.context
 
         initDialog()
 
@@ -85,6 +88,7 @@ class ProfileFragment : Fragment(), View.OnClickListener, IResponseSubcriber {
 
             if (response.StatusNo == 0) {
                 showMessage(etName, response.Message, "", null)
+                (mContext as NavigationActivity).bindHeader()
 
             } else {
                 showMessage(etName, response.Message, "", null)
@@ -258,7 +262,7 @@ class ProfileFragment : Fragment(), View.OnClickListener, IResponseSubcriber {
                         displayView.etLocation.text.toString(),
                         displayView.etMobileNo.text.toString(),
                         displayView.etName.text.toString(),
-                        "",
+                        this.loginEntity!!.Password,
                         displayView.etPincode.text.toString(),
                         displayView.etState.text.toString()
 

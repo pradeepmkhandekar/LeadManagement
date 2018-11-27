@@ -98,6 +98,7 @@ class HealthActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcr
                 val intent = Intent(this, UploadImageActivity::class.java)
                 intent.putExtra("LEAD_ID", leadID)
                 intent.putExtra("FROM", "HEALTH")
+                this!!.finish()
                 startActivity(intent)
             }
         }

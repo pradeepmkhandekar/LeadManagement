@@ -17,4 +17,6 @@ interface IUserfacade {
     fun getUserID(): Int
 
     fun getReferenceCode(): String
+
+    fun updateLeadInterest(leadInterest: List<String>?): Boolean
 }

@@ -9,10 +9,7 @@ import com.pb.leadmanagement.core.model.LoginEntity
 import com.pb.leadmanagement.core.model.SaveError
 import com.pb.leadmanagement.core.requestbuilders.AuthenticationRequestBuilder
 import com.pb.leadmanagement.core.requestentity.LoginRequestEntity
-import com.pb.leadmanagement.core.response.LoginResponse
-import com.pb.leadmanagement.core.response.MotorLeadResponse
-import com.pb.leadmanagement.core.response.OTPResponse
-import com.pb.leadmanagement.core.response.RegisterResponse
+import com.pb.leadmanagement.core.response.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -71,6 +68,87 @@ open class AuthenticationController : IAuthentication {
         mAuthNetwork = AuthenticationRequestBuilder().getService()
     }
 
+    override fun fetchLeadInterest(iResponseSubcriber: IResponseSubcriber) {
+        var url = "http://49.50.95.141:2001/LeadCollection.svc/ShowProducts"
+
+        val map = HashMap<String, String>()
+        map.put("ReferenceNo", UserFacade(mContext).getUser()!!.ReferenceCode)
+
+
+        mAuthNetwork.fetchLeadInterest(url, map).enqueue(object : Callback<LeadInterestPolicyResponse> {
+
+            override fun onResponse(call: Call<LeadInterestPolicyResponse>?, response: Response<LeadInterestPolicyResponse>?) {
+
+                if (response!!.isSuccessful) {
+                    if (response.body()?.StatusNo == 0) {
+
+                        if (UserFacade(mContext).updateLeadInterest(response?.body()?.Products)) {
+                            iResponseSubcriber.OnSuccess(response.body(), response.message())
+                        } else {
+                            UserFacade(mContext).clearUser()
+                            iResponseSubcriber.OnFailure(response.body()?.Message)
+                        }
+                    } else {
+                        iResponseSubcriber.OnFailure(response.body()?.Message)
+                    }
+                } else {
+
+                    var saveError = errorStatus(mContext, SaveError(response.code().toString(), "", "", response.raw().request().url().toString()))
+                    iResponseSubcriber.OnFailure(saveError)
+
+                }
+            }
+
+            override fun onFailure(call: Call<LeadInterestPolicyResponse>?, t: Throwable?) {
+                if (t is ConnectException) {
+                    var saveError = errorStatus(mContext, SaveError("0",
+                            "ConnectException", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+                } else if (t is SocketTimeoutException) {
+
+                    var saveError = errorStatus(mContext, SaveError("0",
+                            "SocketTimeoutException", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+                    // iResponseSubcriber.OnFailure("Socket time-out")
+                } else if (t is UnknownHostException) {
+
+                    var saveError = errorStatus(mContext, SaveError("0",
+                            "UnknownHostException", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+                    // iResponseSubcriber.OnFailure("Unknown host exception")
+                } else if (t is NumberFormatException) {
+
+                    var saveError = errorStatus(mContext, SaveError("0",
+                            "NumberFormatException", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+                    //  iResponseSubcriber.OnFailure("Unknown response from server")
+                } else if (t is IOException) {
+
+                    var saveError = errorStatus(mContext, SaveError("0",
+                            "IOException", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+
+                    //iResponseSubcriber.OnFailure("Server Time-out")
+                } else {
+                    var saveError = errorStatus(mContext, SaveError("0",
+                            "Exception", "", call?.request()?.url().toString()))
+
+                    iResponseSubcriber.OnFailure(saveError)
+
+                    //iResponseSubcriber.OnFailure(t?.message)
+                }
+            }
+        })
+    }
 
     override fun login(loginRequestEntity: LoginRequestEntity, iResponseSubcriber: IResponseSubcriber) {
         mAuthNetwork.login(loginRequestEntity).enqueue(object : Callback<LoginResponse> {
