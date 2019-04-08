@@ -3,6 +3,7 @@ package com.pb.leadmanagement.core.controller.authentication
 import android.content.Context
 import com.google.gson.Gson
 import com.pb.leadmanagement.core.IResponseSubcriber
+import com.pb.leadmanagement.core.controller.BaseController
 import com.pb.leadmanagement.core.controller.save.SaveLeadController
 import com.pb.leadmanagement.core.facade.UserFacade
 import com.pb.leadmanagement.core.model.LoginEntity
@@ -19,7 +20,7 @@ import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
 
-open class AuthenticationController : IAuthentication {
+open class AuthenticationController : BaseController, IAuthentication {
 
 
     companion object {
@@ -66,6 +67,7 @@ open class AuthenticationController : IAuthentication {
     constructor(context: Context) {
         mContext = context
         mAuthNetwork = AuthenticationRequestBuilder().getService()
+
     }
 
     override fun fetchLeadInterest(iResponseSubcriber: IResponseSubcriber) {

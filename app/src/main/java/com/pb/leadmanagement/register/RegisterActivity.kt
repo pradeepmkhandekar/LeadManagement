@@ -16,6 +16,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.TextView
 import com.android.chemistlead.core.APIResponse
+import com.pb.leadmanagement.BaseActivity
 import com.pb.leadmanagement.R
 import com.pb.leadmanagement.core.IResponseSubcriber
 import com.pb.leadmanagement.core.controller.authentication.AuthenticationController
@@ -27,11 +28,12 @@ import com.pb.leadmanagement.core.response.RegisterResponse
 import kotlinx.android.synthetic.main.content_register.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
-class RegisterActivity : AppCompatActivity(), View.OnClickListener, IResponseSubcriber {
+class RegisterActivity : BaseActivity(), View.OnClickListener, IResponseSubcriber {
 
-    lateinit var dialog: AlertDialog
-    lateinit var dialogView: View
+    //lateinit var dialog: AlertDialog
+    //lateinit var dialogView: View
 
+    var authenticationController: AuthenticationController? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +41,9 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener, IResponseSub
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setListener()
-        initDialog()
+        // initDialog()
+        authenticationController = getService(ServiceProvider.LEAD) as AuthenticationController?
+
     }
 
     private fun otpVerifyDialog(strOTP: String) {
@@ -125,7 +129,9 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener, IResponseSub
 
     private fun verifyOTP() {
         showLoading("Verify OTP")
-        AuthenticationController(this@RegisterActivity).verifyOTP(etMobileNo.text.toString(), "0", this@RegisterActivity)
+
+        authenticationController?.verifyOTP(etMobileNo.text.toString(), "0", this@RegisterActivity)
+        //  AuthenticationController(this@RegisterActivity).verifyOTP(etMobileNo.text.toString(), "0", this@RegisterActivity)
 
     }
 
@@ -170,28 +176,28 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener, IResponseSub
 
     //region Progress Dialog
 
-    private fun initDialog() {
-        val builder = AlertDialog.Builder(this)
-        dialogView = layoutInflater.inflate(R.layout.layout_progress_dialog, null)
-        builder.setView(dialogView)
-        builder.setCancelable(false)
-        dialog = builder.create()
-    }
+    /* private fun initDialog() {
+         val builder = AlertDialog.Builder(this)
+         dialogView = layoutInflater.inflate(R.layout.layout_progress_dialog, null)
+         builder.setView(dialogView)
+         builder.setCancelable(false)
+         dialog = builder.create()
+     }
 
-    private fun showLoading(message: CharSequence) {
-        val msg = dialogView.findViewById<TextView>(R.id.txtProgressTitle)
-        msg.text = message
+     private fun showLoading(message: CharSequence) {
+         val msg = dialogView.findViewById<TextView>(R.id.txtProgressTitle)
+         msg.text = message
 
 
-        dialog.show()
-    }
+         dialog.show()
+     }
 
-    private fun dismissDialog() {
+     private fun dismissDialog() {
 
-        if (dialog != null && dialog.isShowing) {
-            dialog.dismiss()
-        }
-    }
+         if (dialog != null && dialog.isShowing) {
+             dialog.dismiss()
+         }
+     }*/
 
     //endregion
 

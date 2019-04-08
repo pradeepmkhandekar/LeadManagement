@@ -17,6 +17,7 @@ import com.pb.leadmanagement.R
 import com.pb.leadmanagement.contactus.ContactUsFragment
 import com.pb.leadmanagement.core.facade.UserFacade
 import com.pb.leadmanagement.dashboard.DashboardFragment
+import com.pb.leadmanagement.extra_feature.LoanDocumentsFragment
 import com.pb.leadmanagement.login.LoginActivity
 import com.pb.leadmanagement.profile.ProfileFragment
 import com.pb.leadmanagement.reports.ReportsFragment
@@ -137,6 +138,11 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
                 val updateProfile = ProfileFragment()
                 switchFragment(updateProfile)
 
+            }
+
+            R.id.nav_loan_documents -> {
+                val updateProfile = LoanDocumentsFragment()
+                switchFragment(updateProfile)
             }
 
             R.id.nav_report -> {

@@ -40,7 +40,7 @@ class DashboardFragment : Fragment(), OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (view.context as NavigationActivity).setTitle("Generate Lead")
+            (view.context as NavigationActivity).setTitle("Generate Lead")
     }
 
     override fun onResume() {
